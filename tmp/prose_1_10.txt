@@ -1,0 +1,217 @@
+
+===== PAGE 1 =====
+ 
+ 
+ 
+AIRCRAFT TRACKING AND TRAJECTORY 
+PREDICTION  
+Submitted by 
+ APARNA TIWARI 
+For the award of the degree of 
+B.Tech (Computer Science – Artificial Intelligence) 
+Under the supervision of 
+Supervisor 
+Mr. Ajeet Gaur 
+Scientist ‘F’ 
+Aerial Delivery Research and Development Establishment (DRDO), Agra                                                                                                                                                              
+ 
+                                                                                                 
+            Faculty of Mathematics and Computing 
+Banasthali Vidyapith 
+Banasthali - 304022 
+Session: 2026 
+
+
+===== PAGE 2 =====
+ 
+i 
+CERTIFICATE FORMAT 
+Certified that "APARNA TIWARI" (Roll No. 2216018, Student ID 
+BTBTS22091) has carried out the project work titled "ADS-B LIVE TRACKER 
+USING PINGSTATION DATA" from _____ to _____ for the award of the 
+B.Tech (Computer Science) from Banasthali Vidyapith under my supervision. 
+The thesis embodies result of original work and studies carried out by the student 
+herself and the contents of the thesis do not form the basis for the award of any 
+other degree to the candidate or to anybody else. 
+ 
+ 
+ 
+ 
+ 
+(Signature of the Supervisor) 
+Mr. Ajeet Gaur 
+Designation: Scientist ‘F’ 
+Place: Agra, Uttar Pradesh 
+Date: 
+  
+
+===== PAGE 3 =====
+ 
+ii 
+ABSTRACT 
+The increasing availability of aircraft surveillance data has created opportunities 
+for developing systems that can monitor, analyze, and visualize air traffic in a 
+more accessible manner. Automatic Dependent Surveillance–Broadcast (ADS-B) 
+is a modern surveillance technology in which aircraft periodically broadcast 
+information such as identification, position, altitude, velocity, and heading. These 
+broadcasts can be received by ground stations and processed to provide real-time 
+awareness of aircraft movements. ADS-B has become an important component of 
+contemporary air traffic monitoring due to its ability to provide accurate and 
+continuously updated flight information. 
+This project focuses on the design and development of an ADS-B Live Aircraft 
+Tracking System using Pingstation data as the primary source of surveillance 
+information. The objective of the system is to transform raw ADS-B messages 
+into meaningful aircraft information that can be monitored, stored, and analyzed 
+through an intuitive web-based interface. Instead of relying on specialized 
+aviation software, the project provides a lightweight and self-contained platform 
+capable of handling aircraft tracking operations using commonly available 
+technologies. 
+The system receives either live or previously captured ADS-B data streams and 
+processes the incoming messages through a custom decoder developed for 
+Pingstation binary frames. The decoder extracts relevant aircraft parameters such 
+as ICAO aircraft address, callsign, latitude, longitude, altitude, speed, heading, 
+and timestamp information. After decoding, the data is validated and normalized 
+to ensure consistency across different message types and transmission intervals. 
+This processed information is then stored in a structured database for efficient 
+retrieval and historical analysis. 
+The backend of the application is implemented using Python and Flask, providing 
+APIs and services responsible for data ingestion, processing, storage, and 
+communication with the frontend. SQLite is used as the primary local database for 
+maintaining aircraft records and trajectory history, while CSV and Excel export 
+functionalities are incorporated to support external analysis and reporting. These 
+
+===== PAGE 4 =====
+ 
+iii 
+export options enable users to examine collected flight data using commonly 
+available analytical tools. 
+For visualization, the project employs a browser-based dashboard integrated with 
+Leaflet maps. The dashboard displays aircraft positions in near real time and 
+allows users to observe movement patterns through continuously updated 
+trajectory paths. Recent trajectory points are preserved to provide a visual 
+representation of flight routes, improving situational awareness and enabling users 
+to understand aircraft movement over time. The system also supports prediction-
+oriented entries when sufficient recent observations are available, providing an 
+estimated continuation of aircraft trajectories for monitoring purposes. 
+A key focus of the project is simplicity, portability, and practical usability. The 
+architecture is designed to operate efficiently on standard computing systems 
+without requiring complex infrastructure. By combining data acquisition, message 
+decoding, storage, export capabilities, and map-based visualization into a single 
+platform, the project demonstrates a complete surveillance data processing 
+pipeline. The developed system successfully converts low-level ADS-B 
+transmissions into human-readable operational information that can be used for 
+educational purposes, aviation research, flight trajectory analysis, and surveillance 
+system studies. 
+Overall, the project highlights the practical application of web technologies, 
+database systems, and data processing techniques in the aviation domain. It 
+provides a functional framework for aircraft monitoring while offering 
+opportunities for future enhancements such as advanced trajectory prediction, 
+anomaly detection, integration with additional ADS-B receivers, and large-scale 
+cloud-based deployment. 
+  
+
+===== PAGE 5 =====
+ 
+iv 
+ACKNOWLEDGEMENT 
+I would like to express my sincere gratitude to my project guide for providing 
+continuous guidance, encouragement, and valuable suggestions throughout the 
+development of this project. Their support and constructive feedback helped me 
+understand the technical aspects of the project more effectively and motivated me 
+to improve the quality of both the implementation and documentation. 
+I am also thankful to the faculty members of the Department of Computer Science 
+and Artificial Intelligence Engineering, Banasthali Vidyapith, for providing the 
+academic knowledge, resources, and learning environment that made this project 
+possible. The concepts learned during my coursework served as a strong 
+foundation for the design and development of this system. 
+I would like to extend my appreciation to my classmates and peers for their 
+cooperation, discussions, and valuable suggestions during various stages of the 
+project. Their feedback helped identify areas for improvement and contributed to 
+the successful completion of the work. 
+This project, titled "ADS-B Live Aircraft Tracking System", provided me with 
+an opportunity to gain practical experience in data processing, web development, 
+database management, and real-time visualization technologies. Through the 
+process of designing, implementing, testing, and debugging the system, I 
+developed a deeper understanding of how raw surveillance data can be 
+transformed into meaningful and user-friendly information. 
+I am also grateful to my family for their constant encouragement, patience, and 
+unwavering support throughout my academic journey. Their motivation and belief 
+in my abilities have always inspired me to overcome challenges and achieve my 
+goals. 
+Finally, I would like to thank everyone who directly or indirectly contributed to 
+the successful completion of this project. The experience gained during this work 
+has significantly enhanced my technical skills, problem-solving abilities, and 
+understanding of real-world software development practices, making it an 
+important milestone in my academic and professional growth. 
+  
+
+===== PAGE 6 =====
+ 
+v 
+TABLE OF CONTENTS 
+CERTIFICATE FORMAT ....................................................................................... i 
+ABSTRACT ............................................................................................................. ii 
+ACKNOWLEDGEMENT ...................................................................................... iv 
+TABLE OF CONTENTS ......................................................................................... v 
+LIST OF FIGURES ..............................................................................................viii 
+LIST OF TABLES .................................................................................................. ix 
+1. OBJECTIVE ........................................................................................................ 1 
+2. REQUIREMENT ANALYSIS (SRS) ................................................................. 1 
+2.1 Introduction .................................................................................................... 1 
+2.2 Scope .............................................................................................................. 1 
+2.3 Functional Requirements ............................................................................... 2 
+2.4 Non-Functional Requirements ....................................................................... 2 
+2.5 Hardware and Software Requirements .......................................................... 2 
+2.6 Feasibility Study ............................................................................................ 3 
+2.7 Product Functions .......................................................................................... 3 
+2.8 Actors ............................................................................................................. 3 
+2.9 Use-Case Descriptions ................................................................................... 4 
+3. REQUIREMENT SPECIFICATION .................................................................. 5 
+3.1 System Inputs ................................................................................................. 5 
+3.2 System Outputs .............................................................................................. 5 
+3.3 Assumptions and Constraints ......................................................................... 6 
+3.4 Data Dictionary .............................................................................................. 6 
+3.5 API Specification ........................................................................................... 6 
+4. SYSTEM DESIGN (SDS) ................................................................................... 7 
+4.1 High-Level Design ......................................................................................... 7 
+4.2 Data Flow Design .......................................................................................... 8 
+
+===== PAGE 7 =====
+ 
+vi 
+4.3 Database Design............................................................................................. 8 
+4.4 Main System Modules ................................................................................. 10 
+4.5 Sequence of Operation ................................................................................. 11 
+4.6 Design Rationale .......................................................................................... 14 
+4.7 Diagram Summary ....................................................................................... 16 
+5. CODING ............................................................................................................ 16 
+5.1 Backend API ................................................................................................ 16 
+5.2 Decoder and Preprocessing .......................................................................... 17 
+5.3 Storage and Export ....................................................................................... 17 
+5.4 User Interface ............................................................................................... 17 
+5.5 Error Handling and Data Quality ................................................................. 17 
+5.6 Configuration Parameters ............................................................................ 17 
+6. TESTING ........................................................................................................... 18 
+6.1 Observed Outputs......................................................................................... 19 
+7. USER INTERFACES ........................................................................................ 19 
+7.1 Interface Layout ........................................................................................... 19 
+7.2 Interface Controls......................................................................................... 20 
+8. CONCLUSION AND FUTURE SCOPE .......................................................... 20 
+8.1 Conclusion ................................................................................................... 20 
+8.2 Future Scope ................................................................................................ 20 
+APPENDICES ....................................................................................................... 20 
+Appendix A: Configuration Summary ............................................................... 20 
+Appendix B: Main Code Excerpts ..................................................................... 21 
+Backend route excerpt.................................................................................... 21 
+Data source excerpt ........................................................................................ 25 
+Raw decoder excerpt ...................................................................................... 29 
+Preprocessing excerpt .................................................................................... 40 
+
+===== PAGE 8 =====
+
+
+===== PAGE 9 =====
+
+
+===== PAGE 10 =====
+

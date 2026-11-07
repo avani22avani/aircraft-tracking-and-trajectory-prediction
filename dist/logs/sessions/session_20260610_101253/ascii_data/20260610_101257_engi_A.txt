@@ -1,0 +1,3240 @@
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+IGO942
+None
+IGO942
+None
+IGO942
+None
+None
+None
+None
+IGO942
+IGO942
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+IGO942, AtB, IGO942, AtB
+None
+IGO942, AtB
+IGO942, AtB
+None
+None
+IGO942
+None
+None
+IGO942
+None
+IGO942
+IGO942
+IGO942
+None
+IGO942
+None
+IGO942
+None
+None
+None
+None
+None
+None
+IGO942
+None
+IGO942
+None
+IGO942
+None
+None
+None
+IGO942
+IGO942, AcB
+None
+IGO942, AcB
+None
+IGO942, AcB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942, AcB
+IGO942, AcB
+IGO942
+IGO942
+None
+None
+None
+None
+None
+None
+IGO942
+IGO942
+None
+None
+None
+None
+None
+None
+IGO942
+None
+IGO942
+IGO942
+None
+None
+IGO942, AuB
+None
+IGO942, AuB
+IGO942, AKB
+None
+IGO942, AKB
+IGO942, AKB
+IGO942
+None
+None
+IGO942
+IGO942
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+None
+None
+None
+IGO942
+None
+IGO942
+None
+IGO942
+None
+IGO942
+IGO942
+None
+None
+IGO942
+None
+None
+IGO942
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+IGO942
+None
+None
+None
+None
+None
+IGO942
+IGO942
+None
+None
+IGO942
+IGO942
+None
+IGO942
+None
+None
+None
+IGO942, IGO942
+None
+None
+None
+None
+None
+None
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+IGO942
+None
+IGO942
+None
+None
+IGO942
+None
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+IGO942
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+IGO942
+None
+None
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO942
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+AkB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO6378
+None
+None
+IGO6378
+None
+IGO6378
+IGO6378
+None
+IGO6378
+None
+None
+IGO6378
+None
+None
+IGO6378
+None
+None
+IGO6378
+None
+IGO6378
+None
+IGO6378
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO6378
+None
+None
+None
+None
+None
+IGO6378
+None
+None
+IGO6378
+IGO6378
+None
+IGO6378
+None
+IGO6378
+IGO6378
+None
+IGO6378
+None
+IGO6378
+None
+None
+None
+IGO6378, 5AB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO6378
+IGO6378
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO6378
+d0A
+None
+IGO6378, AOB
+IGO6378, AOB
+L1A
+L1A
+L1A
+IGO6378, AOB
+IGO6378, AOB
+A2A
+IGO6378, ANB
+IGO6378, ANB
+None
+IGO6378, ANB
+None
+IGO6378, 7AB
+p3A
+p3A
+IGO6378, 7AB
+None
+IGO6378, 7AB
+IGO6378, hAB
+None
+None
+IGO6378, hAB
+IGO6378, hAB
+None
+IGO6378, ABB
+c5A
+IGO6378, ABB
+None
+None
+None
+IGO6378, AzB
+None
+IGO6378, AzB
+None
+IGO6378, AAB
+IGO6378, AAB
+None
+IGO6378, AAB
+IGO6378, AAB
+None
+IGO6378
+None
+None
+IGO6378
+None
+IGO6378, IGO6378
+None
+None
+IGO6378
+IGO6378
+None
+IGO6378
+None
+IGO6378
+None
+None
+IGO6378, 7AB
+IGO6378, 7AB
+IGO6378, 7AB
+None
+None
+IGO6378
+IGO6378
+IGO6378
+None
+IGO6378
+None
+None
+IGO6378
+None
+IGO6378
+None
+IGO6378
+None
+IGO6378
+IGO6378
+IGO6378, wAB
+None
+None
+IGO6378, wAB
+IGO6378
+None
+None
+None
+None
+IGO6378
+IGO6378
+None
+IGO6378
+None
+IGO6378
+None
+IGO6378
+None
+None
+IGO6378
+IGO6378
+None
+None
+SBA
+IGO6378
+IGO6378
+IGO6378
+None
+IGO6378
+SCA
+SCA
+IGO6378, AZB
+SCA
+None
+IGO6378, AZB
+IGO6378, AZB
+None
+IGO6378
+None
+IGO6378
+IGO6378
+None
+IGO6378
+None
+None
+None
+IGO6378, AAFB
+None
+None
+None
+IGO6378, AAFB
+IGO6378, aAB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+sOA
+None
+None
+6PA
+None
+None
+None
+None
+vQA
+None
+None
+None
+CSA
+CSA
+None
+MTA
+MTA
+None
+None
+None
+None
+None
+DVA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+eZA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+beA
+beA
+None
+GfA
+GfA
+None
+6gA
+None
+None
+None
+None
+None
+None
+yiA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+ulA
+IGO6378
+None
+None
+None
+QnA
+QnA
+None
+RoA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO6378
+IGO6378
+None
+None
+None
+xsA
+IGO6378
+None
+IGO6378
+ctA
+ctA
+IGO6378
+None
+None
+cuA
+cuA
+None
+IGO6378
+7vA
+None
+IGO6378
+None
+wwA
+IGO6378
+wwA
+None
+IGO6378
+None
+None
+None
+fyA
+fyA
+None
+None
+gzA
+IGO6378
+None
+None
+None
+IGO6378
+IGO6378
+None
+None
+IGO6378
+None
+IGO6378
+None
+None
+None
+IGO6378
+None
+IGO6378
+IGO6378
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO6378
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+AqB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+PAkB
+None
+None
+None
+None
+PAkB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+bAB
+bAB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+bAB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+vAB
+vAB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+SEJ150
+SEJ150
+None
+SEJ150
+None
+SEJ150
+None
+SEJ150
+SEJ150
+SEJ150
+None
+SEJ150
+SEJ150
+None
+SEJ150
+SEJ150
+SEJ150
+SEJ150
+None
+SEJ150
+SEJ150
+None
+None
+SEJ150
+SEJ150
+None
+None
+None
+SEJ150
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+SEJ150
+None
+None
+None
+I0A
+None
+SEJ150
+SEJ150
+None
+None
+None
+None
+j2A
+None
+03A
+03A
+None
+None
+None
+SEJ150
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+SEJ150
+None
+SEJ150
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+SEJ150
+None
+None
+SEJ150
+SEJ150
+None
+None
+SEJ150
+None
+SEJ150
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+lDA
+None
+OEA
+None
+None
+BFA
+BFA
+BFA
+None
+CGA
+None
+None
+None
+None
+None
+None
+None
+eJA
+eJA
+None
+None
+None
+BKA
+None
+PLA
+None
+None
+None
+None
+None
+None
+None
+None
+jOA
+jOA
+None
+None
+None
+None
+KQA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+bUA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+gYA
+None
+5ZA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+tbA
+None
+JcA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+PgA
+None
+LhA
+LhA
+None
+CiA
+None
+QjA
+QjA
+None
+None
+None
+None
+None
+None
+None
+None
+SmA
+SmA
+None
+YnA
+None
+None
+None
+None
+None
+None
+fpA
+None
+None
+None
+None
+BrA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+kxA
+kxA
+kxA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO2614
+None
+None
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+None
+None
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+IGO2614
+None
+None
+None
+IGO2614, ApB
+IGO2614, ApB
+IGO2614, ApB
+None
+IGO2614, ApB
+IGO2614, AqB
+None
+IGO2614, AqB
+IGO2614, oAQrB
+None
+IGO2614, oAQrB
+IGO2614, ArB
+None
+IGO2614, ArB
+None
+IGO2614, VAfsB
+IGO2614, VAfsB
+IGO2614, VAfsB
+None
+IGO2614, VAfsB
+IGO2614, bAsB
+None
+IGO2614, bAsB
+IGO2614, bAsB
+IGO2614, bAsB
+None
+None
+IGO2614
+None
+IGO2614
+None
+IGO2614, AuB
+None
+IGO2614, AuB, IGO2614, ACvB
+IGO2614, ACvB
+None
+IGO2614, ACvB
+IGO2614, ACvB
+None
+IGO2614, AwB
+None
+IGO2614, AwB
+None
+IGO2614, AxB
+None
+IGO2614, AxB
+None
+None
+IGO2614, AxB
+IGO2614, AyB
+None
+IGO2614, AyB
+None
+None
+IGO2614, AyB
+IGO2614
+IGO2614
+None
+IGO2614
+None
+None
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+None
+None
+IGO2614
+None
+None
+IGO2614
+None
+None
+IGO2614
+IGO2614
+None
+IGO2614
+None
+None
+None
+IGO2614
+IGO2614
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO2614
+None
+IGO2614, AvAB
+None
+None
+IGO2614, OuAGB
+None
+None
+None
+IGO2614, OuAGB
+None
+None
+None
+IGO2614, OuAGB
+None
+IGO2614, ynAB
+None
+IGO2614, ynAB
+None
+None
+IGO2614, ynAB
+None
+IGO2614, ynAB
+None
+None
+None
+IGO2614
+None
+IGO2614
+None
+IGO2614
+None
+IGO2614
+IGO2614
+IGO2614, fAB
+None
+IGO2614, fAB
+IGO2614, eAOB
+IGO2614, eAOB
+None
+None
+IGO2614, eAOB
+IGO2614, dAB
+IGO2614, dAB
+IGO2614, dAB
+None
+IGO2614, cAHB
+IGO2614, cAHB
+None
+IGO2614, bAB
+IGO2614, bAB
+None
+None
+IGO2614, bAB
+IGO2614, jaArB
+IGO2614, jaArB
+None
+IGO2614
+IGO2614
+None
+IGO2614
+None
+None
+IGO2614
+IGO2614
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+None
+IGO2614, AiB
+IGO2614, AiB
+None
+IGO2614, ZAB
+IGO2614, ZAB
+IGO2614, ZAB
+IGO2614
+None
+None
+IGO2614
+None
+IGO2614, XAB
+None
+IGO2614, XAB
+IGO2614, 7WAB
+None
+IGO2614, 7WAB
+IGO2614, 7WAB, IGO2614, BVA
+None
+IGO2614, BVA
+IGO2614, UAB
+None
+IGO2614, UAB
+IGO2614, UAB
+IGO2614, SAPB
+None
+IGO2614, SAPB
+None
+IGO2614, SAPB
+IGO2614, SAB
+None
+IGO2614, SAB
+IGO2614, QAeB
+None
+IGO2614, QAeB
+IGO2614, QAeB
+IGO2614
+None
+IGO2614
+IGO2614, pOAB
+IGO2614, pOAB
+IGO2614, pOAB, IGO2614
+None
+IGO2614
+IGO2614
+IGO2614, xMAB
+None
+IGO2614, xMAB
+IGO2614, LAKB
+None
+None
+IGO2614, JAB
+None
+IGO2614, IAmB
+IGO2614, IAmB
+None
+IGO2614, IAmB
+None
+None
+None
+IGO2614, IAmB
+IGO2614, IAmB
+IGO2614, cGAB
+None
+None
+IGO2614, cGAB
+None
+IGO2614, EAB
+None
+IGO2614, EAB
+None
+None
+IGO2614
+IGO2614
+None
+None
+IGO2614
+IGO2614
+None
+None
+None
+IGO2614, ADB
+IGO2614, ADB
+IGO2614, ADB
+None
+None
+None
+IGO2614, ADB
+None
+IGO2614, ADB
+IGO2614
+None
+None
+None
+IGO2614, 9AB
+None
+IGO2614, 9AB
+None
+IGO2614, 9AB
+IGO2614, w7AB
+None
+IGO2614, w7AB
+IGO2614, w7AB
+None
+IGO2614, w7AB
+None
+IGO2614, 05AB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO2614, 05AB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+YnAB
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+IGO2614
+None
+None
+IGO2614
+None
+IGO2614
+IGO2614
+None
+None
+None
+None
+None
+None
+None
+None
+IGO2614
+None
+IGO2614
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+YnAB
+FAB
+None
+FAB
+None
+fDA
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+None
+fDA
+None
+None
+IGO2614, AvB
+None
+None
+None
+IGO5041
+None
+q1A
+None
+None
+IGO5041
+G2A
+G2A
+IGO2614
+IGO2614
+IGO2614
+None
+None
+IGO2614
+None
+None
+None
+IGO2614
+IGO2614
+IGO2614
+54A
+IGO2614
+IGO2614, A8B
+None
+IGO2614, A8B
+IGO2614, PAB
+IGO2614, PAB
+None
+IGO2614, PAB
+IGO2614, PAB
+IGO2614, PAB
+None
+IGO2614, PAB
+None
+IGO2614
+None
+IGO2614
+IGO2614
+IGO2614
+e6A
+IGO2614
+e6A
+None
+IGO2614
+H7A
+IGO2614
+IGO5041
+IGO2614
+None
+IGO2614, A8B
+IGO2614, A8B
+None
+IGO2614, A8B
+IGO5041
+None
+IGO2614, XAB
+IGO2614, XAB
+IGO2614, XAB
+IGO5041
+None
+IGO2614
+IGO5041
+IGO2614
+None
+IGO2614, A2B
+IGO2614, A2B
+z9A
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+IGO2614, IGO2614, eAwB
+None
+None
+IGO2614, eAwB
+IGO2614, eAwB
+IGO2614, eAwB, IGO2614
+IGO2614
+IGO2614
+None
+None
+IGO2614, ACB
+None
+IGO2614, ACB
+IGO2614, ACB
+IGO5041
+IGO2614
+IGO5041
+IGO2614
+None
+IGO5041
+IGO2614
+IGO2614
+IGO2614, AjB
+None
+IGO2614, AjB
+IGO2614, AjB, IGO5041, A3B
+IGO2614
+None
+IGO5041, A3B
+IGO2614, PAB
+IGO2614, PAB
+None
+IGO2614, PAB
+IGO2614
+None
+IGO2614
+IGO2614
+IGO2614
+None
+IGO2614
+IGO2614
+IGO2614
+IGO2614
+IGO5041, AXB
+None
+None
+IGO2614, HAB
+IGO2614, HAB
+IGO2614, HAB
+IGO2614, HAB
+None
+IGO2614, AAB
+IGO2614, AAB
+None
+None
+IGO2614
+IGO2614
+IGO2614
+IGO2614
+None
+IGO5041, AXB
+IGO2614
+IGO5041, ApB
+None
+None
+IGO2614, IGO2614
+IGO5041, ApB
+IGO2614
+None
+IGO2614
+sAA
+IGO2614
+IGO2614
+IGO5041
+IGO5041
+IGO5041
+IGO2614
+IGO2614, ASB
+None
+IGO2614, ASB
+bBA
+None
+IGO2614
+IGO5041
+IGO2614
+IGO5041
+IGO5041
+IGO2614, ArB
+None
+IGO2614, ArB
+IGO2614, ArB
+IGO2614
+WCA
+IGO5041
+IGO5041
+WCA
+IGO2614
+IGO2614
+IGO2614
+IGO2614
+IGO5041
+IGO2614
+None
+None
+None
+IGO5041
+IGO2614
+IGO2614
+None
+None
+IGO5041
+IGO2614
+None
+IGO5041
+None
+None
+IGO5041
+None
+None
+IGO5041
+IGO2614
+IGO2614
+None
+None
+None
+IGO5041
+AXB1081
+IGO5041
+None
+IGO5041
+AXB1081
+AXB1081, IGO2614, uAB
+None
+IGO5041
+IGO5041
+None
+IGO5041
+IGO2614, uAB
+IGO2614, CAB
+IGO5041
+None
+None
+IGO2614, CAB
+IGO5041
+bHA
+IGO2614, CAB
+None
+IGO5041
+None
+IGO2614, CAB
+IGO5041
+LIA
+IGO2614, CAB
+IGO2614
+IGO5041
+None
+IGO5041
+None
+IGO5041
+IGO2614
+0JA
+0JA
+IGO5041, 1AB, IGO5041, 1AB
+IGO5041, 1AB
+IGO2614
+None
+IGO2614
+IGO5041, 1AB
+IGO5041, 1AB
+IGO5041
+None
+IGO2614, HAB
+IGO2614, HAB
+IGO5041
+IGO5041
+AXB1081
+wKA
+IGO2614, AfB
+IGO2614, AfB
+IGO2614, AfB
+IGO5041
+IGO5041, IGO2614, AfB
+IGO5041
+None
+IGO2614
+IGO2614
+IGO5041
+IGO5041
+eLA
+IGO5041, IGO2614
+IGO2614
+IGO2614
+eLA
+IGO5041, A6B, IGO5041, A6B
+None
+IGO2614
+IGO5041, A6B
+IGO5041, A6B
+IGO5041
+AXB1081
+MMA
+IGO2614
+IGO2614, 0AB
+MMA
+IGO5041
+IGO5041, 0AZB
+IGO2614, 0AB
+None
+IGO2614, 0AB
+IGO5041, 0AZB
+IGO2614, 0AB
+GNA
+IGO5041, 0AZB
+GNA
+IGO2614, 0AB
+IGO2614, AnB, IGO5041
+IGO2614, AnB
+IGO5041
+None
+None
+IGO2614, AnB, IGO2614, AnB, IGO2614
+IGO5041, IGO5041
+IGO5041
+IGO5041
+None
+IGO2614
+IGO5041
+IGO5041
+None
+IGO2614
+IGO2614, bAYB
+IGO5041
+IGO2614, bAYB
+IGO2614, bAYB, IGO5041
+yPA
+IGO5041
+IGO5041
+IGO5041
+IGO5041
+None
+IGO5041
+None
+IGO2614, TAB
+None
+IGO5041
+IGO5041
+IGO5041
+IGO5041
+IGO5041
+None
+IGO5041
+None
+YRA
+IGO5041, eAB
+IGO2614
+IGO5041, eAB, IGO2614, IGO5041, eAB, IGO5041, IGO5041, 6SA, 6SA, IGO5041, IGO5041, 6SA, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, A4B, IGO5041, A4B, IGO5041, IGO5041, IGO5041, IGO2614, IGO5041, IGO5041, HA6B, aUA, IGO5041, HA6B, IGO5041, aUA, IGO5041, A8B, gVA, IGO5041, A8B, AXB1081, IGO5041, A8B, AXB1081, IGO2614, IGO2614, AXB1081, AXB1081, AXB1081, IGO2614, IGO2614, AXB1081, AXB1081, AXB1081, AXB1081, IGO2614, wAV, AXB1081, ALB, QZA, AXB1081, ALB, IGO5041, A8B, AXB1081, ALB, IGO5041, IGO2614, IGO5041, IGO2614, AXB1081, AdB, IGO2614, IGO5041, IGO5041, IGO2614, AXB1081, AdB, AXB1081, IGO5041, IGO5041, IGO2614, IGO2614, IGO2614, IGO5041, IGO2614, IGO5041, IGO2614, IGO5041, IGO5041, IGO5041, IGO2614, IGO2614, IGO5041, IGO2614, IGO5041, IGO2614, IGO2614, IGO2614, IGO5041, IGO2614, JhA, IGO5041, IGO2614, JhA, IGO2614, IGO5041, IGO2614, IGO2614, IGO5041, IGO2614, IGO5041, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, cAP, IGO5041, IGO5041, IGO2614, IGO5041, LbA, IGO5041, IGO2614, IGO5041, IGO5041, IGO2614, FcA, FcA, IGO2614, IGO5041, IGO2614, IGO2614, IGO5041, IGO2614, SEJ150, NdA, NdA, IGO5041, IGO2614, IGO5041, IGO2614, IGO5041, SEJ150, IGO2614, IGO2614, IGO5041, IGO5041, IGO2614, IGO5041, IGO2614, IGO2614, YAo, IGO2614, YAo, IGO2614, YAo, IGO5041, IGO5041, IGO5041, IGO2614, YAo, IGO2614, YAo, IGO2614, IWA, IGO5041, IGO5041, IGO5041, ogA, IGO5041, IGO2614, ogA, IGO5041, IGO5041, yhA, yhA, IGO2614, QAr, IGO5041, IGO5041, IGO5041, IGO2614, tiA, IGO2614, IGO5041, IGO2614, IGO2614, IGO5041, MjA, MjA, IGO5041, IGO5041, IGO5041, BkA, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, SEJ150, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, AXB1081, IGO5041, SEJ150, PqA, PqA, WrA, vsA, vsA, IGO5041, OtA, IGO5041, dvA, IGO5041, IGO5041, IGO5041, IGO2614, IGO5041, IGO2614, A3B, IGO5041, IGO5041, AXB1081, IGO5041, IGO2614, A3B, IGO2614, A4B, SEJ150, SEJ150, SEJ150, IGO2614, A4B, IGO5041, IGO2614, A5B, IGO5041, AXB1081, SEJ150, IGO2614, A5B, IGO2614, A6B, IGO2614, A6B, SEJ150, SEJ150, IGO2614, A6B, IGO2614, IGO2614, SEJ150, SEJ150, IGO2614, AXB1081, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, IGO2614, SEJ150, IGO2614, IGO5041, 2SAj, IGO5041, 2SAj, SEJ150, IGO2614, IGO5041, 2SAj, IGO5041, 2SAj, IGO5041, 2SAj, IGO2614, IGO5041, IGO5041, IGO5041, IGO2614, IGO5041, IGO2614, IGO5041, 0IA, IGO5041, 0IA, IGO2614, IGO5041, 0IA, IGO5041, GAX, IGO2614, AFEB, IGO5041, GAX, IGO5041, IGO5041, IGO5041, IGO2614, AFEB, IGO5041, IGO2614, AFEB, IGO5041, IGO5041, BAj, IGO5041, BAj, SEJ150, IGO5041, BAj, IGO2614, AFEB, IGO2614, AGB, IGO5041, IGO2614, AGB, IGO5041, IGO5041, SEJ150, IGO5041, IGO5041, IGO5041, IGO5041, SEJ150, IGO5041, IGO5041, IGO2614, AGB, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041
+IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO2614, AGB, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, 4A0B, IGO5041, 4A0B, IGO5041, 4A0B, IGO5041, B3A51B, IGO5041, B3A51B, IGO5041, 2A1B, IGO5041, 2A1B, IGO5041, 2A1B, IGO5041, 2A1B, IGO5041, 0AJ2B, IGO5041, 0AJ2B, IGO5041, 0AJ2B, IGO5041, A2B, IGO2614, yAdPB, IGO5041, A2B, IGO5041, A2B, IGO5041, AG3B, IGO2614, yAdPB, IGO5041, A3B, IGO5041, A3B, IGO5041, A3B, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, A4B, IGO5041, A4B, IGO5041, AQ5B, IGO5041, AQ5B, IGO5041, A5B, IGO5041, A5B, IGO5041, A5B, IGO5041, A5B, IGO5041, Ao6B, IGO5041, Ao6B, IGO5041, A6B, IGO2614, yAdPB, IGO5041, A6B, IGO2614, yAdPB, AXB1081, IGO5041, A6B, IGO5041, A6B, IGO5041, A7B, IGO2614, yAdPB, IGO5041, Am8B, IGO5041, A8B, IGO5041, A8B, IGO5041, A8B, IGO2614, yAdPB, IGO2614, A6WB, IGO5041, A9B, IGO5041, A9B, IGO5041, IGO5041, IGO2614, A6WB, IGO5041, IGO2614, IGO5041, IGO5041, IGO5041, IGO2614, IGO5041, IGO5041, IGO2614, IGO2614, ArZB, IGO2614, ArZB, IGO5041, IGO5041, IGO5041, IGO2614, IGO2614, IGO5041, IGO5041, IGO5041, IGO2614, IGO5041, IGO5041, IGO2614, IGO2614, IGO2614, IGO5041, IGO5041, IGO5041, IGO2614, IGO2614, IGO5041, IGO2614, IGO5041, IGO5041, IGO5041, IGO5041, IGO2614, IGO5041, IGO5041, AAB, IGO2614, IGO2614, IGO2614, IGO5041, AAB, IGO5041, AAB, IGO5041, ABB, IGO2614, IGO2614, IGO2614, IGO5041, ABB, IGO5041, ACB, IGO2614, IGO2614, IGO2614, IGO5041, ACB, IGO5041, ACB, IGO2614, AMcB, IGO5041, IGO5041, IGO5041, IGO5041, A2FB, IGO2614, AMcB, IGO2614, aAeB, IGO5041, AoGB, IGO5041, AoGB, IGO5041, AoGB, IGO2614, AfB, IGO5041, pAvHB, IGO5041, pAvHB, IGO2614, AfB, IGO2614, AgB, IGO5041, 9AIB, IGO5041, 9AIB, IGO2614, AgB, IGO5041, 9AIB, IGO2614, AgB, IGO2614, AhB, IGO5041, 9AIB, IGO2614, AhB, IGO2614, AhB, IGO2614, IGO5041, 9AIB, IGO5041, pAKB, IGO5041, pAKB, IGO2614, IGO5041, aALB, IGO2614, IGO5041, aALB, IGO5041, aALB, IGO2614, AilB, IGO5041, IGO5041, IGO2614, AilB, IGO2614, AmB, IGO5041, IGO5041, IGO5041, IGO5041, 0AGPB, IGO5041, 0AGPB, IGO5041, 0AGPB, IGO2614, AmB, SEJ150, IGO5041, 0AGPB, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, dAmfB, IGO5041, dAmfB, IGO5041, dAmfB, IGO5041, KAhB, SEJ150, SEJ150, SEJ150, IGO5041, KAhB, IGO5041, KAhB, IGO5041, hAmB, IGO5041, hAmB, SEJ150, IGO5041, hAmB, IGO5041, hAmB, SEJ150, IGO5041, hAVqB, IGO5041, hAVqB, SEJ150, IGO5041, AXrB, SEJ150, SEJ150, SEJ150, SEJ150, IGO5041, AsB, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, IGO5041, AsB, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, IGO5041, AsB, IGO5041, AsB, IGO5041, XA5, SEJ150, SEJ150, IGO5041, hAg, SEJ150, SEJ150, SEJ150, IGO5041, hAg, SEJ150, SEJ150, IGO5041, hAg, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, A0B, SEJ150, A0B, SEJ150, A0B, SEJ150, A0B, SEJ150, A0B, SEJ150, SEJ150, Ad3B
+SEJ150, Ad3B, SEJ150, Ad3B, SEJ150, A4B, IGO5041, hAg, SEJ150, A5B, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, SEJ150, AWB, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, ADB, IGO5041, ADB, IGO5041, ADB, IGO5041, ADB, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, AMB, IGO5041, AMB, IGO5041, AMB, IGO5041, AMB, IGO5041, AMB, IGO5041, AMB, IGO5041, zAB, IGO5041, zAB, IGO5041, zAB, IGO5041, IGO5041, IGO5041, IGO5041, uA1B, IGO5041, uA1B, IGO5041, tAB, IGO5041, tAB, IGO5041, tAB, IGO5041, tAB, IGO5041, tAB, IGO5041, tAB, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, ZAB, IGO5041, ZAB, IGO5041, YAB, IGO5041, YAB, IGO5041, YAB, IGO5041, YAB, IGO5041, OWAaB, IGO5041, IGO5041, IGO5041, SAvB, IGO5041, SAvB, IGO5041, RAB, IGO5041, QAB, IGO5041, QAB, IGO5041, PAB, IGO5041, PAB, IGO5041, SEJ150, SEJ150, IGO5041, SEJ150, IGO5041, IGO5041, f1A, y4A, y4A, s5A, Z6A, IGO5041, I8A, I8A, IGO5041, V9A, IGO5041, IGO5041, IGO5041, lCA, ADA, ADA, TEA
+jHA, lIA, lIA, aJA, aJA, OMA, OMA, SEJ150, JQA, sSA, sSA, qTA, lUA, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, AJCB, IGO5041, AJCB, IGO5041, ADB, IGO5041, ADB, IGO5041, ADB, obA, ScA, IGO5041, ADB, CdA, CdA, IGO5041, ADB, IGO5041, ADB, IGO5041, AOB, 3eA, 3eA, IGO5041, AOB, IGO5041, AOB, IGO5041, AOB, IGO5041, AIRB, IGO5041, AIRB, IGO5041, AIRB, IGO5041, ASB, IGO5041, ASB, bhA, IGO5041, ATB, IGO5041, ATB, IGO5041, ATB, DiA, IGO5041, IGO5041, 3jA, 3jA, IGO5041, AWB, IGO5041, AWB, IGO5041, AWB, IGO5041, AWB, IGO5041, AWB, IGO5041, AXB, jlA, IGO5041, AXB, IGO5041, A9ZB, IGO5041, A9ZB, emA, IGO5041, emA, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, coA, IGO5041, fpA, IGO5041, IGO5041, 7qA, IGO5041, IGO5041, IGO5041, AaB, IGO5041, AaB, IGO5041, pAscB, IGO5041, pAscB, AsA, IGO5041, IGO5041, AsA, IGO5041, IGO5041, 4AdB, IGO5041, 4AdB, GtA, GtA, IGO5041, AyeB, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, AhB, IGO5041, AhB, IGO5041, AhB, IGO5041, AhB, IGO5041, IGO5041, AjB, IGO5041, AjB, uxA, IGO5041, AjB, IGO5041, IGO5041, AkB, TyA, IzA, IGO5041, AkB, IGO1081, IGO1081, IGO1081, HAB, IGO1081, HAB, IGO1081, HAB, IGO1081, ALB, IGO1081, ALB, IGO1081, ALB, IGO1081, WAB, IGO1081, WAB, IGO1081, IGO1081, IGO1081, IGO1081, A7B, IGO1081, A7B, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, ASB, IGO1081, ASB, IGO1081, ASB, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, A4B, IGO1081, A4B, IGO1081, A4B, IGO1081, PAB, IGO1081, PAB, IGO1081, IGO1081, IGO1081, IGO1081, IGO1081, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041, IGO5041
+IGO5041
+None
+None
+IGO5041
+IGO5041
+None
+IGO5041
+None
+IGO5041
+None
+IGO5041
+None
+IGO5041
+None
+None
+IGO5041
+IGO5041
+IGO5041
+None
+IGO5041
+None
+None
+None
+IGO5041
+IGO5041
+IGO5041
+None
+None
+None
+IGO5041
+IGO5041
+IGO5041
+IGO1081
+None
+IGO5041, OAB
+IGO1081, AUB
+None
+IGO1081, AUB
+IGO5041, OAB
+IGO1081, AUB, IGO1081, zAB
+IGO1081, zAB
+IGO1081, zAB
+IGO5041
+IGO5041
+None
+IGO1081, zAB
+None
+IGO1081, zAB
+IGO1081, vAxB
+IGO1081, vAxB
+IGO5041
+None
+IGO1081, vAxB
+IGO5041, AOB
+IGO1081, tAB
+IGO5041, AOB
+None
+IGO1081, tAB
+IGO1081, rA3B
+IGO1081, rA3B
+IGO1081, rA3B
+IGO5041
+IGO5041
+IGO1081, rA3B, IGO1081, pAB
+None
+IGO1081, pAB
+IGO5041
+IGO1081, pAB
+IGO1081, WoAB
+None
+IGO1081, WoAB
+None
+IGO1081, YmA4B
+IGO1081, YmA4B
+None
+IGO1081, YmA4B
+IGO1081, VkAB
+IGO1081, VkAB
+IGO5041
+None
+IGO1081, iAB
+None
+IGO1081, iAB
+IGO1081, iAB
+IGO1081, iAB
+IGO1081, XgAQB
+IGO1081, XgAQB
+IGO5041, GAwB
+None
+IGO1081, eAB
+IGO1081, eAB
+IGO5041
+None
+IGO1081, eAB
+IGO1081, eAB
+IGO1081, eAB
+IGO1081
+None
+IGO1081
+IGO1081, aAoB
+None
+IGO5041, AsB
+None
+IGO1081, aAoB
+IGO1081
+IGO5041, AsB
+IGO1081
+IGO1081
+IGO5041, AsB
+None
+IGO1081
+IGO1081
+None
+IGO5041, xAB
+IGO1081
+IGO1081
+None
+None
+IGO1081
+IGO1081
+IGO1081
+None
+IGO1081, YAB
+IGO1081, YAB
+IGO5041, xAB
+None
+IGO1081, XA4B
+IGO1081, XA4B
+IGO5041
+None
+IGO1081, XA4B
+IGO1081, BVAB
+IGO1081, BVAB
+IGO5041
+IGO5041
+None
+IGO1081, TAB
+IGO1081, TAB
+None
+None
+IGO1081
+IGO1081
+IGO1081
+IGO1081
+None
+IGO1081, PAB
+IGO5041
+IGO1081, PAB
+IGO1081, NAB
+None
+IGO1081, NAB
+IGO1081, dMA4B
+None
+IGO1081, dMA4B
+None
+IGO1081, dMA4B
+IGO5041, IGO1081, dMA4B
+IGO1081, KAB
+None
+IGO5041
+None
+IGO1081, KAB
+IGO1081, KAB
+IGO1081, JAB
+None
+None
+IGO1081, JAB
+IGO1081
+IGO1081
+None
+IGO5041
+IGO1081
+IGO1081, FArB
+None
+IGO1081, FArB
+IGO5041, A6B
+IGO1081, EAB
+None
+IGO1081, EAB
+IGO1081
+IGO1081
+IGO1081
+None
+IGO1081, AAgB
+IGO1081, AAgB
+None
+IGO1081
+None
+IGO5041, A6B
+IGO1081
+IGO1081
+IGO1081
+IGO1081, IGO5041, A6B
+IGO5041
+IGO5041
+IGO1081
+None
+IGO1081, AUB
+IGO5041
+None
+IGO1081
+IGO1081
+IGO1081
+None
+IGO1081, IGO5041
+None
+IGO1081
+IGO1081, 89AB, IGO5041
+IGO1081, 89AB
+None
+IGO1081, 7AIB
+IGO1081, 7AIB
+None
+IGO5041
+None
+IGO1081, 7AIB, IGO1081, 5AB
+IGO1081, 5AB, IGO5041
+IGO1081
+None
+IGO1081
+IGO5041, KAB
+IGO1081, 1AfB
+None
+IGO1081, 1AfB
+IGO1081, 1AfB
+IGO1081, 1AfB
+IGO1081
+None
+IGO1081
+IGO5041
+IGO5041
+None
+IGO1081
+IGO1081
+None
+IGO1081
+IGO1081
+None
+IGO1081
+IGO1081, IGO5041
+IGO5041
+None
+IGO1081, IGO1081
+IGO1081
+IGO1081
+IGO1081
+IGO5041
+IGO1081
+None
+None
+IGO1081, IGO1081
+IGO1081
+IGO1081
+None
+IGO1081
+None
+IGO1081
+IGO1081
+None
+IGO1081
+IGO1081
+None
+IGO1081
+IGO1081
+None
+IGO1081
+IGO1081
+IGO1081
+None
+IGO1081
+IGO1081
+IGO5041
+None
+IGO1081
+IGO1081
+None
+IGO1081
+None
+IGO1081
+IGO5041
+IGO1081
+None
+IGO1081
+None
+IGO1081
+None
+IGO1081
+None
+None
+IGO5041
+None
+IGO1081
+IGO5041
+None
+IGO1081
+None
+IGO1081
+IGO5041
+IGO1081
+IGO1081
+None
+IGO1081
+None
+IGO5041, gAyB
+IGO1081
+None
+None
+IGO1081
+IGO1081
+None
+None
+IGO1081
+None
+AXB1081
+IGO1081, A6B
+None
+IGO1081, A6B
+None
+IGO1081, A6B
+None
+IGO1081, A6B
+None
+IGO1081
+None
+None
+IGO1081
+None
+IGO1081
+None

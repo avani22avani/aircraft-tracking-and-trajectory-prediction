@@ -1,0 +1,274 @@
+
+===== PAGE 21 =====
+ 
+11 
+ 
+Figure 6: Class Diagram 
+4.5 Sequence of Operation 
+When the application starts, configuration values are read from environment 
+variables. The Flask application creates one preprocessor and one storage object. 
+For every dashboard refresh, the browser calls the aircraft API. The backend 
+obtains raw or replayed data, preprocesses it, stores it and returns the normalized 
+records. The browser then updates markers, route traces, aircraft list and charts. 
+This sequence keeps the browser simple and places the core data responsibility in 
+Python. 
+1. Application starts and prepares output directories. 
+2. Data source selects simulation replay or live receiver mode. 
+3. Raw records are decoded and cleaned. 
+4. Records are normalized into common units. 
+5. Storage layer writes meaningful latest and trajectory samples. 
+6. API response is sent to the browser. 
+7. Dashboard updates markers, list, panels and chart. 
+
+
+===== PAGE 22 =====
+Figure 8: Sequence Diagram
+Browser
+Flask API
+Data Source
+Decoder /
+Preprocessor
+Storage
+Prediction
+GET /api/aircraft (every 1 s)
+get_aircraft_data()
+decode frames / obtain state
+normalized live records
+ingest_many(records)
+build predicted rows for missing aircraft
+short-gap predictions
+JSON: live + predicted aircraft
+GET /api/status (every 4 s)
+mode and receiver health
+SIM / LIVE status
+status badge data
+The browser periodically requests aircraft and health data. The backend decodes and normalizes the current feed, stores
+meaningful samples, and adds prediction rows only for aircraft that have temporarily disappeared. The response is then
+rendered as map markers, solid live tracks and dotted predicted paths.
+Figure 8: Sequence Diagram
+12
+
+
+===== PAGE 23 =====
+ 
+13 
+ 
+Figure 7: Activity Diagram 
+
+
+===== PAGE 24 =====
+ 
+14 
+ 
+Figure 9: Flowchart of Data Processing 
+4.6 Design Rationale 
+A local Flask application was selected because the project needs simple API 
+endpoints, not a large enterprise framework. SQLite was selected because it stores 
+structured data in one file and is suitable for local academic projects. CSV and 
+Excel exports were retained because they make the captured data easy to inspect 
+in spreadsheet tools. Leaflet was selected because it is a mature web mapping 
+library and works well with marker-based aircraft visualization. 
+
+
+===== PAGE 25 =====
+ 
+15 
+ 
+Figure 10: Component Diagram 
+ 
+Figure 11: Deployment Diagram 
+
+
+===== PAGE 26 =====
+ 
+16 
+ 
+Figure 13: API Route Map 
+4.7 Diagram Summary 
+The diagrams together describe the system from different viewpoints. The 
+architecture diagram shows the physical flow of data through the project. The 
+DFD explains how data is transformed. The ER and schema diagrams describe 
+how records are stored. The use-case diagram shows user interaction, while the 
+sequence and activity diagrams show runtime behavior. The component and 
+deployment diagrams explain how the software parts are arranged on the local 
+machine. 
+5. CODING 
+The implementation is organized into small modules instead of keeping all logic 
+in one file. Only the main parts are discussed here, as detailed source code is not 
+required in the main body of the report. 
+5.1 Backend API 
+The Flask application exposes endpoints for live aircraft, training matrix, logging 
+status and trajectory export. The /api/aircraft endpoint is the most important 
+endpoint because the browser calls it repeatedly to update the live map. 
+
+
+===== PAGE 27 =====
+ 
+17 
+5.2 Decoder and Preprocessing 
+The decoder reads complete frames from the buffer, extracts fields such as ICAO 
+address, callsign, altitude, ground speed, heading, latitude and longitude, and 
+maintains an aircraft state snapshot. The preprocessor then ensures values use 
+consistent units: altitude in millimetres, speed in centimetres per second and 
+heading in degrees multiplied by 100. 
+5.3 Storage and Export 
+The storage layer writes meaningful trajectory samples instead of saving every 
+repeated value. This reduces duplication while retaining useful movement 
+information. It also writes CSV files and ICAO-wise Excel workbooks so that the 
+data can be reviewed outside the dashboard. 
+5.4 User Interface 
+The dashboard uses Leaflet for map visualization and Chart.js for the altitude 
+chart. Aircraft markers show callsigns and heading direction, while the lower 
+panel displays selected aircraft details, route estimate and altitude history. The 
+interface is intentionally compact so that tracking information remains visible on 
+one screen. 
+5.5 Error Handling and Data Quality 
+The implementation includes several small safeguards to improve data quality. 
+The data source filters records with zero latitude and longitude, the decoder 
+ignores incomplete or invalid frames, and the preprocessor applies default values 
+when fields are missing. The storage layer uses thresholds for time, distance, 
+altitude, heading and speed changes so that the database does not fill with repeated 
+identical samples. 
+5.6 Configuration Parameters 
+Table 11: Important Configuration Parameters 
+Parameter Default / Use 
+SIMULATION_MODE true; uses captured log replay for development and 
+testing. 
+SIMULATION_REPLAY_BATCH Number of log entries processed in one replay batch. 
+
+===== PAGE 28 =====
+ 
+18 
+PINGSTATION_LISTEN_PORT TCP port used when live stream mode is enabled. 
+FLIGHT_DB_PATH Path of the SQLite trajectory database. 
+FLIGHT_DB_MIN_INTERVAL_SE
+C Minimum time gap before saving repeated samples. 
+FLIGHT_PREDICTION_ENABLED Enables recent trajectory-based prediction rows. 
+FLIGHT_ICAO_EXCEL_ENABLE
+D Enables ICAO-wise workbook logging. 
+6. TESTING 
+Testing was performed using replayed Pingstation data and local execution of the 
+Flask web application. The aim was to verify that data flows correctly from raw 
+input to dashboard output and stored files. 
+Table 5: Test Cases 
+Test Case Expected Result Observed Result 
+Replay captured log 
+file 
+Aircraft records should be decoded 
+from saved data. 
+Records were produced from 
+local Pingstation log replay. 
+Call /api/aircraft JSON response should contain 
+normalized aircraft list. 
+Dashboard can consume aircraft 
+rows from the endpoint. 
+Preprocess altitude Altitude should be converted or 
+retained in millimetres. 
+Preprocessor handles feet, metres 
+and millimetre-style values. 
+Preprocess heading Heading should be represented as 
+degrees x 100. 
+Heading values are normalized 
+before dashboard use. 
+Filter unusable 
+coordinates 
+Zero coordinate records should not 
+dominate live display. 
+Data source removes records 
+where both coordinates are zero. 
+Store trajectory data Database should contain latest and 
+historical records. 
+Database contains 17 latest 
+records and 2008 trajectory 
+samples. 
+Generate CSV 
+output 
+Trajectory CSV files should be 
+available for analysis. 
+6 daily training CSV files and 1 
+export CSV file were found. 
+Generate Excel 
+output ICAO workbooks should be created. 4 ICAO/master Excel workbooks 
+were found. 
+Dashboard 
+visualization 
+Aircraft should appear on map with 
+details. 
+Leaflet dashboard contains map, 
+aircraft list, route panel and 
+altitude chart. 
+Search aircraft User should filter aircraft by 
+callsign or ICAO. 
+Dashboard contains a 
+callsign/ICAO search box. 
+Select aircraft Details should update for the 
+selected aircraft. 
+Dashboard provides flight, 
+aircraft and route tabs. 
+Export trajectory A CSV export path and row count Endpoint exists and writes 
+
+===== PAGE 29 =====
+ 
+19 
+endpoint should be returned. exports under logs/exports. 
+6.1 Observed Outputs 
+Table 6: Observed Project Outputs 
+Output Count / Status 
+Latest aircraft records in SQLite 17 
+Trajectory samples in SQLite 2008 
+Daily trajectory CSV files 6 
+Trajectory export CSV files 1 
+ICAO Excel workbooks 4 
+These results show that the project successfully performs decoding, preprocessing, 
+storage and export tasks on the available dataset. The values are not presented as 
+aviation performance benchmarks; they only describe the data currently available 
+in the project workspace. 
+7. USER INTERFACES 
+The web interface is built as a single-page dashboard. The top area contains the 
+project title, search box and live status counters. The left panel lists live traffic. 
+The central map displays aircraft markers with heading rotation and route traces. 
+The bottom panel displays flight, aircraft and route information for the selected 
+aircraft along with an altitude chart. 
+• Search by callsign or ICAO address. 
+• Click an aircraft marker or list item to view details. 
+• Zoom and center controls for map navigation. 
+• Route trace and estimated movement line for selected aircraft. 
+• Altitude chart for recently observed points. 
+7.1 Interface Layout 
+The layout is divided into a top status bar, a traffic list, a central map and a bottom 
+details panel. This layout was chosen because it keeps the map visible while still 
+allowing the user to inspect individual aircraft data. On smaller screens, the traffic 
+list is hidden and the bottom panel receives more vertical space. 
+
+===== PAGE 30 =====
+ 
+20 
+7.2 Interface Controls 
+• The search box filters the visible aircraft list and map layers. 
+• The zoom buttons call Leaflet zoom functions. 
+• The center button returns the map to the default India-sector view. 
+• Tabs separate flight, aircraft and route details so the lower panel remains 
+readable. 
+• The altitude chart updates for the selected aircraft only. 
+8. CONCLUSION AND FUTURE SCOPE 
+8.1 Conclusion 
+The ADS-B live tracker successfully converts Pingstation aircraft data into 
+structured and readable information. It provides a complete local pipeline from 
+raw data input to browser visualization and historical storage. The system 
+demonstrates practical use of Python, Flask, SQLite and JavaScript mapping tools 
+for a real-time tracking problem. 
+8.2 Future Scope 
+• Testing with a continuous live receiver feed for longer durations. 
+• Improving trajectory prediction using machine learning models trained on 
+stored samples. 
+• Adding filtering by altitude, speed, ICAO address and time range. 
+• Adding authentication for multi-user deployment. 
+• Deploying the dashboard on a local network or cloud server. 
+• Adding automated data-quality reports for missing or stale aircraft fields. 
+APPENDICES 
+Appendix A: Configuration Summary 
+• SIMULATION_MODE controls whether replay or live stream mode is used. 
+• SIMULATION_SOURCE_FILE selects the captured log file used for replay. 
+• FLIGHT_DB_PATH selects the SQLite database path. 
+• FLIGHT_TRAJECTORY_APPEND_CSV_DIR selects the directory for daily 
+CSV files. 

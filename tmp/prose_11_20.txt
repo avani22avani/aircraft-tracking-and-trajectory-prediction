@@ -1,0 +1,253 @@
+
+===== PAGE 11 =====
+ 
+1 
+1. OBJECTIVE 
+The objective of this project is to design and implement a live ADS-B aircraft 
+tracking system that can convert Pingstation raw data into useful aircraft 
+information. Raw surveillance messages are not directly suitable for a user 
+because they contain encoded binary fields and may arrive in repeated, incomplete 
+or stale forms. The project therefore focuses on decoding, cleaning, storing and 
+displaying this data through a simple web-based interface. 
+The main goals of the project are listed below. 
+• Decode useful aircraft information such as ICAO address, callsign, latitude, 
+longitude, altitude, heading and speed from Pingstation data. 
+• Normalize values into consistent units so that they can be stored and displayed 
+without ambiguity. 
+• Provide a live browser dashboard that shows aircraft positions, route traces 
+and selected aircraft details. 
+• Maintain local historical trajectory data for analysis, training data preparation 
+and later prediction work. 
+• Export aircraft and trajectory data in common formats such as CSV and Excel. 
+2. REQUIREMENT ANALYSIS (SRS) 
+2.1 Introduction 
+The ADS-B tracker is a software system for receiving or replaying aircraft 
+surveillance data, converting it into structured records and presenting it to the user 
+in near real time. ADS-B is widely used in aviation surveillance because aircraft 
+broadcast their identity and state information, including position and movement 
+data [1]. The developed system is not a replacement for certified air traffic control 
+systems; it is a project-level monitoring and data-logging application for 
+understanding and working with ADS-B data. 
+2.2 Scope 
+• Data input through captured Pingstation log replay and optional live TCP 
+stream mode. 
+• Frame-level parsing and field extraction from Pingstation messages. 
+
+===== PAGE 12 =====
+ 
+2 
+• Cleaning and normalization of aircraft identity, coordinates, altitude, heading, 
+speed and timestamp fields. 
+• Local storage of latest aircraft state and trajectory samples. 
+• Interactive dashboard with map markers, aircraft search, selected aircraft 
+details, route trace and altitude chart. 
+• CSV, SQLite and Excel output for later analysis. 
+2.3 Functional Requirements 
+Table 2: Functional Requirements 
+Requirement Description 
+FR1 The system shall read aircraft data from simulation logs or a live 
+Pingstation stream. 
+FR2 The system shall decode aircraft identity and motion-related fields where 
+available. 
+FR3 The system shall remove unusable records such as records with missing 
+coordinates. 
+FR4 The system shall serve aircraft data through JSON API endpoints. 
+FR5 The system shall display aircraft on a map with callsign and related details. 
+FR6 The system shall store trajectory samples and latest aircraft records locally. 
+FR7 The system shall support CSV and Excel-based exports for analysis. 
+2.4 Non-Functional Requirements 
+• The dashboard should update regularly without requiring a page refresh. 
+• The system should continue to work locally without requiring a separate 
+database server. 
+• The code should remain readable and modular so that decoder, preprocessing, 
+storage and UI logic can be improved independently. 
+• The storage layer should avoid excessive duplicate samples by saving 
+meaningful changes in movement or time. 
+2.5 Hardware and Software Requirements 
+Table 1: Hardware and Software Requirements 
+Category Requirement 
+Processor Intel/AMD compatible processor suitable for running Python and 
+a web browser. 
+
+===== PAGE 13 =====
+
+
+===== PAGE 14 =====
+ 
+4 
+Student / Operator Runs the project, opens the dashboard, observes aircraft 
+movement and exports data. 
+Pingstation Receiver Provides raw ADS-B/Pingstation messages for decoding. 
+Browser Client Requests aircraft data from Flask APIs and renders the map 
+interface. 
+Storage Module Stores latest records, trajectory samples, CSV files and Excel 
+workbooks. 
+Future Analysis Module Can reuse saved trajectory samples for model building or 
+analytics. 
+2.9 Use-Case Descriptions 
+Table 8: Use-Case Descriptions 
+Use Case Primary Actor Brief Description 
+Start Tracker Student / Operator Launch the Flask server and initialize 
+decoder, storage and data source settings. 
+Replay Captured 
+Data System Read saved Pingstation log entries and feed 
+them into the decoder in batches. 
+Decode Aircraft 
+Record Decoder Extract available identity, position and motion 
+fields from a complete frame. 
+View Live Aircraft Browser Client Fetch JSON aircraft records and render 
+markers on the map. 
+Select Aircraft Student / Operator Open details, route trace and altitude history 
+for one aircraft. 
+Save Trajectory 
+Sample Storage Module Write meaningful movement samples to 
+SQLite and daily CSV files. 
+Export Trajectory Student / Operator Create a CSV export for selected or all 
+aircraft over a time range. 
+Review Logging 
+Status Student / Operator Check whether matrix CSV, ICAO Excel and 
+master workbook logging are enabled. 
+
+===== PAGE 15 =====
+ 
+5 
+ 
+Figure 4: Use-Case Diagram 
+3. REQUIREMENT SPECIFICATION 
+3.1 System Inputs 
+The system accepts Pingstation data in two modes. In simulation mode, captured 
+hex log data is replayed from a local file so that the tracker can be tested without 
+live receiver hardware. In live mode, the receiver listens on a configured host and 
+port and decodes incoming stream data. Environment variables are used to switch 
+modes and configure paths, ports and logging behavior. 
+3.2 System Outputs 
+• Live aircraft JSON returned by the /api/aircraft endpoint. 
+• Latest matrix-style aircraft records from /api/training/matrix. 
+• Trajectory history through /api/training/trajectory and CSV export through 
+/api/training/trajectory/export. 
+• Daily trajectory CSV files under logs/training_csv. 
+• ICAO-wise Excel workbooks and a master ICAO workbook. 
+• Dashboard visualization using map markers, aircraft list, route panel and 
+altitude chart. 
+
+
+===== PAGE 16 =====
+ 
+6 
+3.3 Assumptions and Constraints 
+• The decoded information depends on the completeness and quality of received 
+Pingstation frames. 
+• The project uses local storage and is intended for academic/project-level 
+monitoring, not certified operational surveillance. 
+• Map visualization depends on browser access to map tile resources. 
+• Prediction rows are based on recent stored movement information and are 
+limited by configured age and sample limits. 
+3.4 Data Dictionary 
+The following data dictionary lists the most important fields used throughout the 
+backend and dashboard. Keeping these names consistent helps the frontend, 
+storage layer and export files use the same interpretation of aircraft data. 
+Table 9: Data Dictionary 
+Field Meaning Unit / Format 
+icaoAddress Unique aircraft ICAO address when available. Hexadecimal text 
+callsign Flight callsign or aircraft label. Text 
+latDD Latitude in decimal degrees. Degrees 
+lonDD Longitude in decimal degrees. Degrees 
+altitudeMM Aircraft altitude normalized by the 
+preprocessor. Millimetres 
+headingDE2 Heading normalized as degrees multiplied by 
+100. Degrees x 100 
+horVelocityCMS Horizontal speed normalized by the 
+preprocessor. Centimetres/second 
+timestamp Observation time used for storage and replay. ISO date-time 
+flight_key Internal key used to group records for one 
+flight. Text 
+3.5 API Specification 
+Table 10: API Specification 
+Endpoint Method Purpose 
+/ GET Render the main dashboard page. 
+/api/aircraft GET Return normalized live aircraft records as 
+JSON. 
+
+===== PAGE 17 =====
+ 
+7 
+/api/training/matrix GET Return latest matrix-style rows from local 
+storage. 
+/api/training/matrix/csv-info GET Return CSV export configuration information. 
+/api/logging/status GET Return status of ICAO Excel, master 
+workbook and matrix CSV logging. 
+/api/training/trajectory GET Return trajectory history for one flight or all 
+flights. 
+/api/training/trajectory/export GET Write and report a CSV trajectory export. 
+4. SYSTEM DESIGN (SDS) 
+4.1 High-Level Design 
+The project is divided into five major layers: data source, decoder, preprocessor, 
+storage and web dashboard. This separation keeps the implementation clear. The 
+decoder is responsible for understanding Pingstation frames, the preprocessor 
+ensures consistent values, the storage module preserves current and historical 
+aircraft data, and the Flask application exposes the results to the browser. 
+ 
+ 
+Figure 1: System Architecture 
+
+
+===== PAGE 18 =====
+ 
+8 
+4.2 Data Flow Design 
+The data flow begins with raw frames and ends with user-facing visualization and 
+exports. During processing, records with missing or invalid coordinates are 
+removed. Repeated observations are merged by ICAO address or callsign so that 
+the dashboard receives the most useful aircraft state. 
+ 
+ 
+ 
+Figure 2: Level-1 Data Flow 
+4.3 Database Design 
+The SQLite database has two central tables. The flight_latest table stores one 
+current record per flight, while trajectory_samples stores time-series samples for 
+movement history. This design keeps live lookup fast and still preserves historical 
+data for trajectory analysis. 
+
+
+===== PAGE 19 =====
+ 
+9 
+ 
+ 
+Figure 3: Database Design 
+ 
+Figure 5: Entity Relationship Diagram 
+
+
+===== PAGE 20 =====
+ 
+10 
+ 
+ 
+Figure 12: Database Schema Diagram 
+Table 4: Database Tables 
+Table Purpose 
+flight_latest Stores the latest known state for each flight key. 
+trajectory_samples Stores historical position and movement samples over time. 
+4.4 Main System Modules 
+Table 3: Main System Modules 
+Module File Responsibility 
+Flask Application app.py Defines dashboard route and JSON APIs for 
+aircraft, matrix, status and trajectory exports. 
+Data Source data_source.py Switches between simulation replay and 
+optional live Pingstation stream mode. 
+Raw Decoder preprocessing/pingstation_r
+aw_decoder.py 
+Splits frames and decodes aircraft fields from 
+Pingstation payloads. 
+Preprocessor preprocessing/pingstation_p
+reprocess.py 
+Normalizes altitude, heading, speed, 
+timestamps and identity fields. 
+Storage storage/flight_data_store.py Maintains SQLite records, trajectory samples, 
+CSV exports and ICAO Excel logs. 
+Dashboard templates/index.html Displays aircraft markers, search, details, route 
+trace and chart. 
+  
+

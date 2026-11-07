@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">ADS-B Aircraft Tracking System Pipeline</title>
+  <desc id="desc">Pipeline from live PingStation or simulation data through acquisition, decoding, preprocessing, storage, prediction, Flask API, and Leaflet display.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#315572"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#c94545"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#102b43" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .title { font: 700 42px 'Segoe UI', Arial, sans-serif; fill: #102b43; }
+      .subtitle { font: 400 20px 'Segoe UI', Arial, sans-serif; fill: #527087; }
+      .stage { fill: #102b43; }
+      .stageText { font: 700 21px 'Segoe UI', Arial, sans-serif; fill: #ffffff; letter-spacing: 1.2px; }
+      .box { fill: #ffffff; stroke: #8bbbd4; stroke-width: 2; rx: 14; filter: url(#shadow); }
+      .boxBlue { fill: #e9f6fb; stroke: #61a7c7; stroke-width: 2; rx: 14; filter: url(#shadow); }
+      .boxNavy { fill: #153b5b; stroke: #153b5b; stroke-width: 2; rx: 14; filter: url(#shadow); }
+      .boxAmber { fill: #fff7df; stroke: #d69a00; stroke-width: 2; rx: 14; filter: url(#shadow); }
+      .boxRed { fill: #fff0f0; stroke: #c94545; stroke-width: 2; rx: 14; filter: url(#shadow); }
+      .head { font: 700 20px 'Segoe UI', Arial, sans-serif; fill: #102b43; }
+      .headWhite { font: 700 20px 'Segoe UI', Arial, sans-serif; fill: #ffffff; }
+      .body { font: 400 16px 'Segoe UI', Arial, sans-serif; fill: #34536a; }
+      .bodyWhite { font: 400 16px 'Segoe UI', Arial, sans-serif; fill: #d9edf7; }
+      .small { font: 400 14px 'Segoe UI', Arial, sans-serif; fill: #527087; }
+      .code { font: 600 14px Consolas, monospace; fill: #1675a1; }
+      .flow { fill: none; stroke: #315572; stroke-width: 3; marker-end: url(#arrow); }
+      .flowRed { fill: none; stroke: #c94545; stroke-width: 3; stroke-dasharray: 9 7; marker-end: url(#arrow-red); }
+      .yesno { font: 700 14px 'Segoe UI', Arial, sans-serif; fill: #315572; }
+      .note { font: 600 14px 'Segoe UI', Arial, sans-serif; fill: #8b2c2c; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#f4f8fa"/>
+  <path d="M0 0 H1920 V105 H0 Z" fill="#ffffff"/>
+  <rect x="0" y="103" width="1920" height="4" fill="#fdb813"/>
+  <text x="70" y="58" class="title">ADS-B Aircraft Tracking System Pipeline</text>
+  <text x="72" y="88" class="subtitle">From PingStation bytes to logging, prediction and smooth map visualization</text>
+
+  <!-- Stage headers -->
+  <rect x="55" y="135" width="270" height="42" rx="10" class="stage"/>
+  <text x="190" y="163" text-anchor="middle" class="stageText">1  DATA INPUT</text>
+  <rect x="365" y="135" width="270" height="42" rx="10" class="stage"/>
+  <text x="500" y="163" text-anchor="middle" class="stageText">2  ACQUISITION</text>
+  <rect x="675" y="135" width="570" height="42" rx="10" class="stage"/>
+  <text x="960" y="163" text-anchor="middle" class="stageText">3  DECODING &amp; CLEANING</text>
+  <rect x="1285" y="135" width="580" height="42" rx="10" class="stage"/>
+  <text x="1575" y="163" text-anchor="middle" class="stageText">4  STORAGE</text>
+
+  <!-- Input -->
+  <rect x="55" y="205" width="270" height="105" class="boxBlue"/>
+  <text x="190" y="238" text-anchor="middle" class="head">Live PingStation</text>
+  <text x="190" y="268" text-anchor="middle" class="body">TCP byte stream</text>
+  <text x="190" y="291" text-anchor="middle" class="code">port 30003</text>
+  <rect x="55" y="340" width="270" height="105" class="boxAmber"/>
+  <text x="190" y="373" text-anchor="middle" class="head">Simulation Log</text>
+  <text x="190" y="403" text-anchor="middle" class="body">Recorded HEX data</text>
+  <text x="190" y="426" text-anchor="middle" class="code">HEX DATA_H.txt</text>
+
+  <!-- Acquisition -->
+  <rect x="365" y="242" width="270" height="110" class="boxNavy"/>
+  <text x="500" y="276" text-anchor="middle" class="headWhite">Source Selection</text>
+  <text x="500" y="306" text-anchor="middle" class="bodyWhite">Live or simulation mode</text>
+  <text x="500" y="332" text-anchor="middle" class="code">data_source.py</text>
+  <rect x="365" y="390" width="270" height="125" class="box"/>
+  <text x="500" y="423" text-anchor="middle" class="head">Raw Capture Logger</text>
+  <text x="500" y="453" text-anchor="middle" class="body">HEX file  |  ASCII file</text>
+  <text x="500" y="478" text-anchor="middle" class="body">STREAM.bin  |  RAW.txt</text>
+  <text x="500" y="500" text-anchor="middle" class="small">One set per application session</text>
+
+  <!-- Decode and clean -->
+  <rect x="675" y="205" width="260" height="105" class="box"/>
+  <text x="805" y="238" text-anchor="middle" class="head">Frame Separation</text>
+  <text x="805" y="268" text-anchor="middle" class="body">Split TCP bytes using the</text>
+  <text x="805" y="291" text-anchor="middle" class="body">frame-length byte</text>
+  <rect x="975" y="205" width="270" height="105" class="boxBlue"/>
+  <text x="1110" y="238" text-anchor="middle" class="head">Binary Decoder</text>
+  <text x="1110" y="268" text-anchor="middle" class="body">Decode PingStation fields</text>
+  <text x="1110" y="291" text-anchor="middle" class="code">PingstationRawDecoder</text>
+  <rect x="675" y="350" width="260" height="140" class="box"/>
+  <text x="805" y="383" text-anchor="middle" class="head">Aircraft State Merge</text>
+  <text x="805" y="413" text-anchor="middle" class="body">Combine partial messages</text>
+  <text x="805" y="437" text-anchor="middle" class="body">using ICAO as the key</text>
+  <text x="805" y="466" text-anchor="middle" class="small">Preserves previously decoded fields</text>
+  <rect x="975" y="350" width="270" height="140" class="boxBlue"/>
+  <text x="1110" y="383" text-anchor="middle" class="head">Preprocessing</text>
+  <text x="1110" y="413" text-anchor="middle" class="body">Validate fields and normalize</text>
+  <text x="1110" y="437" text-anchor="middle" class="body">altitude, speed and heading</text>
+  <text x="1110" y="466" text-anchor="middle" class="code">pingstation_preprocess.py</text>
+  <rect x="675" y="525" width="570" height="70" class="boxNavy"/>
+  <text x="960" y="554" text-anchor="middle" class="headWhite">Clean Aircraft Record</text>
+  <text x="960" y="579" text-anchor="middle" class="bodyWhite">ICAO | callsign | latitude | longitude | altitude | speed | heading | vertical rate</text>
+
+  <!-- Storage -->
+  <rect x="1285" y="205" width="175" height="145" class="box"/>
+  <text x="1372" y="238" text-anchor="middle" class="head">Latest State</text>
+  <text x="1372" y="270" text-anchor="middle" class="body">One current row</text>
+  <text x="1372" y="294" text-anchor="middle" class="body">per aircraft</text>
+  <text x="1372" y="326" text-anchor="middle" class="code">flight_latest</text>
+  <rect x="1480" y="205" width="190" height="145" class="boxBlue"/>
+  <text x="1575" y="238" text-anchor="middle" class="head">History</text>
+  <text x="1575" y="270" text-anchor="middle" class="body">Timestamped real</text>
+  <text x="1575" y="294" text-anchor="middle" class="body">trajectory samples</text>
+  <text x="1575" y="326" text-anchor="middle" class="code">trajectory_samples</text>
+  <rect x="1690" y="205" width="175" height="145" class="boxAmber"/>
+  <text x="1777" y="238" text-anchor="middle" class="head">Excel Logs</text>
+  <text x="1777" y="270" text-anchor="middle" class="body">One ICAO file</text>
+  <text x="1777" y="294" text-anchor="middle" class="body">+ master workbook</text>
+  <text x="1777" y="326" text-anchor="middle" class="code">icao_excel/</text>
+  <rect x="1285" y="390" width="580" height="125" class="boxNavy"/>
+  <text x="1575" y="425" text-anchor="middle" class="headWhite">FlightTrajectoryStore</text>
+  <text x="1575" y="456" text-anchor="middle" class="bodyWhite">Continuously ingests every valid real observation</text>
+  <text x="1575" y="485" text-anchor="middle" class="code">storage/flight_data_store.py</text>
+
+  <!-- Main top-row arrows -->
+  <path d="M325 257 H345 Q355 257 355 267 V287 H365" class="flow"/>
+  <path d="M325 392 H345 Q355 392 355 382 V307 H365" class="flow"/>
+  <path d="M500 352 V390" class="flow"/>
+  <path d="M635 297 H675" class="flow"/>
+  <path d="M935 257 H975" class="flow"/>
+  <path d="M1110 310 V330 Q1110 340 1100 340 H815 Q805 340 805 350" class="flow"/>
+  <path d="M935 420 H975" class="flow"/>
+  <path d="M1110 490 V525" class="flow"/>
+  <path d="M1245 560 H1265 Q1275 560 1275 550 V452 H1285" class="flow"/>
+  <path d="M1372 350 V390" class="flow"/>
+  <path d="M1575 350 V390" class="flow"/>
+  <path d="M1777 350 V390" class="flow"/>
+
+  <!-- Lower stages -->
+  <rect x="55" y="650" width="890" height="42" rx="10" class="stage"/>
+  <text x="500" y="678" text-anchor="middle" class="stageText">5  OUTAGE DETECTION &amp; TRAJECTORY PREDICTION</text>
+  <rect x="985" y="650" width="880" height="42" rx="10" class="stage"/>
+  <text x="1425" y="678" text-anchor="middle" class="stageText">6  API &amp; USER INTERFACE</text>
+
+  <!-- Prediction -->
+  <polygon points="185,748 305,700 425,748 305,796" fill="#fff7df" stroke="#d69a00" stroke-width="2" filter="url(#shadow)"/>
+  <text x="305" y="741" text-anchor="middle" class="head">Aircraft currently</text>
+  <text x="305" y="766" text-anchor="middle" class="head">receiving data?</text>
+  <rect x="55" y="850" width="250" height="110" class="boxBlue"/>
+  <text x="180" y="885" text-anchor="middle" class="head">Actual Record</text>
+  <text x="180" y="916" text-anchor="middle" class="body">Use decoded position</text>
+  <text x="180" y="942" text-anchor="middle" class="small">Solid blue path</text>
+  <rect x="490" y="710" width="270" height="130" class="boxRed"/>
+  <text x="625" y="744" text-anchor="middle" class="head">Linear Regression</text>
+  <text x="625" y="775" text-anchor="middle" class="body">Fit latitude, longitude</text>
+  <text x="625" y="799" text-anchor="middle" class="body">and altitude against time</text>
+  <text x="625" y="825" text-anchor="middle" class="small">Uses up to 20 recent real samples</text>
+  <rect x="490" y="875" width="270" height="85" class="box"/>
+  <text x="625" y="907" text-anchor="middle" class="head">Kinematic Fallback</text>
+  <text x="625" y="935" text-anchor="middle" class="body">distance = speed × outage time</text>
+  <rect x="800" y="760" width="145" height="135" class="boxRed"/>
+  <text x="872" y="795" text-anchor="middle" class="head">PRED</text>
+  <text x="872" y="827" text-anchor="middle" class="body">Predicted</text>
+  <text x="872" y="851" text-anchor="middle" class="body">aircraft record</text>
+  <text x="872" y="879" text-anchor="middle" class="small">Red dotted path</text>
+  <text x="500" y="1005" text-anchor="middle" class="note">Predictions are displayed only and are not stored as real training observations.</text>
+
+  <path d="M250 780 Q180 810 180 850" class="flow"/>
+  <text x="186" y="812" class="yesno">YES</text>
+  <path d="M425 748 H490" class="flowRed"/>
+  <text x="448" y="735" class="yesno">NO</text>
+  <path d="M625 840 V875" class="flow"/>
+  <path d="M760 775 H800" class="flowRed"/>
+  <path d="M760 917 H780 Q790 917 790 895 V855 H800" class="flow"/>
+
+  <!-- API and UI -->
+  <rect x="985" y="735" width="220" height="120" class="boxNavy"/>
+  <text x="1095" y="770" text-anchor="middle" class="headWhite">Flask API</text>
+  <text x="1095" y="802" text-anchor="middle" class="bodyWhite">Combine actual and</text>
+  <text x="1095" y="826" text-anchor="middle" class="bodyWhite">predicted records</text>
+  <text x="1095" y="849" text-anchor="middle" class="code">/api/aircraft</text>
+  <rect x="1250" y="735" width="210" height="120" class="boxBlue"/>
+  <text x="1355" y="770" text-anchor="middle" class="head">Browser Refresh</text>
+  <text x="1355" y="802" text-anchor="middle" class="body">Request new aircraft</text>
+  <text x="1355" y="826" text-anchor="middle" class="body">data every 1 second</text>
+  <rect x="1505" y="710" width="360" height="170" class="box"/>
+  <text x="1685" y="746" text-anchor="middle" class="head">Leaflet Tracking Interface</text>
+  <text x="1685" y="781" text-anchor="middle" class="body">Aircraft markers and smooth movement</text>
+  <text x="1685" y="809" text-anchor="middle" class="body">Actual and predicted trajectory lines</text>
+  <text x="1685" y="837" text-anchor="middle" class="body">Flight, aircraft and route panels</text>
+  <text x="1685" y="862" text-anchor="middle" class="code">templates/index.html</text>
+  <rect x="985" y="900" width="875" height="65" class="boxAmber"/>
+  <text x="1422" y="928" text-anchor="middle" class="head">Optional Internet Services</text>
+  <text x="1422" y="951" text-anchor="middle" class="body">OpenStreetMap tiles | aircraft metadata | photographs | scheduled route lookup</text>
+
+  <path d="M945 827 H985" class="flow"/>
+  <path d="M1205 795 H1250" class="flow"/>
+  <path d="M1460 795 H1505" class="flow"/>
+  <path d="M1685 880 V900" class="flow"/>
+
+  <!-- Coordinator and legend -->
+  <rect x="55" y="1028" width="1810" height="35" rx="9" fill="#e3edf2"/>
+  <text x="75" y="1051" class="code">app.py</text>
+  <text x="140" y="1051" class="small">coordinates acquisition, preprocessing, storage, prediction and API output</text>
+  <line x1="1040" y1="1045" x2="1085" y2="1045" stroke="#61a7c7" stroke-width="5"/>
+  <text x="1095" y="1051" class="small">actual data</text>
+  <line x1="1210" y1="1045" x2="1255" y2="1045" stroke="#c94545" stroke-width="4" stroke-dasharray="8 6"/>
+  <text x="1265" y="1051" class="small">prediction</text>
+  <rect x="1390" y="1037" width="24" height="16" rx="4" fill="#153b5b"/>
+  <text x="1424" y="1051" class="small">local processing</text>
+  <rect x="1580" y="1037" width="24" height="16" rx="4" fill="#fff7df" stroke="#d69a00"/>
+  <text x="1614" y="1051" class="small">internet-dependent</text>
+</svg>

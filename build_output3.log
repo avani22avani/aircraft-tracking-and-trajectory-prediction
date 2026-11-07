@@ -1,0 +1,100 @@
+372 INFO: PyInstaller: 6.20.0, contrib hooks: 2026.6
+373 INFO: Python: 3.13.9
+419 INFO: Platform: Windows-11-10.0.26200-SP0
+419 INFO: Python environment: C:\Users\avani'\AppData\Local\Programs\Python\Python313
+1363 INFO: Module search paths (PYTHONPATH):
+["C:\\Users\\avani'\\Desktop\\adsb_tracker_2",
+ "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\python313.zip",
+ "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\DLLs",
+ "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib",
+ "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313",
+ "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages",
+ "C:\\Users\\avani'\\Desktop\\adsb_tracker_2"]
+2352 INFO: Appending 'datas' from .spec
+2355 INFO: checking Analysis
+2406 INFO: Building because C:\Users\avani'\Desktop\adsb_tracker_2\templates\index.html changed
+2406 INFO: Looking for Python shared library...
+2406 INFO: Using Python shared library: C:\Users\avani'\AppData\Local\Programs\Python\Python313\python313.dll
+2406 INFO: Running Analysis Analysis-00.toc
+2406 INFO: Target bytecode optimization level: 0
+2406 INFO: Initializing module dependency graph...
+2410 INFO: Initializing module graph hook caches...
+2503 INFO: Analyzing modules for base_library.zip ...
+5017 INFO: Processing standard module hook 'hook-encodings.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+8389 INFO: Processing standard module hook 'hook-pickle.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+9749 INFO: Processing standard module hook 'hook-heapq.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+10594 INFO: Caching module dependency graph...
+10656 INFO: Analyzing C:\Users\avani'\Desktop\adsb_tracker_2\app.py
+10779 INFO: Processing standard module hook 'hook-_ctypes.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+11396 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+11400 INFO: SetuptoolsInfo: initializing cached setuptools info...
+16821 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+16947 INFO: Processing standard module hook 'hook-xml.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+18918 INFO: Processing standard module hook 'hook-platform.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+19126 INFO: Processing standard module hook 'hook-sysconfig.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+19610 INFO: Processing standard module hook 'hook-difflib.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+19898 INFO: Processing standard module hook 'hook-jinja2.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks"
+20722 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+20723 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+20734 INFO: Processing standard module hook 'hook-setuptools.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+20757 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+20802 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+20804 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+20818 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+20820 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+21093 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+21318 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+21321 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+21334 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+21335 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+21958 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+21961 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+22613 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+22615 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+22883 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+22886 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module"
+22887 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+23071 INFO: Processing standard module hook 'hook-sqlite3.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks"
+23655 INFO: Processing standard module hook 'hook-urllib3.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks"
+24411 INFO: Processing standard module hook 'hook-charset_normalizer.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks"
+24617 INFO: Processing standard module hook 'hook-certifi.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks"
+24777 INFO: Analyzing hidden import 'openpyxl'
+24778 ERROR: Hidden import 'openpyxl' not found
+24778 INFO: Analyzing hidden import 'et_xmlfile'
+24778 ERROR: Hidden import 'et_xmlfile' not found
+24778 INFO: Analyzing hidden import 'flask.__main__'
+24779 INFO: Analyzing hidden import 'flask.views'
+24786 INFO: Processing module hooks (post-graph stage)...
+25560 INFO: Performing binary vs. data reclassification (22 entries)
+25574 INFO: Looking for ctypes DLLs
+25646 INFO: Analyzing run-time hooks ...
+25651 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks"
+25656 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks"
+25659 INFO: Including run-time hook 'pyi_rth_inspect.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks"
+25662 INFO: Including run-time hook 'pyi_rth_setuptools.py' from "C:\\Users\\avani'\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks"
+25678 INFO: Creating base_library.zip...
+25705 INFO: Looking for dynamic libraries
+27019 INFO: Extra DLL search directories (AddDllDirectory): []
+27019 INFO: Extra DLL search directories (PATH): []
+27638 INFO: Warnings written to C:\Users\avani'\Desktop\adsb_tracker_2\build\ADSBTracker\warn-ADSBTracker.txt
+27723 INFO: Graph cross-reference written to C:\Users\avani'\Desktop\adsb_tracker_2\build\ADSBTracker\xref-ADSBTracker.html
+27783 INFO: checking PYZ
+27802 INFO: Building because C:\Users\avani'\Desktop\adsb_tracker_2\aircraft_lookup.py changed
+27802 INFO: Building PYZ (ZlibArchive) C:\Users\avani'\Desktop\adsb_tracker_2\build\ADSBTracker\PYZ-00.pyz
+28768 INFO: Building PYZ (ZlibArchive) C:\Users\avani'\Desktop\adsb_tracker_2\build\ADSBTracker\PYZ-00.pyz completed successfully.
+28820 INFO: checking PKG
+28858 INFO: Building because toc changed
+28859 INFO: Building PKG (CArchive) ADSBTracker.pkg
+33357 INFO: Building PKG (CArchive) ADSBTracker.pkg completed successfully.
+33366 INFO: Bootloader C:\Users\avani'\AppData\Local\Programs\Python\Python313\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\run.exe
+33367 INFO: checking EXE
+33408 INFO: Building because toc changed
+33409 INFO: Building EXE from EXE-00.toc
+33418 INFO: Copying bootloader EXE to C:\Users\avani'\Desktop\adsb_tracker_2\dist\ADSBTracker.exe
+33819 INFO: Copying icon to EXE
+33903 INFO: Copying 0 resources to EXE
+33903 INFO: Embedding manifest in EXE
+33989 INFO: Appending PKG archive to EXE
+34404 INFO: Fixing EXE headers
+35443 INFO: Building EXE from EXE-00.toc completed successfully.
+35448 INFO: Build complete! The results are available in: C:\Users\avani'\Desktop\adsb_tracker_2\dist

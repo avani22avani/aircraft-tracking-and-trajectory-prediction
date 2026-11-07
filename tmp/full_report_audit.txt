@@ -1,0 +1,3977 @@
+
+
+===== PDF PAGE 1 =====
+ 
+ 
+ 
+AIRCRAFT TRACKING AND TRAJECTORY 
+PREDICTION  
+Submitted by 
+ APARNA TIWARI 
+For the award of the degree of 
+B.Tech (Computer Science – Artificial Intelligence) 
+Under the supervision of 
+Supervisor 
+Mr. Ajeet Gaur 
+Scientist ‘F’ 
+Aerial Delivery Research and Development Establishment (DRDO), Agra                                                                                                                                                              
+ 
+                                                                                                 
+            Faculty of Mathematics and Computing 
+Banasthali Vidyapith 
+Banasthali - 304022 
+Session: 2026 
+
+
+===== PDF PAGE 2 =====
+ 
+i 
+CERTIFICATE FORMAT 
+Certified that "APARNA TIWARI" (Roll No. 2216018, Student ID 
+BTBTS22091) has carried out the project work titled "ADS-B LIVE TRACKER 
+USING PINGSTATION DATA" from _____ to _____ for the award of the 
+B.Tech (Computer Science) from Banasthali Vidyapith under my supervision. 
+The thesis embodies result of original work and studies carried out by the student 
+herself and the contents of the thesis do not form the basis for the award of any 
+other degree to the candidate or to anybody else. 
+ 
+ 
+ 
+ 
+ 
+(Signature of the Supervisor) 
+Mr. Ajeet Gaur 
+Designation: Scientist ‘F’ 
+Place: Agra, Uttar Pradesh 
+Date: 
+  
+
+===== PDF PAGE 3 =====
+ 
+ii 
+ABSTRACT 
+The increasing availability of aircraft surveillance data has created opportunities 
+for developing systems that can monitor, analyze, and visualize air traffic in a 
+more accessible manner. Automatic Dependent Surveillance–Broadcast (ADS-B) 
+is a modern surveillance technology in which aircraft periodically broadcast 
+information such as identification, position, altitude, velocity, and heading. These 
+broadcasts can be received by ground stations and processed to provide real-time 
+awareness of aircraft movements. ADS-B has become an important component of 
+contemporary air traffic monitoring due to its ability to provide accurate and 
+continuously updated flight information. 
+This project focuses on the design and development of an ADS-B Live Aircraft 
+Tracking System using Pingstation data as the primary source of surveillance 
+information. The objective of the system is to transform raw ADS-B messages 
+into meaningful aircraft information that can be monitored, stored, and analyzed 
+through an intuitive web-based interface. Instead of relying on specialized 
+aviation software, the project provides a lightweight and self-contained platform 
+capable of handling aircraft tracking operations using commonly available 
+technologies. 
+The system receives either live or previously captured ADS-B data streams and 
+processes the incoming messages through a custom decoder developed for 
+Pingstation binary frames. The decoder extracts relevant aircraft parameters such 
+as ICAO aircraft address, callsign, latitude, longitude, altitude, speed, heading, 
+and timestamp information. After decoding, the data is validated and normalized 
+to ensure consistency across different message types and transmission intervals. 
+This processed information is then stored in a structured database for efficient 
+retrieval and historical analysis. 
+The backend of the application is implemented using Python and Flask, providing 
+APIs and services responsible for data ingestion, processing, storage, and 
+communication with the frontend. SQLite is used as the primary local database for 
+maintaining aircraft records and trajectory history, while CSV and Excel export 
+functionalities are incorporated to support external analysis and reporting. These 
+
+===== PDF PAGE 4 =====
+ 
+iii 
+export options enable users to examine collected flight data using commonly 
+available analytical tools. 
+For visualization, the project employs a browser-based dashboard integrated with 
+Leaflet maps. The dashboard displays aircraft positions in near real time and 
+allows users to observe movement patterns through continuously updated 
+trajectory paths. Recent trajectory points are preserved to provide a visual 
+representation of flight routes, improving situational awareness and enabling users 
+to understand aircraft movement over time. The system also supports prediction-
+oriented entries when sufficient recent observations are available, providing an 
+estimated continuation of aircraft trajectories for monitoring purposes. 
+A key focus of the project is simplicity, portability, and practical usability. The 
+architecture is designed to operate efficiently on standard computing systems 
+without requiring complex infrastructure. By combining data acquisition, message 
+decoding, storage, export capabilities, and map-based visualization into a single 
+platform, the project demonstrates a complete surveillance data processing 
+pipeline. The developed system successfully converts low-level ADS-B 
+transmissions into human-readable operational information that can be used for 
+educational purposes, aviation research, flight trajectory analysis, and surveillance 
+system studies. 
+Overall, the project highlights the practical application of web technologies, 
+database systems, and data processing techniques in the aviation domain. It 
+provides a functional framework for aircraft monitoring while offering 
+opportunities for future enhancements such as advanced trajectory prediction, 
+anomaly detection, integration with additional ADS-B receivers, and large-scale 
+cloud-based deployment. 
+  
+
+===== PDF PAGE 5 =====
+ 
+iv 
+ACKNOWLEDGEMENT 
+I would like to express my sincere gratitude to my project guide for providing 
+continuous guidance, encouragement, and valuable suggestions throughout the 
+development of this project. Their support and constructive feedback helped me 
+understand the technical aspects of the project more effectively and motivated me 
+to improve the quality of both the implementation and documentation. 
+I am also thankful to the faculty members of the Department of Computer Science 
+and Artificial Intelligence Engineering, Banasthali Vidyapith, for providing the 
+academic knowledge, resources, and learning environment that made this project 
+possible. The concepts learned during my coursework served as a strong 
+foundation for the design and development of this system. 
+I would like to extend my appreciation to my classmates and peers for their 
+cooperation, discussions, and valuable suggestions during various stages of the 
+project. Their feedback helped identify areas for improvement and contributed to 
+the successful completion of the work. 
+This project, titled "ADS-B Live Aircraft Tracking System", provided me with 
+an opportunity to gain practical experience in data processing, web development, 
+database management, and real-time visualization technologies. Through the 
+process of designing, implementing, testing, and debugging the system, I 
+developed a deeper understanding of how raw surveillance data can be 
+transformed into meaningful and user-friendly information. 
+I am also grateful to my family for their constant encouragement, patience, and 
+unwavering support throughout my academic journey. Their motivation and belief 
+in my abilities have always inspired me to overcome challenges and achieve my 
+goals. 
+Finally, I would like to thank everyone who directly or indirectly contributed to 
+the successful completion of this project. The experience gained during this work 
+has significantly enhanced my technical skills, problem-solving abilities, and 
+understanding of real-world software development practices, making it an 
+important milestone in my academic and professional growth. 
+  
+
+===== PDF PAGE 6 =====
+ 
+v 
+TABLE OF CONTENTS 
+CERTIFICATE FORMAT ....................................................................................... i 
+ABSTRACT ............................................................................................................. ii 
+ACKNOWLEDGEMENT ...................................................................................... iv 
+TABLE OF CONTENTS ......................................................................................... v 
+LIST OF FIGURES ..............................................................................................viii 
+LIST OF TABLES .................................................................................................. ix 
+1. OBJECTIVE ........................................................................................................ 1 
+2. REQUIREMENT ANALYSIS (SRS) ................................................................. 1 
+2.1 Introduction .................................................................................................... 1 
+2.2 Scope .............................................................................................................. 1 
+2.3 Functional Requirements ............................................................................... 2 
+2.4 Non-Functional Requirements ....................................................................... 2 
+2.5 Hardware and Software Requirements .......................................................... 2 
+2.6 Feasibility Study ............................................................................................ 3 
+2.7 Product Functions .......................................................................................... 3 
+2.8 Actors ............................................................................................................. 3 
+2.9 Use-Case Descriptions ................................................................................... 4 
+3. REQUIREMENT SPECIFICATION .................................................................. 5 
+3.1 System Inputs ................................................................................................. 5 
+3.2 System Outputs .............................................................................................. 5 
+3.3 Assumptions and Constraints ......................................................................... 6 
+3.4 Data Dictionary .............................................................................................. 6 
+3.5 API Specification ........................................................................................... 6 
+4. SYSTEM DESIGN (SDS) ................................................................................... 7 
+4.1 High-Level Design ......................................................................................... 7 
+4.2 Data Flow Design .......................................................................................... 8 
+
+===== PDF PAGE 7 =====
+ 
+vi 
+4.3 Database Design............................................................................................. 8 
+4.4 Main System Modules ................................................................................. 10 
+4.5 Sequence of Operation ................................................................................. 11 
+4.6 Design Rationale .......................................................................................... 14 
+4.7 Diagram Summary ....................................................................................... 16 
+5. CODING ............................................................................................................ 16 
+5.1 Backend API ................................................................................................ 16 
+5.2 Decoder and Preprocessing .......................................................................... 17 
+5.3 Storage and Export ....................................................................................... 17 
+5.4 User Interface ............................................................................................... 17 
+5.5 Error Handling and Data Quality ................................................................. 17 
+5.6 Configuration Parameters ............................................................................ 17 
+6. TESTING ........................................................................................................... 18 
+6.1 Observed Outputs......................................................................................... 19 
+7. USER INTERFACES ........................................................................................ 19 
+7.1 Interface Layout ........................................................................................... 19 
+7.2 Interface Controls......................................................................................... 20 
+8. CONCLUSION AND FUTURE SCOPE .......................................................... 20 
+8.1 Conclusion ................................................................................................... 20 
+8.2 Future Scope ................................................................................................ 20 
+APPENDICES ....................................................................................................... 20 
+Appendix A: Configuration Summary ............................................................... 20 
+Appendix B: Main Code Excerpts ..................................................................... 21 
+Backend route excerpt.................................................................................... 21 
+Data source excerpt ........................................................................................ 25 
+Raw decoder excerpt ...................................................................................... 29 
+Preprocessing excerpt .................................................................................... 40 
+
+===== PDF PAGE 8 =====
+
+
+===== PDF PAGE 9 =====
+
+
+===== PDF PAGE 10 =====
+
+
+===== PDF PAGE 11 =====
+ 
+1 
+1. OBJECTIVE 
+The objective of this project is to design and implement a live ADS-B aircraft 
+tracking system that can convert Pingstation raw data into useful aircraft 
+information. Raw surveillance messages are not directly suitable for a user 
+because they contain encoded binary fields and may arrive in repeated, incomplete 
+or stale forms. The project therefore focuses on decoding, cleaning, storing and 
+displaying this data through a simple web-based interface. 
+The main goals of the project are listed below. 
+• Decode useful aircraft information such as ICAO address, callsign, latitude, 
+longitude, altitude, heading and speed from Pingstation data. 
+• Normalize values into consistent units so that they can be stored and displayed 
+without ambiguity. 
+• Provide a live browser dashboard that shows aircraft positions, route traces 
+and selected aircraft details. 
+• Maintain local historical trajectory data for analysis, training data preparation 
+and later prediction work. 
+• Export aircraft and trajectory data in common formats such as CSV and Excel. 
+2. REQUIREMENT ANALYSIS (SRS) 
+2.1 Introduction 
+The ADS-B tracker is a software system for receiving or replaying aircraft 
+surveillance data, converting it into structured records and presenting it to the user 
+in near real time. ADS-B is widely used in aviation surveillance because aircraft 
+broadcast their identity and state information, including position and movement 
+data [1]. The developed system is not a replacement for certified air traffic control 
+systems; it is a project-level monitoring and data-logging application for 
+understanding and working with ADS-B data. 
+2.2 Scope 
+• Data input through captured Pingstation log replay and optional live TCP 
+stream mode. 
+• Frame-level parsing and field extraction from Pingstation messages. 
+
+===== PDF PAGE 12 =====
+ 
+2 
+• Cleaning and normalization of aircraft identity, coordinates, altitude, heading, 
+speed and timestamp fields. 
+• Local storage of latest aircraft state and trajectory samples. 
+• Interactive dashboard with map markers, aircraft search, selected aircraft 
+details, route trace and altitude chart. 
+• CSV, SQLite and Excel output for later analysis. 
+2.3 Functional Requirements 
+Table 2: Functional Requirements 
+Requirement Description 
+FR1 The system shall read aircraft data from simulation logs or a live 
+Pingstation stream. 
+FR2 The system shall decode aircraft identity and motion-related fields where 
+available. 
+FR3 The system shall remove unusable records such as records with missing 
+coordinates. 
+FR4 The system shall serve aircraft data through JSON API endpoints. 
+FR5 The system shall display aircraft on a map with callsign and related details. 
+FR6 The system shall store trajectory samples and latest aircraft records locally. 
+FR7 The system shall support CSV and Excel-based exports for analysis. 
+2.4 Non-Functional Requirements 
+• The dashboard should update regularly without requiring a page refresh. 
+• The system should continue to work locally without requiring a separate 
+database server. 
+• The code should remain readable and modular so that decoder, preprocessing, 
+storage and UI logic can be improved independently. 
+• The storage layer should avoid excessive duplicate samples by saving 
+meaningful changes in movement or time. 
+2.5 Hardware and Software Requirements 
+Table 1: Hardware and Software Requirements 
+Category Requirement 
+Processor Intel/AMD compatible processor suitable for running Python and 
+a web browser. 
+
+===== PDF PAGE 13 =====
+
+
+===== PDF PAGE 14 =====
+ 
+4 
+Student / Operator Runs the project, opens the dashboard, observes aircraft 
+movement and exports data. 
+Pingstation Receiver Provides raw ADS-B/Pingstation messages for decoding. 
+Browser Client Requests aircraft data from Flask APIs and renders the map 
+interface. 
+Storage Module Stores latest records, trajectory samples, CSV files and Excel 
+workbooks. 
+Future Analysis Module Can reuse saved trajectory samples for model building or 
+analytics. 
+2.9 Use-Case Descriptions 
+Table 8: Use-Case Descriptions 
+Use Case Primary Actor Brief Description 
+Start Tracker Student / Operator Launch the Flask server and initialize 
+decoder, storage and data source settings. 
+Replay Captured 
+Data System Read saved Pingstation log entries and feed 
+them into the decoder in batches. 
+Decode Aircraft 
+Record Decoder Extract available identity, position and motion 
+fields from a complete frame. 
+View Live Aircraft Browser Client Fetch JSON aircraft records and render 
+markers on the map. 
+Select Aircraft Student / Operator Open details, route trace and altitude history 
+for one aircraft. 
+Save Trajectory 
+Sample Storage Module Write meaningful movement samples to 
+SQLite and daily CSV files. 
+Export Trajectory Student / Operator Create a CSV export for selected or all 
+aircraft over a time range. 
+Review Logging 
+Status Student / Operator Check whether matrix CSV, ICAO Excel and 
+master workbook logging are enabled. 
+
+===== PDF PAGE 15 =====
+ 
+5 
+ 
+Figure 4: Use-Case Diagram 
+3. REQUIREMENT SPECIFICATION 
+3.1 System Inputs 
+The system accepts Pingstation data in two modes. In simulation mode, captured 
+hex log data is replayed from a local file so that the tracker can be tested without 
+live receiver hardware. In live mode, the receiver listens on a configured host and 
+port and decodes incoming stream data. Environment variables are used to switch 
+modes and configure paths, ports and logging behavior. 
+3.2 System Outputs 
+• Live aircraft JSON returned by the /api/aircraft endpoint. 
+• Latest matrix-style aircraft records from /api/training/matrix. 
+• Trajectory history through /api/training/trajectory and CSV export through 
+/api/training/trajectory/export. 
+• Daily trajectory CSV files under logs/training_csv. 
+• ICAO-wise Excel workbooks and a master ICAO workbook. 
+• Dashboard visualization using map markers, aircraft list, route panel and 
+altitude chart. 
+
+
+===== PDF PAGE 16 =====
+ 
+6 
+3.3 Assumptions and Constraints 
+• The decoded information depends on the completeness and quality of received 
+Pingstation frames. 
+• The project uses local storage and is intended for academic/project-level 
+monitoring, not certified operational surveillance. 
+• Map visualization depends on browser access to map tile resources. 
+• Prediction rows are based on recent stored movement information and are 
+limited by configured age and sample limits. 
+3.4 Data Dictionary 
+The following data dictionary lists the most important fields used throughout the 
+backend and dashboard. Keeping these names consistent helps the frontend, 
+storage layer and export files use the same interpretation of aircraft data. 
+Table 9: Data Dictionary 
+Field Meaning Unit / Format 
+icaoAddress Unique aircraft ICAO address when available. Hexadecimal text 
+callsign Flight callsign or aircraft label. Text 
+latDD Latitude in decimal degrees. Degrees 
+lonDD Longitude in decimal degrees. Degrees 
+altitudeMM Aircraft altitude normalized by the 
+preprocessor. Millimetres 
+headingDE2 Heading normalized as degrees multiplied by 
+100. Degrees x 100 
+horVelocityCMS Horizontal speed normalized by the 
+preprocessor. Centimetres/second 
+timestamp Observation time used for storage and replay. ISO date-time 
+flight_key Internal key used to group records for one 
+flight. Text 
+3.5 API Specification 
+Table 10: API Specification 
+Endpoint Method Purpose 
+/ GET Render the main dashboard page. 
+/api/aircraft GET Return normalized live aircraft records as 
+JSON. 
+
+===== PDF PAGE 17 =====
+ 
+7 
+/api/training/matrix GET Return latest matrix-style rows from local 
+storage. 
+/api/training/matrix/csv-info GET Return CSV export configuration information. 
+/api/logging/status GET Return status of ICAO Excel, master 
+workbook and matrix CSV logging. 
+/api/training/trajectory GET Return trajectory history for one flight or all 
+flights. 
+/api/training/trajectory/export GET Write and report a CSV trajectory export. 
+4. SYSTEM DESIGN (SDS) 
+4.1 High-Level Design 
+The project is divided into five major layers: data source, decoder, preprocessor, 
+storage and web dashboard. This separation keeps the implementation clear. The 
+decoder is responsible for understanding Pingstation frames, the preprocessor 
+ensures consistent values, the storage module preserves current and historical 
+aircraft data, and the Flask application exposes the results to the browser. 
+ 
+ 
+Figure 1: System Architecture 
+
+
+===== PDF PAGE 18 =====
+ 
+8 
+4.2 Data Flow Design 
+The data flow begins with raw frames and ends with user-facing visualization and 
+exports. During processing, records with missing or invalid coordinates are 
+removed. Repeated observations are merged by ICAO address or callsign so that 
+the dashboard receives the most useful aircraft state. 
+ 
+ 
+ 
+Figure 2: Level-1 Data Flow 
+4.3 Database Design 
+The SQLite database has two central tables. The flight_latest table stores one 
+current record per flight, while trajectory_samples stores time-series samples for 
+movement history. This design keeps live lookup fast and still preserves historical 
+data for trajectory analysis. 
+
+
+===== PDF PAGE 19 =====
+ 
+9 
+ 
+ 
+Figure 3: Database Design 
+ 
+Figure 5: Entity Relationship Diagram 
+
+
+===== PDF PAGE 20 =====
+ 
+10 
+ 
+ 
+Figure 12: Database Schema Diagram 
+Table 4: Database Tables 
+Table Purpose 
+flight_latest Stores the latest known state for each flight key. 
+trajectory_samples Stores historical position and movement samples over time. 
+4.4 Main System Modules 
+Table 3: Main System Modules 
+Module File Responsibility 
+Flask Application app.py Defines dashboard route and JSON APIs for 
+aircraft, matrix, status and trajectory exports. 
+Data Source data_source.py Switches between simulation replay and 
+optional live Pingstation stream mode. 
+Raw Decoder preprocessing/pingstation_r
+aw_decoder.py 
+Splits frames and decodes aircraft fields from 
+Pingstation payloads. 
+Preprocessor preprocessing/pingstation_p
+reprocess.py 
+Normalizes altitude, heading, speed, 
+timestamps and identity fields. 
+Storage storage/flight_data_store.py Maintains SQLite records, trajectory samples, 
+CSV exports and ICAO Excel logs. 
+Dashboard templates/index.html Displays aircraft markers, search, details, route 
+trace and chart. 
+  
+
+
+===== PDF PAGE 21 =====
+ 
+11 
+ 
+Figure 6: Class Diagram 
+4.5 Sequence of Operation 
+When the application starts, configuration values are read from environment 
+variables. The Flask application creates one preprocessor and one storage object. 
+For every dashboard refresh, the browser calls the aircraft API. The backend 
+obtains raw or replayed data, preprocesses it, stores it and returns the normalized 
+records. The browser then updates markers, route traces, aircraft list and charts. 
+This sequence keeps the browser simple and places the core data responsibility in 
+Python. 
+1. Application starts and prepares output directories. 
+2. Data source selects simulation replay or live receiver mode. 
+3. Raw records are decoded and cleaned. 
+4. Records are normalized into common units. 
+5. Storage layer writes meaningful latest and trajectory samples. 
+6. API response is sent to the browser. 
+7. Dashboard updates markers, list, panels and chart. 
+
+
+===== PDF PAGE 22 =====
+Figure 8: Sequence Diagram
+Browser
+Flask API
+Data Source
+Decoder /
+Preprocessor
+Storage
+Prediction
+GET /api/aircraft (every 1 s)
+get_aircraft_data()
+decode frames / obtain state
+normalized live records
+ingest_many(records)
+build predicted rows for missing aircraft
+short-gap predictions
+JSON: live + predicted aircraft
+GET /api/status (every 4 s)
+mode and receiver health
+SIM / LIVE status
+status badge data
+The browser periodically requests aircraft and health data. The backend decodes and normalizes the current feed, stores
+meaningful samples, and adds prediction rows only for aircraft that have temporarily disappeared. The response is then
+rendered as map markers, solid live tracks and dotted predicted paths.
+Figure 8: Sequence Diagram
+12
+
+
+===== PDF PAGE 23 =====
+ 
+13 
+ 
+Figure 7: Activity Diagram 
+
+
+===== PDF PAGE 24 =====
+ 
+14 
+ 
+Figure 9: Flowchart of Data Processing 
+4.6 Design Rationale 
+A local Flask application was selected because the project needs simple API 
+endpoints, not a large enterprise framework. SQLite was selected because it stores 
+structured data in one file and is suitable for local academic projects. CSV and 
+Excel exports were retained because they make the captured data easy to inspect 
+in spreadsheet tools. Leaflet was selected because it is a mature web mapping 
+library and works well with marker-based aircraft visualization. 
+
+
+===== PDF PAGE 25 =====
+ 
+15 
+ 
+Figure 10: Component Diagram 
+ 
+Figure 11: Deployment Diagram 
+
+
+===== PDF PAGE 26 =====
+ 
+16 
+ 
+Figure 13: API Route Map 
+4.7 Diagram Summary 
+The diagrams together describe the system from different viewpoints. The 
+architecture diagram shows the physical flow of data through the project. The 
+DFD explains how data is transformed. The ER and schema diagrams describe 
+how records are stored. The use-case diagram shows user interaction, while the 
+sequence and activity diagrams show runtime behavior. The component and 
+deployment diagrams explain how the software parts are arranged on the local 
+machine. 
+5. CODING 
+The implementation is organized into small modules instead of keeping all logic 
+in one file. Only the main parts are discussed here, as detailed source code is not 
+required in the main body of the report. 
+5.1 Backend API 
+The Flask application exposes endpoints for live aircraft, training matrix, logging 
+status and trajectory export. The /api/aircraft endpoint is the most important 
+endpoint because the browser calls it repeatedly to update the live map. 
+
+
+===== PDF PAGE 27 =====
+ 
+17 
+5.2 Decoder and Preprocessing 
+The decoder reads complete frames from the buffer, extracts fields such as ICAO 
+address, callsign, altitude, ground speed, heading, latitude and longitude, and 
+maintains an aircraft state snapshot. The preprocessor then ensures values use 
+consistent units: altitude in millimetres, speed in centimetres per second and 
+heading in degrees multiplied by 100. 
+5.3 Storage and Export 
+The storage layer writes meaningful trajectory samples instead of saving every 
+repeated value. This reduces duplication while retaining useful movement 
+information. It also writes CSV files and ICAO-wise Excel workbooks so that the 
+data can be reviewed outside the dashboard. 
+5.4 User Interface 
+The dashboard uses Leaflet for map visualization and Chart.js for the altitude 
+chart. Aircraft markers show callsigns and heading direction, while the lower 
+panel displays selected aircraft details, route estimate and altitude history. The 
+interface is intentionally compact so that tracking information remains visible on 
+one screen. 
+5.5 Error Handling and Data Quality 
+The implementation includes several small safeguards to improve data quality. 
+The data source filters records with zero latitude and longitude, the decoder 
+ignores incomplete or invalid frames, and the preprocessor applies default values 
+when fields are missing. The storage layer uses thresholds for time, distance, 
+altitude, heading and speed changes so that the database does not fill with repeated 
+identical samples. 
+5.6 Configuration Parameters 
+Table 11: Important Configuration Parameters 
+Parameter Default / Use 
+SIMULATION_MODE true; uses captured log replay for development and 
+testing. 
+SIMULATION_REPLAY_BATCH Number of log entries processed in one replay batch. 
+
+===== PDF PAGE 28 =====
+ 
+18 
+PINGSTATION_LISTEN_PORT TCP port used when live stream mode is enabled. 
+FLIGHT_DB_PATH Path of the SQLite trajectory database. 
+FLIGHT_DB_MIN_INTERVAL_SE
+C Minimum time gap before saving repeated samples. 
+FLIGHT_PREDICTION_ENABLED Enables recent trajectory-based prediction rows. 
+FLIGHT_ICAO_EXCEL_ENABLE
+D Enables ICAO-wise workbook logging. 
+6. TESTING 
+Testing was performed using replayed Pingstation data and local execution of the 
+Flask web application. The aim was to verify that data flows correctly from raw 
+input to dashboard output and stored files. 
+Table 5: Test Cases 
+Test Case Expected Result Observed Result 
+Replay captured log 
+file 
+Aircraft records should be decoded 
+from saved data. 
+Records were produced from 
+local Pingstation log replay. 
+Call /api/aircraft JSON response should contain 
+normalized aircraft list. 
+Dashboard can consume aircraft 
+rows from the endpoint. 
+Preprocess altitude Altitude should be converted or 
+retained in millimetres. 
+Preprocessor handles feet, metres 
+and millimetre-style values. 
+Preprocess heading Heading should be represented as 
+degrees x 100. 
+Heading values are normalized 
+before dashboard use. 
+Filter unusable 
+coordinates 
+Zero coordinate records should not 
+dominate live display. 
+Data source removes records 
+where both coordinates are zero. 
+Store trajectory data Database should contain latest and 
+historical records. 
+Database contains 17 latest 
+records and 2008 trajectory 
+samples. 
+Generate CSV 
+output 
+Trajectory CSV files should be 
+available for analysis. 
+6 daily training CSV files and 1 
+export CSV file were found. 
+Generate Excel 
+output ICAO workbooks should be created. 4 ICAO/master Excel workbooks 
+were found. 
+Dashboard 
+visualization 
+Aircraft should appear on map with 
+details. 
+Leaflet dashboard contains map, 
+aircraft list, route panel and 
+altitude chart. 
+Search aircraft User should filter aircraft by 
+callsign or ICAO. 
+Dashboard contains a 
+callsign/ICAO search box. 
+Select aircraft Details should update for the 
+selected aircraft. 
+Dashboard provides flight, 
+aircraft and route tabs. 
+Export trajectory A CSV export path and row count Endpoint exists and writes 
+
+===== PDF PAGE 29 =====
+ 
+19 
+endpoint should be returned. exports under logs/exports. 
+6.1 Observed Outputs 
+Table 6: Observed Project Outputs 
+Output Count / Status 
+Latest aircraft records in SQLite 17 
+Trajectory samples in SQLite 2008 
+Daily trajectory CSV files 6 
+Trajectory export CSV files 1 
+ICAO Excel workbooks 4 
+These results show that the project successfully performs decoding, preprocessing, 
+storage and export tasks on the available dataset. The values are not presented as 
+aviation performance benchmarks; they only describe the data currently available 
+in the project workspace. 
+7. USER INTERFACES 
+The web interface is built as a single-page dashboard. The top area contains the 
+project title, search box and live status counters. The left panel lists live traffic. 
+The central map displays aircraft markers with heading rotation and route traces. 
+The bottom panel displays flight, aircraft and route information for the selected 
+aircraft along with an altitude chart. 
+• Search by callsign or ICAO address. 
+• Click an aircraft marker or list item to view details. 
+• Zoom and center controls for map navigation. 
+• Route trace and estimated movement line for selected aircraft. 
+• Altitude chart for recently observed points. 
+7.1 Interface Layout 
+The layout is divided into a top status bar, a traffic list, a central map and a bottom 
+details panel. This layout was chosen because it keeps the map visible while still 
+allowing the user to inspect individual aircraft data. On smaller screens, the traffic 
+list is hidden and the bottom panel receives more vertical space. 
+
+===== PDF PAGE 30 =====
+ 
+20 
+7.2 Interface Controls 
+• The search box filters the visible aircraft list and map layers. 
+• The zoom buttons call Leaflet zoom functions. 
+• The center button returns the map to the default India-sector view. 
+• Tabs separate flight, aircraft and route details so the lower panel remains 
+readable. 
+• The altitude chart updates for the selected aircraft only. 
+8. CONCLUSION AND FUTURE SCOPE 
+8.1 Conclusion 
+The ADS-B live tracker successfully converts Pingstation aircraft data into 
+structured and readable information. It provides a complete local pipeline from 
+raw data input to browser visualization and historical storage. The system 
+demonstrates practical use of Python, Flask, SQLite and JavaScript mapping tools 
+for a real-time tracking problem. 
+8.2 Future Scope 
+• Testing with a continuous live receiver feed for longer durations. 
+• Improving trajectory prediction using machine learning models trained on 
+stored samples. 
+• Adding filtering by altitude, speed, ICAO address and time range. 
+• Adding authentication for multi-user deployment. 
+• Deploying the dashboard on a local network or cloud server. 
+• Adding automated data-quality reports for missing or stale aircraft fields. 
+APPENDICES 
+Appendix A: Configuration Summary 
+• SIMULATION_MODE controls whether replay or live stream mode is used. 
+• SIMULATION_SOURCE_FILE selects the captured log file used for replay. 
+• FLIGHT_DB_PATH selects the SQLite database path. 
+• FLIGHT_TRAJECTORY_APPEND_CSV_DIR selects the directory for daily 
+CSV files. 
+
+===== PDF PAGE 31 =====
+ 
+21 
+• FLIGHT_ICAO_EXCEL_DIR selects the output directory for ICAO 
+workbooks. 
+Appendix B: Main Code Excerpts 
+Backend route excerpt 
+import os 
+from datetime import datetime 
+from pathlib import Path 
+ 
+from flask import Flask, jsonify, render_template, request 
+from data_source import ICAO_EXCEL_DIR, SESSION_DIR, get_aircraft_data 
+from preprocessing.pingstation_preprocess import PingstationPreprocessor 
+from storage.flight_data_store import FlightTrajectoryStore 
+ 
+app = Flask(__name__) 
+preprocessor = PingstationPreprocessor() 
+flight_store = FlightTrajectoryStore( 
+    db_path=os.getenv( 
+        "FLIGHT_DB_PATH", 
+        str(Path(__file__).resolve().parent / "logs" / "flight_training.db"), 
+    ), 
+    enabled=os.getenv("FLIGHT_DB_ENABLED", "true").lower() == "true", 
+    min_interval_sec=int(os.getenv("FLIGHT_DB_MIN_INTERVAL_SEC", "5")), 
+    min_distance_m=float(os.getenv("FLIGHT_DB_MIN_DISTANCE_M", "30")), 
+    min_altitude_change_m=int(os.getenv("FLIGHT_DB_MIN_ALT_CHANGE_M", "20")), 
+    min_heading_change_de2=int(os.getenv("FLIGHT_DB_MIN_HEADING_CHANGE_DE2", 
+"500")), 
+    min_speed_change_cms=int(os.getenv("FLIGHT_DB_MIN_SPEED_CHANGE_CMS", 
+"200")), 
+    history_retention_days=int(os.getenv("FLIGHT_DB_HISTORY_RETENTION_DAYS", 
+"30")), 
+    append_csv_enabled=os.getenv("FLIGHT_TRAJECTORY_APPEND_CSV_ENABLED", 
+"true").lower() == "true", 
+    append_csv_dir=os.getenv( 
+        "FLIGHT_TRAJECTORY_APPEND_CSV_DIR", 
+        str(Path(__file__).resolve().parent / "logs" / "training_csv"), 
+    ), 
+    icao_excel_enabled=os.getenv("FLIGHT_ICAO_EXCEL_ENABLED", "true").lower() 
+== "true", 
+    icao_excel_dir=os.getenv( 
+        "FLIGHT_ICAO_EXCEL_DIR", 
+        str(ICAO_EXCEL_DIR), 
+    ), 
+    icao_master_enabled=os.getenv("FLIGHT_ICAO_MASTER_ENABLED", 
+"true").lower() == "true", 
+    icao_master_path=os.getenv( 
+        "FLIGHT_ICAO_MASTER_PATH", 
+        str(SESSION_DIR / "MASTER_ICAO.xlsx"), 
+    ), 
+    reset_excel_on_start=os.getenv("FLIGHT_ICAO_RESET_ON_START", 
+"false").lower() == "true", 
+    icao_excel_extension=os.getenv("FLIGHT_ICAO_EXCEL_EXTENSION", "xls"), 
+) 
+matrix_csv_enabled = os.getenv("FLIGHT_MATRIX_CSV_ENABLED", "false").lower() 
+== "true" 
+matrix_csv_path = os.getenv( 
+    "FLIGHT_MATRIX_CSV_PATH", 
+    str(Path(__file__).resolve().parent / "logs" / 
+"flight_matrix_latest.csv"), 
+) 
+matrix_csv_limit = int(os.getenv("FLIGHT_MATRIX_CSV_LIMIT", "5000")) 
+prediction_enabled = os.getenv("FLIGHT_PREDICTION_ENABLED", "true").lower() 
+== "true" 
+prediction_max_age_sec = int(os.getenv("FLIGHT_PREDICTION_MAX_AGE_SEC", 
+"120")) 
+
+===== PDF PAGE 32 =====
+ 
+22 
+prediction_limit = int(os.getenv("FLIGHT_PREDICTION_LIMIT", "1000")) 
+ 
+if not matrix_csv_enabled: 
+    try: 
+        Path(matrix_csv_path).unlink(missing_ok=True) 
+    except Exception as exc: 
+        app.logger.warning("Could not remove matrix CSV file: %s", exc) 
+ 
+if os.getenv("FLIGHT_ICAO_EXCEL_ENABLED", "true").lower() == "true" and not 
+flight_store.icao_excel_enabl 
+    msg = "ICAO Excel logging is enabled but unavailable. Install openpyxl in 
+the same Python environment 
+    app.logger.warning(msg) 
+    print(f"WARNING: {msg}") 
+ 
+ 
+def _build_storage_rows(raw_rows, normalized_rows): 
+    """ 
+    Preserve normalized core fields while keeping optional telemetry from raw 
+rows 
+    (e.g. verVelocityCMS/sourceIp/squawk) for logging. 
+    """ 
+    merged_rows = [] 
+    total = max(len(raw_rows), len(normalized_rows)) 
+    for idx in range(total): 
+        raw = raw_rows[idx] if idx < len(raw_rows) and 
+isinstance(raw_rows[idx], dict) else {} 
+        norm = normalized_rows[idx] if idx < len(normalized_rows) and 
+isinstance(normalized_rows[idx], di 
+        rec = dict(raw) 
+        rec.update(norm) 
+        merged_rows.append(rec) 
+    return merged_rows 
+ 
+@app.route("/") 
+def home(): 
+    return render_template("index.html") 
+ 
+@app.route("/api/aircraft") 
+def aircraft(): 
+    # Get data from source 
+    data = get_aircraft_data() 
+     
+    # If data is a dict with an 'aircraft' key, get that list.  
+    # Otherwise, assume data itself is the list. 
+    raw_list = data.get("aircraft", []) if isinstance(data, dict) else data 
+    storage_input_list = ( 
+        data.get("aircraft_raw", raw_list) 
+        if isinstance(data, dict) 
+        else raw_list 
+    ) 
+     
+    # Process the list 
+    processed_list = [preprocessor.preprocess(ac) for ac in raw_list] 
+    processed_storage_list = _build_storage_rows( 
+        storage_input_list, 
+        [preprocessor.preprocess(ac) for ac in storage_input_list], 
+    ) 
+    flight_store.ingest_many(processed_storage_list) 
+ 
+    if prediction_enabled: 
+        active_icao = { 
+            str(row.get("icaoAddress", "")).strip().upper() 
+            for row in processed_storage_list 
+            if isinstance(row, dict) and str(row.get("icaoAddress", 
+"")).strip() 
+        } 
+        predicted_rows = flight_store.build_predicted_rows( 
+
+===== PDF PAGE 33 =====
+ 
+23 
+            active_icao_set=active_icao, 
+            max_prediction_age_sec=prediction_max_age_sec, 
+            limit=prediction_limit, 
+        ) 
+        if predicted_rows: 
+            processed_list.extend(predicted_rows) 
+ 
+    if matrix_csv_enabled: 
+        try: 
+            flight_store.write_latest_matrix_csv(matrix_csv_path, 
+limit=matrix_csv_limit) 
+        except Exception as exc: 
+            app.logger.warning("Matrix CSV export skipped: %s", exc) 
+     
+    return jsonify({"aircraft": processed_list}) 
+ 
+ 
+@app.route("/api/training/matrix") 
+def training_matrix(): 
+    limit = int(os.getenv("FLIGHT_DB_MATRIX_LIMIT", "500")) 
+    rows = flight_store.get_latest_matrix(limit=limit) 
+    return jsonify({"rows": rows, "count": len(rows)}) 
+ 
+ 
+@app.route("/api/training/matrix/csv-info") 
+def training_matrix_csv_info(): 
+    return jsonify( 
+        { 
+            "csvEnabled": matrix_csv_enabled, 
+            "csvPath": matrix_csv_path, 
+            "csvLimit": matrix_csv_limit, 
+        } 
+    ) 
+ 
+ 
+@app.route("/api/logging/status") 
+def logging_status(): 
+    return jsonify( 
+        { 
+            "icaoExcelEnabled": bool(getattr(flight_store, 
+"icao_excel_enabled", False)), 
+            "icaoExcelDir": str(getattr(flight_store, "icao_excel_dir", "")), 
+            "icaoMasterEnabled": bool(getattr(flight_store, 
+"icao_master_enabled", False)), 
+            "icaoMasterPath": str(getattr(flight_store, "icao_master_path", 
+"")), 
+            "matrixCsvEnabled": matrix_csv_enabled, 
+            "matrixCsvPath": matrix_csv_path, 
+        } 
+    ) 
+ 
+ 
+@app.route("/api/training/trajectory") 
+def training_trajectory(): 
+    flight_key = request.args.get("flightKey") 
+    hours = int(request.args.get("hours", "24")) 
+    limit = int(request.args.get("limit", "200000")) 
+    rows = flight_store.get_trajectory_history(flight_key=flight_key, 
+hours=hours, limit=limit) 
+    return jsonify({"rows": rows, "count": len(rows), "flightKey": flight_key 
+or "ALL", "hours": hours}) 
+ 
+ 
+@app.route("/api/training/trajectory/export") 
+def training_trajectory_export(): 
+    flight_key = request.args.get("flightKey") 
+    hours = int(request.args.get("hours", "24")) 
+
+===== PDF PAGE 34 =====
+ 
+24 
+    limit = int(request.args.get("limit", "200000")) 
+    stamp = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ") 
+    flight_tag = (flight_key or "ALL").upper() 
+    out_path = ( 
+        Path(__file__).resolve().parent 
+        / "logs" 
+        / "exports" 
+        / f"trajectory_{flight_tag}_{hours}h_{stamp}.csv" 
+    ) 
+    csv_path, row_count = flight_store.write_trajectory_history_csv( 
+        output_path=out_path, 
+        flight_key=flight_key, 
+        hours=hours, 
+        limit=limit, 
+    ) 
+    return jsonify({"csvPath": csv_path, "rowCount": row_count, "flightKey": 
+flight_tag, "hours": hours}) 
+ 
+if __name__ == "__main__": 
+    app.run(host="localhost", port=5005) 
+  
+
+===== PDF PAGE 35 =====
+ 
+25 
+Data source excerpt 
+import os 
+from datetime import datetime 
+from pathlib import Path 
+ 
+from preprocessing.pingstation_raw_decoder import ( 
+    PingstationRawCaptureLogger, 
+    PingstationRawDecoder, 
+    PingstationStreamReceiver, 
+) 
+ 
+ 
+DEFAULT_SIMULATION_LOG_FILE = ( 
+    
+r"C:\Users\Kusum\Desktop\adsb_tracker_2\pingstation_data_log\pingstation_data
+_log\HEX DATA_H.txt" 
+) 
+ 
+_SESSION_STAMP = datetime.utcnow().strftime("%Y%m%d_%H%M%S") 
+SESSION_DIR = Path( 
+    os.getenv( 
+        "PINGSTATION_SESSION_DIR", 
+        str(Path(__file__).resolve().parent / "logs" / "sessions" / 
+f"session_{_SESSION_STAMP}"), 
+    ) 
+) 
+RAW_HEX_DIR = SESSION_DIR / "hex_data" 
+RAW_ASCII_DIR = SESSION_DIR / "ascii_data" 
+ICAO_EXCEL_DIR = SESSION_DIR / "icao_excel" 
+RAW_HEX_DIR.mkdir(parents=True, exist_ok=True) 
+RAW_ASCII_DIR.mkdir(parents=True, exist_ok=True) 
+ICAO_EXCEL_DIR.mkdir(parents=True, exist_ok=True) 
+ 
+# Simulation now replays decoded aircraft only from the captured log file. 
+SIMULATION_MODE = os.getenv("SIMULATION_MODE", "true").lower() == "true" 
+SIMULATION_REPLAY_BATCH = int(os.getenv("SIMULATION_REPLAY_BATCH", "20")) 
+SIMULATION_REPLAY_LOOP = os.getenv("SIMULATION_REPLAY_LOOP", "false").lower() 
+== "true" 
+SIMULATION_STALE_SECONDS = int(os.getenv("SIMULATION_STALE_SECONDS", "8")) 
+ 
+# Optional live raw stream mode when SIMULATION_MODE=false. 
+PINGSTATION_LISTEN_HOST = os.getenv("PINGSTATION_LISTEN_HOST", "0.0.0.0") 
+PINGSTATION_LISTEN_PORT = int(os.getenv("PINGSTATION_LISTEN_PORT", "30003")) 
+PINGSTATION_STALE_SECONDS = int(os.getenv("PINGSTATION_STALE_SECONDS", "45")) 
+PINGSTATION_CAPTURE_ENABLED = os.getenv("PINGSTATION_CAPTURE_ENABLED", 
+"true").lower() == "true" 
+PINGSTATION_CAPTURE_FILE = os.getenv( 
+    "PINGSTATION_CAPTURE_FILE", 
+    str(SESSION_DIR), 
+) 
+ 
+ 
+_decoder = PingstationRawDecoder() 
+_receiver = None 
+_capture_logger = None 
+_replay_entries = [] 
+_replay_index = 0 
+_replay_file_mtime = None 
+_replay_file_path = None 
+ 
+ 
+def _get_simulation_log_file(): 
+    return os.getenv("SIMULATION_SOURCE_FILE", 
+DEFAULT_SIMULATION_LOG_FILE).strip() 
+ 
+
+===== PDF PAGE 36 =====
+ 
+26 
+ 
+def _is_useful_record(record): 
+    lat = float(record.get("latDD", 0) or 0) 
+    lon = float(record.get("lonDD", 0) or 0) 
+    return not (lat == 0 and lon == 0) 
+ 
+ 
+def _clean_records(records): 
+    filtered = [row for row in records if _is_useful_record(row)] 
+    by_callsign = {} 
+ 
+    for row in filtered: 
+        callsign = str(row.get("callsign", "")).strip().upper() 
+        icao = str(row.get("icaoAddress", "")).strip().upper() 
+        key = icao if icao and icao != "UNKNOWN" else callsign 
+        if not key: 
+            continue 
+ 
+        current = by_callsign.get(key) 
+        if current is None: 
+            by_callsign[key] = row 
+            continue 
+ 
+        def score(rec): 
+            lat = float(rec.get("latDD", 0) or 0) 
+            lon = float(rec.get("lonDD", 0) or 0) 
+            altitude = float(rec.get("altitudeMM", 0) or 0) 
+            speed = float(rec.get("horVelocityCMS", 0) or 0) 
+            heading = float(rec.get("headingDE2", 0) or 0) 
+            squawk = int(rec.get("squawk", 0) or 0) 
+            frame_len = int(rec.get("frameLength", 0) or 0) 
+            coord_score = 100 if (lat != 0 and lon != 0) else 0 
+            altitude_score = 10 if altitude > 0 else 0 
+            speed_score = 5 if speed > 0 else 0 
+            heading_score = 5 if heading > 0 else 0 
+            squawk_score = 2 if squawk > 0 else 0 
+            return coord_score + altitude_score + speed_score + heading_score 
++ squawk_score + frame_len 
+ 
+        if score(row) >= score(current): 
+            by_callsign[key] = row 
+ 
+    return list(by_callsign.values()) 
+ 
+ 
+def _load_replay_entries(): 
+    global _replay_entries, _replay_index, _replay_file_mtime, 
+_replay_file_path 
+ 
+    path = Path(_get_simulation_log_file()) 
+    if not path.exists(): 
+        _replay_entries = [] 
+        _replay_index = 0 
+        return 
+ 
+    mtime = path.stat().st_mtime 
+    path_str = str(path.resolve()) 
+    should_reparse = ( 
+        _replay_file_mtime is None 
+        or _replay_file_mtime != mtime 
+        or _replay_file_path != path_str 
+        or not _replay_entries 
+    ) 
+    if not should_reparse: 
+        return 
+ 
+
+===== PDF PAGE 37 =====
+ 
+27 
+    _replay_file_mtime = mtime 
+    _replay_file_path = path_str 
+    _replay_entries = _decoder.parse_log_entries(str(path), max_entries=None) 
+    _replay_index = 0 
+    _decoder.reset_state() 
+ 
+    # Warm up the state so the very first API response has richer fields 
+    # (heading/speed/squawk) for flights that start with sparse packets. 
+    warmup = len(_replay_entries) 
+    for i in range(warmup): 
+        raw_time, source_ip, payload, callsign_hint = _replay_entries[i] 
+        _decoder.decode_payload( 
+            payload, 
+            source_ip=source_ip, 
+            timestamp=raw_time, 
+            callsign_hint=callsign_hint, 
+        ) 
+    _replay_index = 0 
+ 
+ 
+def _get_replayed_snapshot(): 
+    global _replay_index 
+ 
+    _load_replay_entries() 
+    if not _replay_entries: 
+        return [], [] 
+ 
+    batch = max(1, SIMULATION_REPLAY_BATCH) 
+    processed = 0 
+ 
+    while processed < batch: 
+        if _replay_index >= len(_replay_entries): 
+            if not SIMULATION_REPLAY_LOOP: 
+                break 
+            _replay_index = 0 
+            _decoder.reset_state() 
+ 
+        raw_time, source_ip, payload, callsign_hint = 
+_replay_entries[_replay_index] 
+        _replay_index += 1 
+        _decoder.decode_payload( 
+            payload, 
+            source_ip=source_ip, 
+            timestamp=raw_time, 
+            callsign_hint=callsign_hint, 
+        ) 
+        processed += 1 
+ 
+    stale_seconds = None if SIMULATION_STALE_SECONDS <= 0 else 
+SIMULATION_STALE_SECONDS 
+    raw_rows = _decoder.get_state_snapshot(stale_seconds=stale_seconds) 
+    return _clean_records(raw_rows), raw_rows 
+ 
+ 
+def _start_receiver_if_needed(): 
+    global _receiver, _capture_logger 
+    if _receiver is not None: 
+        return 
+ 
+    _capture_logger = ( 
+        PingstationRawCaptureLogger(PINGSTATION_CAPTURE_FILE) 
+        if PINGSTATION_CAPTURE_ENABLED 
+        else None 
+    ) 
+ 
+    _receiver = PingstationStreamReceiver( 
+        host=PINGSTATION_LISTEN_HOST, 
+
+===== PDF PAGE 38 =====
+ 
+28 
+        port=PINGSTATION_LISTEN_PORT, 
+        decoder=_decoder, 
+        stale_seconds=PINGSTATION_STALE_SECONDS, 
+        raw_logger=_capture_logger, 
+    ) 
+    _receiver.start() 
+ 
+ 
+def get_aircraft_data(): 
+    if SIMULATION_MODE: 
+        cleaned_rows, raw_rows = _get_replayed_snapshot() 
+        return {"aircraft": cleaned_rows, "aircraft_raw": raw_rows} 
+ 
+    _start_receiver_if_needed() 
+    live_rows = _receiver.get_snapshot() if _receiver else [] 
+    return {"aircraft": _clean_records(live_rows), "aircraft_raw": live_rows} 
+  
+
+===== PDF PAGE 39 =====
+ 
+29 
+Raw decoder excerpt 
+import re 
+import socket 
+import struct 
+import threading 
+import time 
+from datetime import datetime, timedelta 
+from pathlib import Path 
+ 
+ 
+def _now_iso(): 
+    return datetime.utcnow().isoformat() + "Z" 
+ 
+ 
+class PingstationRawCaptureLogger: 
+    """ 
+    Logs raw Pingstation chunks into two separate files per run: 
+    - <date_time>_engi_H.txt (hex lines) 
+    - <date_time>_engi_A.txt (ascii lines) 
+    """ 
+ 
+    def __init__(self, file_path): 
+        target = Path(file_path) 
+        self.capture_dir = target if target.suffix == "" else target.parent 
+        self.capture_dir.mkdir(parents=True, exist_ok=True) 
+        self.hex_dir = self.capture_dir / "hex_data" 
+        self.ascii_dir = self.capture_dir / "ascii_data" 
+        self.hex_dir.mkdir(parents=True, exist_ok=True) 
+        self.ascii_dir.mkdir(parents=True, exist_ok=True) 
+        stamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S") 
+        self.hex_file_path = self.hex_dir / f"{stamp}_engi_H.txt" 
+        self.ascii_file_path = self.ascii_dir / f"{stamp}_engi_A.txt" 
+        self._lock = threading.Lock() 
+ 
+    def _extract_ascii_tokens(self, payload): 
+        text = payload.decode("ascii", errors="ignore") 
+        return re.findall(r"[A-Za-z0-9]{3,}", text) 
+ 
+    def log_chunk(self, payload, source_ip, source_port): 
+        if not payload: 
+            return 
+ 
+        hex_data = payload.hex() 
+        ascii_tokens = self._extract_ascii_tokens(payload) 
+        ascii_line = ", ".join(ascii_tokens) if ascii_tokens else "None" 
+ 
+        with self._lock: 
+            with self.hex_file_path.open("a", encoding="utf-8") as hf: 
+                hf.write(hex_data + "\n") 
+            with self.ascii_file_path.open("a", encoding="utf-8") as af: 
+                af.write(ascii_line + "\n") 
+ 
+ 
+class PingstationRawDecoder: 
+    """ 
+    Decodes Pingstation length-prefixed binary frames into structured 
+aircraft records. 
+    """ 
+ 
+    def __init__(self): 
+        self._state = {} 
+ 
+    # Compressed VRS field flags. 
+    _F_CALLSIGN = 0x0001 
+    _F_ALTITUDE = 0x0002 
+
+===== PDF PAGE 40 =====
+ 
+30 
+    _F_GROUNDSPEED = 0x0004 
+    _F_TRACK = 0x0008 
+    _F_LAT = 0x0010 
+    _F_LON = 0x0020 
+    _F_VSPEED = 0x0040 
+    _F_SQUAWK = 0x0080 
+    _F_COMP_FLAGS = 0x0F00 
+ 
+    def reset_state(self): 
+        self._state.clear() 
+ 
+    def split_frames(self, buffer_bytes): 
+        """ 
+        Splits a byte buffer into complete frames using the first byte as 
+frame length. 
+        Returns (frames, remainder). 
+        """ 
+        frames = [] 
+        idx = 0 
+        total = len(buffer_bytes) 
+ 
+        while idx < total: 
+            frame_len = buffer_bytes[idx] 
+ 
+            # Discard obvious noise and re-sync. 
+            if frame_len < 10 or frame_len > 120: 
+                idx += 1 
+                continue 
+ 
+            end_idx = idx + frame_len 
+            if end_idx > total: 
+                break 
+ 
+            frames.append(buffer_bytes[idx:end_idx]) 
+            idx = end_idx 
+ 
+        return frames, buffer_bytes[idx:] 
+ 
+    def _decode_callsign(self, frame_bytes): 
+        if len(frame_bytes) >= 18: 
+            field = frame_bytes[10:18] 
+            text = field.decode("ascii", errors="ignore").strip().upper() 
+            text = re.sub(r"[^A-Z0-9]", "", text) 
+            if text: 
+                return text 
+ 
+        # Fallback when fixed field is absent/corrupt. 
+        tokens = re.findall(rb"[A-Z0-9]{3,8}", frame_bytes) 
+        for token in tokens: 
+            candidate = token.decode("ascii", errors="ignore").upper() 
+            if any(ch.isalpha() for ch in candidate): 
+                return candidate 
+ 
+        return "UNKNOWN" 
+ 
+    def _read_float_int24(self, frame_bytes, idx): 
+        if idx + 3 > len(frame_bytes): 
+            return None, idx 
+        raw = int.from_bytes(frame_bytes[idx:idx + 3], "big") 
+        idx += 3 
+        sign = -1 if (raw & 0x800000) else 1 
+        value = raw & 0x7FFFFF 
+        return sign * value, idx 
+ 
+    def _decode_compressed_vrs(self, frame_bytes): 
+        """ 
+        Decode one Compressed VRS message. 
+
+===== PDF PAGE 41 =====
+ 
+31 
+        Returns dict of decoded fields or None if frame doesn't match. 
+        """ 
+        if len(frame_bytes) < 9: 
+            return None 
+        if frame_bytes[0] != len(frame_bytes): 
+            return None 
+ 
+        icao = frame_bytes[4:7].hex().upper() 
+        flags = int.from_bytes(frame_bytes[7:9], "little") 
+        idx = 9 
+        out = {"icaoAddress": icao} 
+ 
+        if flags & self._F_CALLSIGN: 
+            if idx >= len(frame_bytes): 
+                return None 
+            n = frame_bytes[idx] 
+            idx += 1 
+            if idx + n > len(frame_bytes): 
+                return None 
+            callsign = frame_bytes[idx:idx + n].decode("ascii", 
+errors="ignore").strip().upper() 
+            callsign = re.sub(r"[^A-Z0-9]", "", callsign) 
+            idx += n 
+            if callsign: 
+                out["callsign"] = callsign 
+ 
+        if flags & self._F_ALTITUDE: 
+            altitude_ft, idx = self._read_float_int24(frame_bytes, idx) 
+            if altitude_ft is None: 
+                return None 
+            out["altitudeMM"] = int(round(float(altitude_ft) * 304.8)) 
+ 
+        if flags & self._F_GROUNDSPEED: 
+            if idx + 2 > len(frame_bytes): 
+                return None 
+            groundspeed_knots = int.from_bytes(frame_bytes[idx:idx + 2], 
+"little", signed=True) 
+            idx += 2 
+            if groundspeed_knots >= 0: 
+                out["horVelocityCMS"] = int(round(groundspeed_knots * 
+0.514444 * 100)) 
+ 
+        if flags & self._F_TRACK: 
+            if idx + 2 > len(frame_bytes): 
+                return None 
+            track_tenths = int.from_bytes(frame_bytes[idx:idx + 2], "little", 
+signed=True) 
+            idx += 2 
+            if track_tenths >= 0: 
+                heading_deg = (track_tenths / 10.0) % 360.0 
+                out["headingDE2"] = int(round(heading_deg * 100)) 
+ 
+        if flags & self._F_LAT: 
+            if idx + 4 > len(frame_bytes): 
+                return None 
+            out["latDD"] = struct.unpack("<f", frame_bytes[idx:idx + 4])[0] 
+            idx += 4 
+ 
+        if flags & self._F_LON: 
+            if idx + 4 > len(frame_bytes): 
+                return None 
+            out["lonDD"] = struct.unpack("<f", frame_bytes[idx:idx + 4])[0] 
+            idx += 4 
+ 
+        if flags & self._F_VSPEED: 
+            if idx + 2 > len(frame_bytes): 
+                return None 
+
+===== PDF PAGE 42 =====
+ 
+32 
+            vs_fpm = int.from_bytes(frame_bytes[idx:idx + 2], "little", 
+signed=True) 
+            idx += 2 
+            out["verVelocityCMS"] = int(round(vs_fpm * 0.00508 * 100)) 
+ 
+        if flags & self._F_SQUAWK: 
+            if idx + 2 > len(frame_bytes): 
+                return None 
+            out["squawk"] = int.from_bytes(frame_bytes[idx:idx + 2], 
+"little", signed=False) 
+            idx += 2 
+ 
+        # Packed compressed flags byte (squawk changed / emergency / ident / 
+on-ground). 
+        if flags & self._F_COMP_FLAGS: 
+            if idx + 1 > len(frame_bytes): 
+                return None 
+            out["compressedFlags"] = frame_bytes[idx] 
+            idx += 1 
+ 
+        # Minimum sanity: must at least resolve callsign or position/speed 
+info. 
+        if len(out) == 1: 
+            return None 
+        return out 
+ 
+    def _decode_lat_lon(self, frame_bytes, prev_lat=None, prev_lon=None): 
+        candidates = [] 
+ 
+        # Observed Pingstation layout in sample logs: 
+        # latitude/longitude as little-endian float32 at offsets 25..28 and 
+29..32. 
+        if len(frame_bytes) >= 33: 
+            try: 
+                lat_le = struct.unpack("<f", frame_bytes[25:29])[0] 
+                lon_le = struct.unpack("<f", frame_bytes[29:33])[0] 
+                if -90.0 <= lat_le <= 90.0 and -180.0 <= lon_le <= 180.0: 
+                    candidates.append(("le_25", lat_le, lon_le)) 
+            except struct.error: 
+                pass 
+ 
+        # Legacy fallback used by older parser assumptions. 
+        if len(frame_bytes) >= 36: 
+            try: 
+                lat_be = struct.unpack(">f", frame_bytes[28:32])[0] 
+                lon_be = struct.unpack(">f", frame_bytes[32:36])[0] 
+                if -90.0 <= lat_be <= 90.0 and -180.0 <= lon_be <= 180.0: 
+                    candidates.append(("be_28", lat_be, lon_be)) 
+            except struct.error: 
+                pass 
+ 
+        if not candidates: 
+            return None, None 
+ 
+        has_prev = ( 
+            prev_lat is not None 
+            and prev_lon is not None 
+            and prev_lat != 0 
+            and prev_lon != 0 
+        ) 
+        if has_prev: 
+            # Keep trajectory continuous when multiple layouts look 
+numerically valid. 
+            def continuity_score(item): 
+                _, lat, lon = item 
+                return abs(lat - prev_lat) + abs(lon - prev_lon) 
+ 
+            _, lat, lon = min(candidates, key=continuity_score) 
+
+===== PDF PAGE 43 =====
+ 
+33 
+            return lat, lon 
+ 
+        # Prefer observed Pingstation sample layout for first fix. 
+        for layout_name in ("le_25", "be_28"): 
+            for name, lat, lon in candidates: 
+                if name == layout_name: 
+                    return lat, lon 
+ 
+        _, lat, lon = candidates[0] 
+        return lat, lon 
+ 
+    def decode_frame(self, frame_bytes, source_ip=None, timestamp=None, 
+callsign_hint=None): 
+        # Control/housekeeping packets are usually shorter and not useful for 
+aircraft state. 
+        if len(frame_bytes) < 23: 
+            return None 
+ 
+        decoded = self._decode_compressed_vrs(frame_bytes) 
+        if decoded is None: 
+            # Legacy fallback when frame is not Compressed VRS. 
+            icao = frame_bytes[4:7].hex().upper() if len(frame_bytes) >= 7 
+else "UNKNOWN" 
+            callsign = self._decode_callsign(frame_bytes) 
+            if callsign_hint: 
+                callsign = callsign_hint.strip().upper() 
+ 
+            prev = self._state.get(icao if icao and icao != "000000" else 
+callsign, {}) 
+            prev_lat = prev.get("latDD") 
+            prev_lon = prev.get("lonDD") 
+            lat, lon = self._decode_lat_lon(frame_bytes, prev_lat=prev_lat, 
+prev_lon=prev_lon) 
+ 
+            decoded = { 
+                "icaoAddress": icao, 
+                "callsign": callsign, 
+            } 
+            if lat is not None: 
+                decoded["latDD"] = lat 
+                decoded["lonDD"] = lon 
+            if len(frame_bytes) >= 21: 
+                altitude_ft = int.from_bytes(frame_bytes[19:21], "big") 
+                if altitude_ft > 0: 
+                    decoded["altitudeMM"] = int(round(altitude_ft * 304.8)) 
+ 
+        if callsign_hint: 
+            decoded["callsign"] = callsign_hint.strip().upper() 
+ 
+        icao = decoded.get("icaoAddress", "UNKNOWN") 
+        callsign = decoded.get("callsign", "UNKNOWN") 
+        record_key = icao if icao and icao != "000000" else callsign 
+        if not record_key: 
+            return None 
+ 
+        now_epoch = time.time() 
+        iso_time = timestamp or _now_iso() 
+ 
+        prev = self._state.get(record_key, {}) 
+        merged = { 
+            "icaoAddress": icao or prev.get("icaoAddress", "UNKNOWN"), 
+            "callsign": callsign or prev.get("callsign", "UNKNOWN"), 
+            "latDD": prev.get("latDD", 0.0), 
+            "lonDD": prev.get("lonDD", 0.0), 
+            "altitudeMM": prev.get("altitudeMM", 0), 
+            "headingDE2": prev.get("headingDE2", 0), 
+            "horVelocityCMS": prev.get("horVelocityCMS", 0), 
+            "timestamp": iso_time, 
+
+===== PDF PAGE 44 =====
+ 
+34 
+            "frameLength": len(frame_bytes), 
+            "sourceIp": source_ip or prev.get("sourceIp", ""), 
+            "_last_seen": now_epoch, 
+        } 
+ 
+        for key in ( 
+            "latDD", 
+            "lonDD", 
+            "altitudeMM", 
+            "headingDE2", 
+            "horVelocityCMS", 
+            "verVelocityCMS", 
+            "squawk", 
+            "compressedFlags", 
+        ): 
+            if key in decoded and decoded[key] is not None: 
+                if key in ("headingDE2", "horVelocityCMS", "verVelocityCMS", 
+"squawk"): 
+                    new_value = decoded[key] 
+                    old_value = merged.get(key, 0) 
+                    if new_value == 0 and old_value not in (None, 0): 
+                        continue 
+                merged[key] = decoded[key] 
+ 
+        self._state[record_key] = merged 
+        return dict(merged) 
+ 
+    def decode_payload(self, payload_bytes, source_ip=None, timestamp=None, 
+callsign_hint=None): 
+        frames, remainder = self.split_frames(payload_bytes) 
+        decoded = [] 
+        frame_hint = callsign_hint if len(frames) <= 1 else None 
+ 
+        for frame in frames: 
+            rec = self.decode_frame( 
+                frame, 
+                source_ip=source_ip, 
+                timestamp=timestamp, 
+                callsign_hint=frame_hint, 
+            ) 
+            if rec: 
+                decoded.append(rec) 
+ 
+        # If the whole payload is exactly one frame but not split for some 
+reason. 
+        if not decoded and not remainder and payload_bytes and 
+payload_bytes[0] == len(payload_bytes): 
+            rec = self.decode_frame( 
+                payload_bytes, 
+                source_ip=source_ip, 
+                timestamp=timestamp, 
+                callsign_hint=callsign_hint, 
+            ) 
+            if rec: 
+                decoded.append(rec) 
+ 
+        return decoded 
+ 
+    def decode_log_file(self, file_path, max_entries=300, reset_state=False): 
+        entries = self.parse_log_entries(file_path, max_entries=max_entries) 
+        if reset_state: 
+            self.reset_state() 
+ 
+        for raw_time, source_ip, payload, callsign_hint in entries: 
+            self.decode_payload( 
+                payload, 
+                source_ip=source_ip, 
+                timestamp=raw_time, 
+
+===== PDF PAGE 45 =====
+ 
+35 
+                callsign_hint=callsign_hint, 
+            ) 
+ 
+        return self.get_state_snapshot(stale_seconds=None) 
+ 
+    def parse_log_entries(self, file_path, max_entries=300): 
+        path = Path(file_path) 
+        if not path.exists(): 
+            return [] 
+ 
+        text = path.read_text(encoding="utf-8", errors="ignore") 
+        # Allow simulation files that include log-banner lines or mixed 
+sections. 
+        text = text.replace("PINGSTATION 3 LIVE DATA LOG\n", "") 
+        full_log_pattern = re.compile( 
+            r"TIME\s*:\s*(?P<time>[^\n]+)\s*.*?" 
+            r"SOURCE IP\s*:\s*(?P<ip>[^\n]+)\s*.*?" 
+            r"HEX DATA:\s*\n(?P<hex>[0-9a-fA-F]+)\s*.*?" 
+            r"ASCII DATA:\s*\n(?P<ascii>[^\n]+)", 
+            re.DOTALL, 
+        ) 
+        full_log_hex_only_pattern = re.compile( 
+            r"TIME\s*:\s*(?P<time>[^\n]+)\s*.*?" 
+            r"SOURCE IP\s*:\s*(?P<ip>[^\n]+)\s*.*?" 
+            r"HEX DATA:\s*\n(?P<hex>[0-9a-fA-F]+)", 
+            re.DOTALL, 
+        ) 
+        simple_pattern = re.compile( 
+            r"HEX DATA:\s*\n(?P<hex>[0-9a-fA-F]+)\s*\n\s*ASCII 
+DATA:\s*\n(?P<ascii>[^\n]+)", 
+            re.DOTALL, 
+        ) 
+ 
+        rows = [] 
+        for match in full_log_pattern.finditer(text): 
+            raw_time = match.group("time").strip() 
+            source_ip = match.group("ip").strip() 
+            hex_data = match.group("hex").strip() 
+            ascii_data = match.group("ascii").strip().upper() 
+ 
+            try: 
+                payload = bytes.fromhex(hex_data) 
+            except ValueError: 
+                continue 
+ 
+            tokens = [t.strip() for t in ascii_data.split(",") if t.strip()] 
+            callsign_hint = tokens[0] if len(tokens) == 1 else None 
+            rows.append((raw_time, source_ip, payload, callsign_hint)) 
+ 
+        # Backward compatibility for logs that do not include ASCII section. 
+        if not rows: 
+            for match in full_log_hex_only_pattern.finditer(text): 
+                raw_time = match.group("time").strip() 
+                source_ip = match.group("ip").strip() 
+                hex_data = match.group("hex").strip() 
+ 
+                try: 
+                    payload = bytes.fromhex(hex_data) 
+                except ValueError: 
+                    continue 
+ 
+                rows.append((raw_time, source_ip, payload, None)) 
+ 
+        if not rows: 
+            base_time = datetime.utcnow() 
+            for idx, match in enumerate(simple_pattern.finditer(text)): 
+                hex_data = match.group("hex").strip() 
+                ascii_data = match.group("ascii").strip().upper() 
+
+===== PDF PAGE 46 =====
+ 
+36 
+ 
+                try: 
+                    payload = bytes.fromhex(hex_data) 
+                except ValueError: 
+                    continue 
+ 
+                # ASCII line may contain multiple tokens; first token is the 
+callsign candidate. 
+                tokens = [t.strip() for t in ascii_data.split(",") if 
+t.strip()] 
+                callsign_hint = tokens[0] if tokens else None 
+                timestamp = (base_time + timedelta(seconds=idx)).isoformat() 
++ "Z" 
+                rows.append((timestamp, "", payload, callsign_hint)) 
+ 
+        # New compact format: 
+        # <hex_line> 
+        # 
+        # <ascii_line> 
+        if not rows: 
+            hex_line_re = re.compile(r"^[0-9a-fA-F]{10,}$") 
+            clean_lines = [] 
+            for line in text.splitlines(): 
+                stripped = line.strip() 
+                if not stripped: 
+                    continue 
+                if stripped.startswith("="): 
+                    continue 
+                if stripped.upper() == "PINGSTATION 3 LIVE DATA LOG": 
+                    continue 
+                clean_lines.append(stripped) 
+ 
+            base_time = datetime.utcnow() 
+            idx = 0 
+            event_idx = 0 
+            while idx < len(clean_lines): 
+                hex_candidate = clean_lines[idx] 
+                if not hex_line_re.match(hex_candidate): 
+                    idx += 1 
+                    continue 
+ 
+                try: 
+                    payload = bytes.fromhex(hex_candidate) 
+                except ValueError: 
+                    idx += 1 
+                    continue 
+ 
+                callsign_hint = None 
+                if idx + 1 < len(clean_lines): 
+                    ascii_candidate = clean_lines[idx + 1].upper() 
+                    if not hex_line_re.match(ascii_candidate): 
+                        tokens = [t.strip() for t in 
+ascii_candidate.split(",") if t.strip()] 
+                        if tokens and tokens[0] != "NONE": 
+                            callsign_hint = tokens[0] 
+                        idx += 1 
+ 
+                timestamp = (base_time + 
+timedelta(seconds=event_idx)).isoformat() + "Z" 
+                rows.append((timestamp, "", payload, callsign_hint)) 
+                event_idx += 1 
+                idx += 1 
+ 
+        # Split-file format support: 
+        # - Hex file: <date_time>_engi_H.txt (one hex payload per line) 
+        # - Ascii file: matching <date_time>_engi_A.txt (one ascii line per 
+line) 
+        if not rows: 
+
+===== PDF PAGE 47 =====
+ 
+37 
+            hex_line_re = re.compile(r"^[0-9a-fA-F]{10,}$") 
+            hex_lines = [ln.strip() for ln in text.splitlines() if 
+ln.strip()] 
+            if hex_lines and all(hex_line_re.match(ln) for ln in hex_lines): 
+                ascii_lines = [] 
+                ascii_candidates = [] 
+                stem = path.stem 
+                if stem.endswith("_engi_H"): 
+                    
+ascii_candidates.append(path.with_name(path.name.replace("_engi_H.txt", 
+"_engi_A.txt" 
+                    if path.parent.name.lower() == "hex_data": 
+                        ascii_candidates.append(path.parent.parent / 
+"ascii_data" / path.name.replace("_e 
+                ascii_candidates.append(path.with_name(f"{stem}_A.txt")) 
+                ascii_candidates.append(path.with_name(f"{stem}_ascii.txt")) 
+ 
+                for ascii_path in ascii_candidates: 
+                    if ascii_path.exists(): 
+                        ascii_lines = [ 
+                            ln.strip() 
+                            for ln in ascii_path.read_text(encoding="utf-8", 
+errors="ignore").splitlines( 
+                            if ln.strip() 
+                        ] 
+                        break 
+ 
+                base_time = datetime.utcnow() 
+                for idx, hex_data in enumerate(hex_lines): 
+                    try: 
+                        payload = bytes.fromhex(hex_data) 
+                    except ValueError: 
+                        continue 
+ 
+                    callsign_hint = None 
+                    if idx < len(ascii_lines): 
+                        ascii_candidate = ascii_lines[idx].upper() 
+                        tokens = [t.strip() for t in 
+ascii_candidate.split(",") if t.strip()] 
+                        if tokens and tokens[0] != "NONE": 
+                            callsign_hint = tokens[0] 
+ 
+                    timestamp = (base_time + 
+timedelta(seconds=idx)).isoformat() + "Z" 
+                    rows.append((timestamp, "", payload, callsign_hint)) 
+ 
+        if max_entries is not None and max_entries > 0: 
+            rows = rows[-max_entries:] 
+ 
+        return rows 
+ 
+    def get_state_snapshot(self, stale_seconds=45): 
+        now = time.time() 
+        rows = [] 
+        stale_keys = [] 
+ 
+        for key, value in self._state.items(): 
+            last_seen = value.get("_last_seen", now) 
+            if stale_seconds is not None and (now - last_seen) > 
+stale_seconds: 
+                stale_keys.append(key) 
+                continue 
+ 
+            clean = {k: v for k, v in value.items() if not k.startswith("_")} 
+            rows.append(clean) 
+ 
+        for key in stale_keys: 
+            self._state.pop(key, None) 
+
+===== PDF PAGE 48 =====
+ 
+38 
+ 
+        return rows 
+ 
+ 
+class PingstationStreamReceiver: 
+    """ 
+    TCP listener that receives live Pingstation bytes and keeps a decoded 
+snapshot. 
+    """ 
+ 
+    def __init__(self, host, port, decoder=None, stale_seconds=45, 
+raw_logger=None): 
+        self.host = host 
+        self.port = port 
+        self.stale_seconds = stale_seconds 
+        self.decoder = decoder or PingstationRawDecoder() 
+        self.raw_logger = raw_logger 
+ 
+        self._lock = threading.Lock() 
+        self._stop_event = threading.Event() 
+        self._thread = None 
+ 
+    def start(self): 
+        if self._thread and self._thread.is_alive(): 
+            return 
+ 
+        self._thread = threading.Thread(target=self._run, name="pingstation-
+listener", daemon=True) 
+        self._thread.start() 
+ 
+    def stop(self): 
+        self._stop_event.set() 
+        if self._thread and self._thread.is_alive(): 
+            self._thread.join(timeout=2) 
+ 
+    def _run(self): 
+        while not self._stop_event.is_set(): 
+            try: 
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as 
+server: 
+                    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 
+1) 
+                    server.bind((self.host, self.port)) 
+                    server.listen(5) 
+                    server.settimeout(1.0) 
+ 
+                    while not self._stop_event.is_set(): 
+                        try: 
+                            conn, addr = server.accept() 
+                        except socket.timeout: 
+                            continue 
+ 
+                        with conn: 
+                            conn.settimeout(1.0) 
+                            buffer_bytes = b"" 
+ 
+                            while not self._stop_event.is_set(): 
+                                try: 
+                                    chunk = conn.recv(16384) 
+                                except socket.timeout: 
+                                    continue 
+                                except OSError: 
+                                    break 
+ 
+                                if not chunk: 
+                                    break 
+
+===== PDF PAGE 49 =====
+ 
+39 
+ 
+                                if self.raw_logger is not None: 
+                                    try: 
+                                        self.raw_logger.log_chunk(chunk, 
+addr[0], addr[1]) 
+                                    except OSError: 
+                                        # Do not stop decode path if logging 
+fails. 
+                                        pass 
+ 
+                                buffer_bytes += chunk 
+                                frames, buffer_bytes = 
+self.decoder.split_frames(buffer_bytes) 
+                                if not frames: 
+                                    continue 
+ 
+                                with self._lock: 
+                                    for frame in frames: 
+                                        self.decoder.decode_frame(frame, 
+source_ip=addr[0]) 
+            except OSError: 
+                # Port conflict or transient networking issue. Retry. 
+                time.sleep(1.0) 
+ 
+    def get_snapshot(self): 
+        with self._lock: 
+            return 
+self.decoder.get_state_snapshot(stale_seconds=self.stale_seconds) 
+  
+
+===== PDF PAGE 50 =====
+ 
+40 
+Preprocessing excerpt 
+from datetime import datetime, timezone 
+ 
+ 
+class PingstationPreprocessor: 
+    def _first_present(self, raw_data, *keys, default=None): 
+        for key in keys: 
+            if key in raw_data and raw_data[key] not in (None, ""): 
+                return raw_data[key] 
+        return default 
+ 
+    def _to_float(self, value, default=0.0): 
+        try: 
+            return float(value) 
+        except (TypeError, ValueError): 
+            return default 
+ 
+    def clean_altitude_mm(self, altitude): 
+        """Normalizes altitude to millimeters.""" 
+        if altitude is None: 
+            return 0 
+  
+        if isinstance(altitude, str): 
+            text = altitude.strip().lower().replace(",", "") 
+            if not text: 
+                return 0 
+ 
+            if "ft" in text: 
+                feet = self._to_float(text.replace("ft", "").strip()) 
+                meters = feet * 0.3048 
+                return int(meters * 1000) 
+ 
+            if text.endswith("m"): 
+                meters = self._to_float(text.replace("m", "").strip()) 
+                return int(meters * 1000) 
+ 
+            numeric = self._to_float(text) 
+            return int(numeric if numeric > 100000 else numeric * 1000) 
+ 
+        numeric = self._to_float(altitude) 
+ 
+        # Pingstation-style values are often already in mm and usually larger 
+than 100k. 
+        if numeric > 100000: 
+            return int(numeric) 
+ 
+        # Otherwise treat as meters. 
+        return int(numeric * 1000) 
+ 
+    def clean_heading_de2(self, heading): 
+        """Normalizes heading to degrees*100.""" 
+        if heading is None: 
+            return 0 
+ 
+        if isinstance(heading, str): 
+            heading = heading.strip().replace("deg", "").replace("°", "") 
+ 
+        value = self._to_float(heading) 
+ 
+        if value <= 360: 
+            return int(value * 100) 
+ 
+        return int(value) 
+
+===== PDF PAGE 51 =====
+ 
+41 
+ 
+    def clean_speed_cms(self, speed): 
+        """Normalizes horizontal speed to centimeters/second.""" 
+        if speed is None: 
+            return 0 
+ 
+        if isinstance(speed, str): 
+            text = speed.strip().lower().replace(",", "") 
+            if "kt" in text: 
+                knots = self._to_float(text.replace("kt", "").strip()) 
+                mps = knots * 0.514444 
+                return int(mps * 100) 
+            speed = text 
+ 
+        value = self._to_float(speed) 
+ 
+        # If the value looks like m/s, convert to cm/s. 
+        if value < 1000: 
+            return int(value * 100) 
+ 
+        return int(value) 
+ 
+    def _normalize_timestamp(self, timestamp): 
+        if timestamp in (None, ""): 
+            return datetime.now(timezone.utc).isoformat() 
+ 
+        text = str(timestamp).strip() 
+        if not text: 
+            return datetime.now(timezone.utc).isoformat() 
+ 
+        try: 
+            return datetime.fromisoformat(text.replace("Z", 
+"+00:00")).isoformat() 
+        except ValueError: 
+            return datetime.now(timezone.utc).isoformat() 
+ 
+    def extract_time_features(self, timestamp): 
+        try: 
+            dt = datetime.fromisoformat(str(timestamp).replace("Z", 
+"+00:00")) 
+            return {"hour": dt.hour, "minute": dt.minute} 
+        except (TypeError, ValueError): 
+            now = datetime.now() 
+            return {"hour": now.hour, "minute": now.minute} 
+ 
+    def preprocess(self, raw_data): 
+        if not isinstance(raw_data, dict): 
+            return { 
+                "icaoAddress": "UNKNOWN", 
+                "callsign": "UNKNOWN", 
+                "latDD": 0.0, 
+                "lonDD": 0.0, 
+                "altitudeMM": 0, 
+                "headingDE2": 0, 
+                "horVelocityCMS": 0, 
+                "timestamp": datetime.now(timezone.utc).isoformat(), 
+                "hour": datetime.now().hour, 
+                "minute": datetime.now().minute, 
+            } 
+ 
+        lat = self._to_float( 
+            self._first_present(raw_data, "latDD", "lat", "latitude", 
+default=0.0) 
+        ) 
+        lon = self._to_float( 
+            self._first_present(raw_data, "lonDD", "lon", "longitude", 
+default=0.0) 
+
+===== PDF PAGE 52 =====
+ 
+42 
+        ) 
+ 
+        if "altitudeMM" in raw_data and raw_data.get("altitudeMM") not in 
+(None, ""): 
+            altitude = int(self._to_float(raw_data.get("altitudeMM"), 
+default=0)) 
+        else: 
+            altitude = self.clean_altitude_mm( 
+                self._first_present(raw_data, "altitudeMM", "altitude", 
+"alt", default=0) 
+            ) 
+ 
+        if "headingDE2" in raw_data and raw_data.get("headingDE2") not in 
+(None, ""): 
+            heading = int(self._to_float(raw_data.get("headingDE2"), 
+default=0)) 
+        else: 
+            heading = self.clean_heading_de2( 
+                self._first_present(raw_data, "headingDE2", "heading", 
+"track", default=0) 
+            ) 
+ 
+        if "horVelocityCMS" in raw_data and raw_data.get("horVelocityCMS") 
+not in (None, ""): 
+            speed = int(self._to_float(raw_data.get("horVelocityCMS"), 
+default=0)) 
+        else: 
+            speed = self.clean_speed_cms( 
+                self._first_present( 
+                    raw_data, 
+                    "horVelocityCMS", 
+                    "speed", 
+                    "groundspeed", 
+                    "gs", 
+                    default=0, 
+                ) 
+            ) 
+ 
+        callsign = self._first_present( 
+            raw_data, "callsign", "flight_no", "flight", default="UNKNOWN" 
+        ) 
+        callsign = str(callsign).strip().upper() or "UNKNOWN" 
+ 
+        icao = self._first_present( 
+            raw_data, "icaoAddress", "icao", "hex", default="UNKNOWN" 
+        ) 
+        icao = str(icao).strip().upper() or "UNKNOWN" 
+ 
+        timestamp = self._normalize_timestamp( 
+            self._first_present(raw_data, "timestamp", "time", default=None) 
+        ) 
+ 
+        return { 
+            "icaoAddress": icao, 
+            "callsign": callsign, 
+            "latDD": lat, 
+            "lonDD": lon, 
+            "altitudeMM": altitude, 
+            "headingDE2": heading, 
+            "horVelocityCMS": speed, 
+            "timestamp": timestamp, 
+            **self.extract_time_features(timestamp), 
+        } 
+  
+
+===== PDF PAGE 53 =====
+ 
+43 
+Storage schema excerpt 
+import math 
+import sqlite3 
+import threading 
+import csv 
+import sys 
+import importlib 
+import io 
+from collections import defaultdict 
+from datetime import datetime, timedelta, timezone 
+from pathlib import Path 
+ 
+def _try_import_openpyxl(): 
+    try: 
+        mod = importlib.import_module("openpyxl") 
+        return getattr(mod, "Workbook"), getattr(mod, "load_workbook"), True 
+    except ModuleNotFoundError: 
+        pass 
+ 
+    # Fallback: project-local virtualenv site-packages 
+    project_root = Path(__file__).resolve().parents[1] 
+    venv_site = project_root / "venv" / "Lib" / "site-packages" 
+    if venv_site.exists(): 
+        venv_site_str = str(venv_site) 
+        if venv_site_str not in sys.path: 
+            sys.path.insert(0, venv_site_str) 
+        try: 
+            mod = importlib.import_module("openpyxl") 
+            return getattr(mod, "Workbook"), getattr(mod, "load_workbook"), 
+True 
+        except ModuleNotFoundError: 
+            pass 
+ 
+    return None, None, False 
+ 
+ 
+Workbook, load_workbook, _OPENPYXL_AVAILABLE = _try_import_openpyxl() 
+ 
+ 
+def _now_iso(): 
+    return datetime.now(timezone.utc).isoformat() 
+ 
+ 
+def _parse_ts(value): 
+    if value in (None, ""): 
+        return _now_iso(), None 
+    text = str(value).strip() 
+    if not text: 
+        return _now_iso(), None 
+    try: 
+        dt = datetime.fromisoformat(text.replace("Z", "+00:00")) 
+        if dt.tzinfo is None: 
+            dt = dt.replace(tzinfo=timezone.utc) 
+        return dt.isoformat(), dt 
+    except ValueError: 
+        try: 
+            dt = datetime.strptime(text, "%Y-%m-%d 
+%H:%M:%S").replace(tzinfo=timezone.utc) 
+            return dt.isoformat(), dt 
+        except ValueError: 
+            return _now_iso(), None 
+ 
+ 
+def _to_int(value, default=0): 
+    try: 
+
+===== PDF PAGE 54 =====
+ 
+44 
+        return int(round(float(value))) 
+    except (TypeError, ValueError): 
+        return default 
+ 
+ 
+def _to_float(value, default=0.0): 
+    try: 
+        return float(value) 
+    except (TypeError, ValueError): 
+        return default 
+ 
+ 
+def _haversine_m(lat1, lon1, lat2, lon2): 
+    r = 6371000.0 
+    p1 = math.radians(lat1) 
+    p2 = math.radians(lat2) 
+    dlat = math.radians(lat2 - lat1) 
+    dlon = math.radians(lon2 - lon1) 
+    a = math.sin(dlat / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dlon 
+/ 2) ** 2 
+    return 2 * r * math.atan2(math.sqrt(a), math.sqrt(1 - a)) 
+ 
+ 
+def _bearing_deg(lat1, lon1, lat2, lon2): 
+    p1 = math.radians(lat1) 
+    p2 = math.radians(lat2) 
+    dlon = math.radians(lon2 - lon1) 
+    y = math.sin(dlon) * math.cos(p2) 
+    x = math.cos(p1) * math.sin(p2) - math.sin(p1) * math.cos(p2) * 
+math.cos(dlon) 
+    deg = (math.degrees(math.atan2(y, x)) + 360.0) % 360.0 
+    return deg 
+ 
+ 
+class FlightTrajectoryStore: 
+    """ 
+    Compact training-data store. 
+    - flight_latest: matrix-like table (one row per flight, fields in 
+columns). 
+    - trajectory_samples: time-series points for trajectory prediction. 
+    """ 
+ 
+    def __init__( 
+        self, 
+        db_path, 
+        enabled=True, 
+        min_interval_sec=5, 
+        min_distance_m=30, 
+        min_altitude_change_m=20, 
+        min_heading_change_de2=500, 
+        min_speed_change_cms=200, 
+        history_retention_days=30, 
+        append_csv_enabled=True, 
+        append_csv_dir=None, 
+        icao_excel_enabled=True, 
+        icao_excel_dir=None, 
+        icao_master_enabled=True, 
+        icao_master_path=None, 
+        reset_excel_on_start=True, 
+        icao_excel_extension="xlsx", 
+    ): 
+        self.enabled = bool(enabled) 
+        self.db_path = Path(db_path) 
+        self.min_interval_sec = int(min_interval_sec) 
+        self.min_distance_m = float(min_distance_m) 
+        self.min_altitude_change_m = int(min_altitude_change_m) 
+        self.min_heading_change_de2 = int(min_heading_change_de2) 
+        self.min_speed_change_cms = int(min_speed_change_cms) 
+
+===== PDF PAGE 55 =====
+ 
+45 
+        self.history_retention_days = int(history_retention_days) 
+        self.append_csv_enabled = bool(append_csv_enabled) 
+        self.append_csv_dir = Path(append_csv_dir) if append_csv_dir else 
+self.db_path.parent / "training 
+        self.icao_excel_enabled = bool(icao_excel_enabled) and 
+_OPENPYXL_AVAILABLE 
+        self.icao_excel_dir = Path(icao_excel_dir) if icao_excel_dir else 
+self.db_path.parent / "icao_exc 
+        ext = str(icao_excel_extension or "xlsx").strip().lower().lstrip(".") 
+        self.icao_excel_extension = ext if ext in ("xls", "xlsx") else "xlsx" 
+        self.icao_master_enabled = bool(icao_master_enabled) and 
+self.icao_excel_enabled 
+        self.reset_excel_on_start = bool(reset_excel_on_start) 
+        self.icao_master_path = Path(icao_master_path) if icao_master_path 
+else None 
+        self._master_wb = None 
+        self._master_headers = [ 
+            "timestamp", 
+            "ICAO", 
+            "callsign", 
+            "latitude", 
+            "longitude", 
+            "altitude", 
+            "heading", 
+            "speed", 
+            "vertical_rate", 
+        ] 
+ 
+        self._lock = threading.Lock() 
+        self._last_saved = {} 
+        self._last_ingest_wallclock = {} 
+        self._sample_counter = {} 
+        self._last_purge_day = None 
+ 
+        self.db_path.parent.mkdir(parents=True, exist_ok=True) 
+        self.append_csv_dir.mkdir(parents=True, exist_ok=True) 
+        self.icao_excel_dir.mkdir(parents=True, exist_ok=True) 
+        if self.icao_excel_enabled: 
+            self._init_excel_logging_workspace() 
+        self._conn = sqlite3.connect(str(self.db_path), 
+check_same_thread=False) 
+        self._conn.row_factory = sqlite3.Row 
+        self._init_db() 
+ 
+    def _init_excel_logging_workspace(self): 
+        self.icao_excel_dir.mkdir(parents=True, exist_ok=True) 
+ 
+        if self.reset_excel_on_start: 
+            for pattern in ("*.xlsx", "*.xls"): 
+                for p in self.icao_excel_dir.glob(pattern): 
+                    try: 
+                        p.unlink() 
+                    except OSError: 
+                        continue 
+ 
+        if not self.icao_master_enabled: 
+            return 
+ 
+        if self.icao_master_path is None: 
+            stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") 
+            self.icao_master_path = self.icao_excel_dir / 
+f"MASTER_ICAO_{stamp}.xlsx" 
+        self._load_or_create_master_wb() 
+ 
+    def _load_or_create_master_wb(self): 
+        if not self.icao_master_enabled or self.icao_master_path is None: 
+            return 
+        try: 
+            if self.icao_master_path.exists(): 
+
+===== PDF PAGE 56 =====
+ 
+46 
+                self._master_wb = 
+self._load_workbook_path(self.icao_master_path) 
+            else: 
+                self._master_wb = Workbook() 
+                ws = self._master_wb.active 
+                ws.title = "ICAO_INDEX" 
+                ws.append(["ICAO", "SheetName", "RecordCount"]) 
+                self._save_workbook_path(self._master_wb, 
+self.icao_master_path) 
+        except Exception: 
+            self._master_wb = None 
+            self.icao_master_enabled = False 
+ 
+    def _load_workbook_path(self, file_path): 
+        file_path = Path(file_path) 
+        if file_path.suffix.lower() == ".xls": 
+            with file_path.open("rb") as f: 
+                data = f.read() 
+            return load_workbook(io.BytesIO(data)) 
+        return load_workbook(file_path) 
+ 
+    def _save_workbook_path(self, workbook, file_path): 
+        file_path = Path(file_path) 
+        if file_path.suffix.lower() == ".xls": 
+            buf = io.BytesIO() 
+            workbook.save(buf) 
+            file_path.write_bytes(buf.getvalue()) 
+            return 
+        workbook.save(file_path) 
+ 
+    def _init_db(self): 
+        cur = self._conn.cursor() 
+        cur.execute("PRAGMA journal_mode=WAL") 
+        cur.execute("PRAGMA synchronous=NORMAL") 
+        cur.execute("PRAGMA temp_store=MEMORY") 
+        cur.execute( 
+            """ 
+            CREATE TABLE IF NOT EXISTS flight_latest ( 
+                flight_key TEXT PRIMARY KEY, 
+                icao_address TEXT NOT NULL, 
+                callsign TEXT NOT NULL, 
+                timestamp TEXT NOT NULL, 
+                lat_e5 INTEGER NOT NULL, 
+                lon_e5 INTEGER NOT NULL, 
+                altitude_m INTEGER NOT NULL, 
+                speed_cms INTEGER NOT NULL, 
+                heading_de2 INTEGER NOT NULL, 
+                vs_cms INTEGER NOT NULL, 
+                squawk INTEGER, 
+                source_ip TEXT, 
+                sample_count INTEGER NOT NULL DEFAULT 0 
+            ) 
+            """ 
+        ) 
+        cur.execute( 
+            """ 
+            CREATE TABLE IF NOT EXISTS trajectory_samples ( 
+                id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                flight_key TEXT NOT NULL, 
+                timestamp TEXT NOT NULL, 
+                lat_e5 INTEGER NOT NULL, 
+                lon_e5 INTEGER NOT NULL, 
+                altitude_m INTEGER NOT NULL, 
+                speed_cms INTEGER NOT NULL, 
+                heading_de2 INTEGER NOT NULL, 
+                vs_cms INTEGER NOT NULL, 
+                squawk INTEGER, 
+                source_ip TEXT, 
+                UNIQUE(flight_key, timestamp) 
+            ) 
+            """ 
+
+===== PDF PAGE 57 =====
+ 
+47 
+        ) 
+        cur.execute( 
+            "CREATE INDEX IF NOT EXISTS idx_traj_flight_time ON 
+trajectory_samples(flight_key, timestamp) 
+        ) 
+        self._conn.commit() 
+ 
+    def _quantize(self, row): 
+        lat = _to_float(row.get("latDD"), 0.0) 
+        lon = _to_float(row.get("lonDD"), 0.0) 
+        alt_m = int(round(_to_float(row.get("altitudeMM"), 0.0) / 1000.0)) 
+        return { 
+            "lat_e5": int(round(lat * 100000)), 
+            "lon_e5": int(round(lon * 100000)), 
+            "altitude_m": alt_m, 
+            "speed_cms": _to_int(row.get("horVelocityCMS"), 0), 
+            "heading_de2": _to_int(row.get("headingDE2"), 0), 
+            "vs_cms": _to_int(row.get("verVelocityCMS"), 0), 
+            "squawk": _to_int(row.get("squawk"), 0), 
+        } 
+ 
+    def _should_store(self, flight_key, ts_iso, q): 
+        prev = self._last_saved.get(flight_key) 
+        if prev is None: 
+            return True 
+ 
+        prev_dt = prev["dt"] 
+        cur_iso, cur_dt = _parse_ts(ts_iso) 
+        if cur_dt is None or prev_dt is None: 
+            return True 
+ 
+        elapsed = (cur_dt - prev_dt).total_seconds() 
+        if elapsed >= self.min_interval_sec: 
+            return True 
+ 
+        lat1 = prev["lat_e5"] / 100000.0 
+        lon1 = prev["lon_e5"] / 100000.0 
+        lat2 = q["lat_e5"] / 100000.0 
+        lon2 = q["lon_e5"] / 100000.0 
+        dist_m = _haversine_m(lat1, lon1, lat2, lon2) 
+ 
+        if dist_m >= self.min_distance_m: 
+            return True 
+        if abs(q["altitude_m"] - prev["altitude_m"]) >= 
+self.min_altitude_change_m: 
+            return True 
+        if abs(q["heading_de2"] - prev["heading_de2"]) >= 
+self.min_heading_change_de2: 
+            return True 
+        if abs(q["speed_cms"] - prev["speed_cms"]) >= 
+self.min_speed_change_cms: 
+            return True 
+        return False 
+ 
+    def ingest_many(self, rows): 
+        if not self.enabled or not rows: 
+            return 
+ 
+        with self._lock: 
+            cur = self._conn.cursor() 
+            appended_rows = [] 
+            for row in rows: 
+                ingest_wallclock = datetime.now(timezone.utc) 
+                icao = str(row.get("icaoAddress", "")).strip().upper() 
+                callsign = str(row.get("callsign", "")).strip().upper() 
+                if not icao and not callsign: 
+                    continue 
+                flight_key = icao if icao else callsign 
+
+===== PDF PAGE 58 =====
+ 
+48 
+ 
+                ts_iso, ts_dt = _parse_ts(row.get("timestamp")) 
+                q = self._quantize(row) 
+                source_ip = str(row.get("sourceIp", "")).strip() 
+ 
+                self._sample_counter[flight_key] = 
+self._sample_counter.get(flight_key, 0) 
+                sample_count = self._sample_counter[flight_key] 
+ 
+                cur.execute( 
+                    """ 
+                    INSERT INTO flight_latest ( 
+                        flight_key, icao_address, callsign, timestamp, 
+                        lat_e5, lon_e5, altitude_m, speed_cms, heading_de2, 
+                        vs_cms, squawk, source_ip, sample_count 
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+                    ON CONFLICT(flight_key) DO UPDATE SET 
+                        icao_address=excluded.icao_address, 
+                        callsign=excluded.callsign, 
+                        timestamp=excluded.timestamp, 
+                        lat_e5=excluded.lat_e5, 
+                        lon_e5=excluded.lon_e5, 
+                        altitude_m=excluded.altitude_m, 
+                        speed_cms=excluded.speed_cms, 
+                        heading_de2=excluded.heading_de2, 
+                        vs_cms=excluded.vs_cms, 
+                        squawk=excluded.squawk, 
+                        source_ip=excluded.source_ip, 
+                        sample_count=excluded.sample_count 
+                    """, 
+                    ( 
+                        flight_key, 
+                        icao or "UNKNOWN", 
+                        callsign or "UNKNOWN", 
+                        ts_iso, 
+                        q["lat_e5"], 
+                        q["lon_e5"], 
+                        q["altitude_m"], 
+                        q["speed_cms"], 
+                        q["heading_de2"], 
+                        q["vs_cms"], 
+                        q["squawk"] if q["squawk"] > 0 else None, 
+                        source_ip, 
+                        sample_count, 
+                    ), 
+                ) 
+                self._last_ingest_wallclock[flight_key] = ingest_wallclock 
+ 
+                if q["lat_e5"] == 0 and q["lon_e5"] == 0: 
+                    continue 
+                if not self._should_store(flight_key, ts_iso, q): 
+                    continue 
+ 
+                cur.execute( 
+                    """ 
+                    INSERT OR IGNORE INTO trajectory_samples ( 
+                        flight_key, timestamp, lat_e5, lon_e5, altitude_m, 
+                        speed_cms, heading_de2, vs_cms, squawk, source_ip 
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+                    """, 
+                    ( 
+                        flight_key, 
+                        ts_iso, 
+                        q["lat_e5"], 
+                        q["lon_e5"], 
+                        q["altitude_m"], 
+                        q["speed_cms"], 
+                        q["heading_de2"], 
+                        q["vs_cms"], 
+                        q["squawk"] if q["squawk"] > 0 else None, 
+
+===== PDF PAGE 59 =====
+ 
+49 
+                        source_ip, 
+                    ), 
+                ) 
+                self._sample_counter[flight_key] = 
+self._sample_counter.get(flight_key, 0) + 1 
+                self._last_saved[flight_key] = { 
+                    "dt": ts_dt, 
+                    "lat_e5": q["lat_e5"], 
+                    "lon_e5": q["lon_e5"], 
+                    "altitude_m": q["altitude_m"], 
+                    "speed_cms": q["speed_cms"], 
+                    "heading_de2": q["heading_de2"], 
+                } 
+                appended_rows.append( 
+                    { 
+                        "flightKey": flight_key, 
+                        "timestamp": ts_iso, 
+                        "icaoAddress": icao or "UNKNOWN", 
+                        "callsign": callsign or "UNKNOWN", 
+                        "latDD": q["lat_e5"] / 100000.0, 
+                        "lonDD": q["lon_e5"] / 100000.0, 
+                        "altitudeM": q["altitude_m"], 
+                        "speedCMS": q["speed_cms"], 
+                        "headingDE2": q["heading_de2"], 
+                        "verVelocityCMS": q["vs_cms"], 
+                        "squawk": q["squawk"] if q["squawk"] > 0 else None, 
+                        "sourceIp": source_ip, 
+                    } 
+                ) 
+ 
+            self._conn.commit() 
+            if self.append_csv_enabled and appended_rows: 
+                self._append_trajectory_csv_rows(appended_rows) 
+            if self.icao_excel_enabled and rows: 
+                self._append_icao_excel_rows(rows) 
+            self._purge_old_history_if_needed() 
+ 
+    def get_latest_matrix(self, limit=1000): 
+        if not self.enabled: 
+            return [] 
+        limit = max(1, int(limit)) 
+        cur = self._conn.cursor() 
+        cur.execute( 
+            """ 
+            SELECT 
+                flight_key, 
+                icao_address, 
+                callsign, 
+                timestamp, 
+                lat_e5, 
+                lon_e5, 
+                altitude_m, 
+                speed_cms, 
+                heading_de2, 
+                vs_cms, 
+                squawk, 
+                source_ip, 
+                sample_count 
+            FROM flight_latest 
+            ORDER BY timestamp DESC 
+            LIMIT ? 
+            """, 
+            (limit,), 
+        ) 
+        rows = [] 
+        for r in cur.fetchall(): 
+            rows.append( 
+                { 
+                    "flightKey": r["flight_key"], 
+                    "icaoAddress": r["icao_address"], 
+                    "callsign": r["callsign"], 
+
+===== PDF PAGE 60 =====
+ 
+50 
+                    "timestamp": r["timestamp"], 
+                    "latDD": r["lat_e5"] / 100000.0, 
+                    "lonDD": r["lon_e5"] / 100000.0, 
+                    "altitudeM": r["altitude_m"], 
+                    "speedCMS": r["speed_cms"], 
+                    "headingDE2": r["heading_de2"], 
+                    "verVelocityCMS": r["vs_cms"], 
+                    "squawk": r["squawk"], 
+                    "sourceIp": r["source_ip"], 
+                    "sampleCount": r["sample_count"], 
+                } 
+            ) 
+        return rows 
+ 
+    def write_latest_matrix_csv(self, output_path, limit=5000): 
+        if not self.enabled: 
+            return None 
+ 
+        rows = self.get_latest_matrix(limit=limit) 
+        out_path = Path(output_path) 
+        out_path.parent.mkdir(parents=True, exist_ok=True) 
+ 
+        headers = [ 
+            "flightKey", 
+            "icaoAddress", 
+            "callsign", 
+            "timestamp", 
+            "latDD", 
+            "lonDD", 
+            "altitudeM", 
+            "speedCMS", 
+            "headingDE2", 
+            "verVelocityCMS", 
+            "squawk", 
+            "sourceIp", 
+            "sampleCount", 
+        ] 
+ 
+        try: 
+            with out_path.open("w", newline="", encoding="utf-8") as f: 
+                writer = csv.DictWriter(f, fieldnames=headers) 
+                writer.writeheader() 
+                for row in rows: 
+                    writer.writerow(row) 
+        except PermissionError: 
+            # Common on Windows when CSV is open in Excel; do not break 
+API/logging. 
+            return None 
+ 
+        return str(out_path) 
+ 
+    def _append_trajectory_csv_rows(self, rows): 
+        if not rows: 
+            return 
+        day_key = datetime.now(timezone.utc).strftime("%Y%m%d") 
+        csv_path = self.append_csv_dir / f"trajectory_{day_key}.csv" 
+        headers = [ 
+            "flightKey", 
+            "timestamp", 
+            "icaoAddress", 
+            "callsign", 
+            "latDD", 
+            "lonDD", 
+            "altitudeM", 
+            "speedCMS", 
+            "headingDE2", 
+            "verVelocityCMS", 
+            "squawk", 
+            "sourceIp", 
+
+===== PDF PAGE 61 =====
+ 
+51 
+        ] 
+        write_header = not csv_path.exists() or csv_path.stat().st_size == 0 
+        with csv_path.open("a", newline="", encoding="utf-8") as f: 
+            writer = csv.DictWriter(f, fieldnames=headers) 
+            if write_header: 
+                writer.writeheader() 
+            for row in rows: 
+                writer.writerow(row) 
+ 
+    def _purge_old_history_if_needed(self): 
+        if self.history_retention_days <= 0: 
+            return 
+ 
+        today = datetime.now(timezone.utc).date() 
+        if self._last_purge_day == today: 
+            return 
+ 
+        cutoff = datetime.now(timezone.utc) - 
+timedelta(days=self.history_retention_days) 
+        cutoff_iso = cutoff.isoformat() 
+        cur = self._conn.cursor() 
+        cur.execute("DELETE FROM trajectory_samples WHERE timestamp < ?", 
+(cutoff_iso,)) 
+        self._conn.commit() 
+        self._last_purge_day = today 
+ 
+    def get_trajectory_history(self, flight_key=None, hours=24, 
+limit=200000): 
+        if not self.enabled: 
+            return [] 
+ 
+        limit = max(1, int(limit)) 
+        hours = max(1, int(hours)) 
+        cutoff_iso = (datetime.now(timezone.utc) - 
+timedelta(hours=hours)).isoformat() 
+ 
+        cur = self._conn.cursor() 
+        if flight_key: 
+            cur.execute( 
+                """ 
+                SELECT flight_key, timestamp, lat_e5, lon_e5, altitude_m, 
+speed_cms, heading_de2, 
+                       vs_cms, squawk, source_ip 
+                FROM trajectory_samples 
+                WHERE flight_key = ? AND timestamp >= ? 
+                ORDER BY timestamp ASC 
+                LIMIT ? 
+                """, 
+                (str(flight_key).strip().upper(), cutoff_iso, limit), 
+            ) 
+        else: 
+            cur.execute( 
+                """ 
+                SELECT flight_key, timestamp, lat_e5, lon_e5, altitude_m, 
+speed_cms, heading_de2, 
+                       vs_cms, squawk, source_ip 
+                FROM trajectory_samples 
+                WHERE timestamp >= ? 
+                ORDER BY timestamp ASC 
+                LIMIT ? 
+                """, 
+                (cutoff_iso, limit), 
+            ) 
+ 
+        out = [] 
+        for r in cur.fetchall(): 
+            out.append( 
+                { 
+                    "flightKey": r["flight_key"], 
+
+===== PDF PAGE 62 =====
+ 
+52 
+                    "timestamp": r["timestamp"], 
+                    "latDD": r["lat_e5"] / 100000.0, 
+                    "lonDD": r["lon_e5"] / 100000.0, 
+                    "altitudeM": r["altitude_m"], 
+                    "speedCMS": r["speed_cms"], 
+                    "headingDE2": r["heading_de2"], 
+                    "verVelocityCMS": r["vs_cms"], 
+                    "squawk": r["squawk"], 
+                    "sourceIp": r["source_ip"], 
+                } 
+            ) 
+        return out 
+ 
+    def write_trajectory_history_csv(self, output_path, flight_key=None, 
+hours=24, limit=200000): 
+        rows = self.get_trajectory_history(flight_key=flight_key, 
+hours=hours, limit=limit) 
+        out_path = Path(output_path) 
+        out_path.parent.mkdir(parents=True, exist_ok=True) 
+        headers = [ 
+            "flightKey", 
+            "timestamp", 
+            "latDD", 
+            "lonDD", 
+            "altitudeM", 
+            "speedCMS", 
+            "headingDE2", 
+            "verVelocityCMS", 
+            "squawk", 
+            "sourceIp", 
+        ] 
+        with out_path.open("w", newline="", encoding="utf-8") as f: 
+            writer = csv.DictWriter(f, fieldnames=headers) 
+            writer.writeheader() 
+            for row in rows: 
+                writer.writerow(row) 
+        return str(out_path), len(rows) 
+ 
+    def _estimate_motion_from_recent_samples(self, flight_key): 
+        cur = self._conn.cursor() 
+        cur.execute( 
+            """ 
+            SELECT timestamp, lat_e5, lon_e5, altitude_m 
+            FROM trajectory_samples 
+            WHERE flight_key = ? 
+            ORDER BY timestamp DESC 
+            LIMIT 2 
+            """, 
+            (str(flight_key).strip().upper(),), 
+        ) 
+        points = cur.fetchall() 
+        if len(points) < 2: 
+            return None 
+ 
+        p_new = points[0] 
+        p_old = points[1] 
+        _, dt_new = _parse_ts(p_new["timestamp"]) 
+        _, dt_old = _parse_ts(p_old["timestamp"]) 
+        if dt_new is None or dt_old is None: 
+            return None 
+ 
+        dt = (dt_new - dt_old).total_seconds() 
+        if dt <= 0: 
+            return None 
+ 
+        lat1 = p_old["lat_e5"] / 100000.0 
+        lon1 = p_old["lon_e5"] / 100000.0 
+        lat2 = p_new["lat_e5"] / 100000.0 
+        lon2 = p_new["lon_e5"] / 100000.0 
+        dist_m = _haversine_m(lat1, lon1, lat2, lon2) 
+
+===== PDF PAGE 63 =====
+ 
+53 
+        speed_cms = int(round((dist_m / dt) * 100.0)) 
+        heading_de2 = int(round(_bearing_deg(lat1, lon1, lat2, lon2) * 
+100.0)) 
+        vs_cms = int(round(((p_new["altitude_m"] - p_old["altitude_m"]) / dt) 
+* 100.0)) 
+ 
+        return { 
+            "speed_cms": max(0, speed_cms), 
+            "heading_de2": max(0, heading_de2), 
+            "vs_cms": vs_cms, 
+        } 
+ 
+    def _fit_linear_regression_1d(self, xs, ys): 
+        n = len(xs) 
+        if n < 2: 
+            return None 
+        x_mean = sum(xs) / n 
+        y_mean = sum(ys) / n 
+        sxx = 0.0 
+        sxy = 0.0 
+        for x, y in zip(xs, ys): 
+            dx = x - x_mean 
+            sxx += dx * dx 
+            sxy += dx * (y - y_mean) 
+        if sxx <= 0.0: 
+            return None 
+        b = sxy / sxx 
+        a = y_mean - b * x_mean 
+        return a, b 
+ 
+    def _predict_from_linear_regression(self, flight_key, age_sec, 
+fallback_lat, fallback_lon, fallback_a 
+        """ 
+        Common ML baseline: sliding-window linear regression over recent 
+trajectory points. 
+        Fits lat(t), lon(t), alt(t) and extrapolates for outage duration. 
+        """ 
+        cur = self._conn.cursor() 
+        cur.execute( 
+            """ 
+            SELECT timestamp, lat_e5, lon_e5, altitude_m 
+            FROM trajectory_samples 
+            WHERE flight_key = ? 
+            ORDER BY timestamp DESC 
+            LIMIT 20 
+            """, 
+            (str(flight_key).strip().upper(),), 
+        ) 
+        rows = cur.fetchall() 
+        if len(rows) < 4: 
+            return None 
+ 
+        pts = [] 
+        for r in reversed(rows): 
+            _, dt = _parse_ts(r["timestamp"]) 
+            if dt is None: 
+                continue 
+            pts.append( 
+                ( 
+                    dt, 
+                    r["lat_e5"] / 100000.0, 
+                    r["lon_e5"] / 100000.0, 
+                    float(r["altitude_m"] or 0.0), 
+                ) 
+            ) 
+        if len(pts) < 4: 
+            return None 
+ 
+        t0 = pts[0][0] 
+        xs = [(p[0] - t0).total_seconds() for p in pts] 
+
+===== PDF PAGE 64 =====
+ 
+54 
+        lat_vals = [p[1] for p in pts] 
+        lon_vals = [p[2] for p in pts] 
+        alt_vals = [p[3] for p in pts] 
+ 
+        lat_fit = self._fit_linear_regression_1d(xs, lat_vals) 
+        lon_fit = self._fit_linear_regression_1d(xs, lon_vals) 
+        alt_fit = self._fit_linear_regression_1d(xs, alt_vals) 
+        if lat_fit is None or lon_fit is None or alt_fit is None: 
+            return None 
+ 
+        t_last = xs[-1] 
+        t_future = t_last + float(age_sec) 
+        lat_pred = lat_fit[0] + lat_fit[1] * t_future 
+        lon_pred = lon_fit[0] + lon_fit[1] * t_future 
+        alt_pred_m = max(0.0, alt_fit[0] + alt_fit[1] * t_future) 
+ 
+        # Derive heading/speed from regression slopes (deg/s -> meters/s 
+approx). 
+        lat_rate = lat_fit[1] 
+        lon_rate = lon_fit[1] 
+        lat_now = lat_fit[0] + lat_fit[1] * t_last 
+        lon_now = lon_fit[0] + lon_fit[1] * t_last 
+        lat_next = lat_now + lat_rate 
+        lon_next = lon_now + lon_rate 
+        speed_cms = int(round(_haversine_m(lat_now, lon_now, lat_next, 
+lon_next) * 100.0)) 
+        heading_de2 = int(round(_bearing_deg(lat_now, lon_now, lat_next, 
+lon_next) * 100.0)) 
+        vs_cms = int(round(alt_fit[1] * 100.0)) 
+ 
+        # Keep fallback stability if regression outputs become non-finite. 
+        if not (math.isfinite(lat_pred) and math.isfinite(lon_pred)): 
+            return None 
+        if not math.isfinite(alt_pred_m): 
+            alt_pred_m = float(fallback_alt_m) 
+        if speed_cms < 0: 
+            speed_cms = 0 
+        if heading_de2 < 0: 
+            heading_de2 = 0 
+ 
+        return { 
+            "lat": lat_pred if math.isfinite(lat_pred) else fallback_lat, 
+            "lon": lon_pred if math.isfinite(lon_pred) else fallback_lon, 
+            "alt_m": alt_pred_m, 
+            "speed_cms": speed_cms, 
+            "heading_de2": heading_de2, 
+            "vs_cms": vs_cms, 
+        } 
+ 
+    def build_predicted_rows(self, active_icao_set=None, 
+max_prediction_age_sec=120, limit=1000): 
+        """ 
+        Build short-horizon predicted rows for flights that dropped from live 
+feed. 
+        Predictions are output-only (not written into training tables). 
+        """ 
+        if not self.enabled: 
+            return [] 
+ 
+        active_icao_set = {str(x).strip().upper() for x in (active_icao_set 
+or set()) if str(x).strip()} 
+        max_prediction_age_sec = max(1, int(max_prediction_age_sec)) 
+        limit = max(1, int(limit)) 
+ 
+        now_dt = datetime.now(timezone.utc) 
+ 
+        cur = self._conn.cursor() 
+        cur.execute( 
+
+===== PDF PAGE 65 =====
+ 
+55 
+            """ 
+            SELECT 
+                flight_key, 
+                icao_address, 
+                callsign, 
+                timestamp, 
+                lat_e5, 
+                lon_e5, 
+                altitude_m, 
+                speed_cms, 
+                heading_de2, 
+                vs_cms, 
+                source_ip 
+            FROM flight_latest 
+            ORDER BY timestamp DESC 
+            LIMIT ? 
+            """, 
+            (limit,), 
+        ) 
+ 
+        predicted = [] 
+        for r in cur.fetchall(): 
+            icao = str(r["icao_address"] or "").strip().upper() 
+            if not icao or icao == "UNKNOWN": 
+                continue 
+            if icao in active_icao_set: 
+                continue 
+ 
+            flight_key = str(r["flight_key"] or "").strip().upper() 
+            last_seen_wallclock = self._last_ingest_wallclock.get(flight_key) 
+            if last_seen_wallclock is None: 
+                # Fallback for older rows (before process lifetime state 
+exists). 
+                _, parsed_ts = _parse_ts(r["timestamp"]) 
+                last_seen_wallclock = parsed_ts 
+            if last_seen_wallclock is None: 
+                continue 
+            age_sec = (now_dt - last_seen_wallclock).total_seconds() 
+            if age_sec <= 0 or age_sec > max_prediction_age_sec: 
+                continue 
+ 
+            lat = r["lat_e5"] / 100000.0 
+            lon = r["lon_e5"] / 100000.0 
+            altitude_m = int(r["altitude_m"] or 0) 
+            speed_cms = int(r["speed_cms"] or 0) 
+            heading_de2 = int(r["heading_de2"] or 0) 
+            vs_cms = int(r["vs_cms"] or 0) 
+ 
+            reg_pred = self._predict_from_linear_regression( 
+                flight_key=r["flight_key"], 
+                age_sec=age_sec, 
+                fallback_lat=lat, 
+                fallback_lon=lon, 
+                fallback_alt_m=altitude_m, 
+            ) 
+            if reg_pred is not None: 
+                pred_lat = reg_pred["lat"] 
+                pred_lon = reg_pred["lon"] 
+                pred_alt_m = reg_pred["alt_m"] 
+                speed_cms = reg_pred["speed_cms"] 
+                heading_de2 = reg_pred["heading_de2"] 
+                vs_cms = reg_pred["vs_cms"] 
+            else: 
+                # Fallback to deterministic kinematics if regression cannot 
+fit. 
+                if speed_cms <= 0 or heading_de2 <= 0: 
+                    motion = 
+self._estimate_motion_from_recent_samples(r["flight_key"]) 
+                    if motion is not None: 
+                        if speed_cms <= 0: 
+
+===== PDF PAGE 66 =====
+ 
+56 
+                            speed_cms = motion["speed_cms"] 
+                        if heading_de2 <= 0: 
+                            heading_de2 = motion["heading_de2"] 
+                        if vs_cms == 0: 
+                            vs_cms = motion["vs_cms"] 
+ 
+                speed_mps = speed_cms / 100.0 
+                heading_deg = heading_de2 / 100.0 
+                dist_m = speed_mps * age_sec 
+                heading_rad = math.radians(heading_deg) 
+ 
+                dlat = (dist_m / 111320.0) * math.cos(heading_rad) 
+                scale = max(0.2, math.cos(math.radians(lat))) 
+                dlon = (dist_m / (111320.0 * scale)) * math.sin(heading_rad) 
+ 
+                pred_lat = lat + dlat 
+                pred_lon = lon + dlon 
+                pred_alt_m = max(0.0, altitude_m + (vs_cms / 100.0) * 
+age_sec) 
+ 
+            predicted.append( 
+                { 
+                    "icaoAddress": icao, 
+                    "callsign": str(r["callsign"] or 
+"UNKNOWN").strip().upper() or "UNKNOWN", 
+                    "latDD": pred_lat, 
+                    "lonDD": pred_lon, 
+                    "altitudeMM": int(round(pred_alt_m * 1000.0)), 
+                    "headingDE2": heading_de2, 
+                    "horVelocityCMS": speed_cms, 
+                    "verVelocityCMS": vs_cms, 
+                    "timestamp": now_dt.isoformat(), 
+                    "sourceIp": "PREDICTED", 
+                    "isPredicted": True, 
+                    "predictionAgeSec": int(round(age_sec)), 
+                } 
+            ) 
+ 
+        return predicted 
+ 
+    def _append_icao_excel_rows(self, rows): 
+        """ 
+        Create/update one Excel file per ICAO with continuous append. 
+        File format: <ICAO>.xlsx 
+        """ 
+        if not rows: 
+            return 
+ 
+        headers = list(self._master_headers) 
+ 
+        grouped_rows = defaultdict(list) 
+        for row in rows: 
+            record = self._to_icao_excel_record(row) 
+            if record is None: 
+                continue 
+            grouped_rows[record["icao"]].append(record) 
+ 
+        for icao, icao_rows in grouped_rows.items(): 
+            file_path = self.icao_excel_dir / 
+f"{icao}.{self.icao_excel_extension}" 
+            try: 
+                if file_path.exists(): 
+                    wb = self._load_workbook_path(file_path) 
+                    ws = wb.active 
+                else: 
+                    wb = Workbook() 
+                    ws = wb.active 
+                    ws.title = "flight_data" 
+
+===== PDF PAGE 67 =====
+ 
+57 
+ 
+                self._ensure_excel_headers(ws, headers) 
+                for record in icao_rows: 
+                    ws.append( 
+                        [ 
+                            record["timestamp"], 
+                            record["icao"], 
+                            record["callsign"], 
+                            record["latitude"], 
+                            record["longitude"], 
+                            record["altitude"], 
+                            record["heading"], 
+                            record["speed"], 
+                            record["vertical_rate"], 
+                        ] 
+                    ) 
+                self._save_workbook_path(wb, file_path) 
+            except Exception: 
+                # Keep logging uninterrupted for other ICAO files. 
+                continue 
+ 
+        self._append_master_excel_rows(grouped_rows) 
+ 
+    def _append_master_excel_rows(self, grouped_rows): 
+        if not self.icao_master_enabled or not grouped_rows: 
+            return 
+        if self._master_wb is None: 
+            self._load_or_create_master_wb() 
+        if self._master_wb is None or self.icao_master_path is None: 
+            return 
+ 
+        try: 
+            index_ws = self._master_wb["ICAO_INDEX"] 
+        except KeyError: 
+            index_ws = self._master_wb.create_sheet("ICAO_INDEX", 0) 
+            index_ws.append(["ICAO", "SheetName", "RecordCount"]) 
+ 
+        index_row_for_icao = {} 
+        for row_idx in range(2, index_ws.max_row + 1): 
+            key = str(index_ws.cell(row=row_idx, column=1).value or 
+"").strip().upper() 
+            if key: 
+                index_row_for_icao[key] = row_idx 
+ 
+        for icao, icao_rows in grouped_rows.items(): 
+            sheet_name = icao[:31] 
+            ws = self._master_wb[sheet_name] if sheet_name in 
+self._master_wb.sheetnames else self._maste 
+            self._ensure_excel_headers(ws, self._master_headers) 
+            for record in icao_rows: 
+                ws.append( 
+                    [ 
+                        record["timestamp"], 
+                        record["icao"], 
+                        record["callsign"], 
+                        record["latitude"], 
+                        record["longitude"], 
+                        record["altitude"], 
+                        record["heading"], 
+                        record["speed"], 
+                        record["vertical_rate"], 
+                    ] 
+                ) 
+ 
+            current_count = max(0, ws.max_row - 1) 
+            if icao in index_row_for_icao: 
+                r = index_row_for_icao[icao] 
+                index_ws.cell(row=r, column=2, value=sheet_name) 
+                index_ws.cell(row=r, column=3, value=current_count) 
+
+===== PDF PAGE 68 =====
+ 
+58 
+            else: 
+                index_ws.append([icao, sheet_name, current_count]) 
+                index_row_for_icao[icao] = index_ws.max_row 
+ 
+        try: 
+            self._save_workbook_path(self._master_wb, self.icao_master_path) 
+        except Exception: 
+            pass 
+ 
+    def _ensure_excel_headers(self, ws, headers): 
+        current = [cell.value for cell in ws[1]] if ws.max_row >= 1 else [] 
+        if current[: len(headers)] == headers: 
+            return 
+  
+
+===== PDF PAGE 69 =====
+ 
+59 
+Dashboard excerpt 
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>ADS-B Live Tracker</title> 
+  <link rel="preconnect" href="https://fonts.googleapis.com" /> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> 
+  <link 
+href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&fa
+mily=Roboto+Mono:wgh 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> 
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> 
+  <script src="https://unpkg.com/leaflet-
+rotatedmarker/leaflet.rotatedMarker.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+  <style> 
+    :root{--y:#fdb813;--bg:#081526;--p:#0f2138;--b:#2d4a6b;--t:#d9e9f8;--
+d:#8ea9c3;--ok:#2bd47f;--bad:#ff 
+    *{box-sizing:border-box}html,body{height:100%;margin:0;background:var(--
+bg);color:var(--t);font-famil 
+    #app{height:100%;display:grid;grid-template-rows:54px 1fr 150px} 
+    #top{display:grid;grid-template-columns:220px 1fr 250px;align-
+items:center;gap:10px;padding:0 12px;ba 
+    #brand{font-weight:700;letter-spacing:.4px} 
+    #search{height:34px;border-radius:7px;border:1px solid #0003;padding:0 
+10px;font-size:14px} 
+    #stats{display:flex;gap:8px;justify-content:flex-end} 
+    .chip{background:#000c;color:#e8f3ff;border:1px solid #fff3;border-
+radius:7px;padding:4px 8px;min-wid 
+    .chip .k{font-size:10px;color:#9fc0db;text-transform:uppercase}.chip 
+.v{font:500 12px "Roboto Mono",m 
+    #main{min-height:0;display:grid;grid-template-columns:220px 1fr} 
+    #listPane{min-height:0;background:linear-
+gradient(180deg,#11253c,#0d1c2f);border-right:1px solid var( 
+    #listHdr{padding:9px 12px;border-bottom:1px solid var(--b);font-
+size:12px;font-weight:700;letter-spac 
+    #aircraftList{margin:0;padding:8px;list-style:none;overflow-
+y:auto;display:flex;flex-direction:column 
+    .row{padding:8px;border:1px solid var(--b);border-
+radius:9px;background:#10243a;cursor:pointer} 
+    .row:hover{border-color:#4f7399}.row.active{background:#3b2d05;border-
+color:#b98b05} 
+    .call{font-weight:700}.meta{font:11px "Roboto 
+Mono",monospace;color:#9dbdde} 
+    #mapWrap{position:relative}#map{height:100%;width:100%} 
+    #ctrl{position:absolute;top:10px;right:10px;z-
+index:1200;display:flex;flex-direction:column;gap:7px} 
+    #ctrl button{width:34px;height:34px;border-radius:8px;border:1px solid 
+#fff3;background:#071321e0;col 
+    #legend{position:absolute;left:10px;bottom:10px;z-
+index:1200;background:#071321e0;border:1px solid va 
+    #bottom{display:grid;grid-template-columns:1fr 
+300px;gap:10px;padding:10px;border-top:1px solid var(- 
+    #tabs{display:flex;gap:8px;margin-bottom:8px}#tabs button{border:1px 
+solid #355878;background:#183252 
+    #tabs button.active{border-
+color:#b88a00;background:#4b3705;color:#ffe7a5}.tab{display:none}.tab.acti 
+    .kv{display:grid;grid-template-columns:120px 1fr;gap:5px 8px}.kv 
+dt{color:var(--d)}.kv dd{margin:0;fo 
+    #graph{border:1px solid var(--b);border-
+radius:10px;padding:8px;background:#10243ae0} 
+    .lbl{background:#0d2138e0;color:#ffe29a;border:none;border-
+radius:8px;padding:2px 6px;font-size:11px; 
+    .empty{padding:10px;border:1px dashed #426486;border-
+radius:8px;color:var(--d)} 
+    @media(max-width:1050px){ 
+      #app{grid-template-rows:54px 1fr 245px} 
+      #main{grid-template-columns:1fr} 
+
+===== PDF PAGE 70 =====
+ 
+60 
+      #listPane{display:none} 
+      #top{grid-template-columns:170px 1fr} 
+      #stats{display:none} 
+      #bottom{grid-template-columns:1fr} 
+    } 
+  </style> 
+</head> 
+<body> 
+  <div id="app"> 
+    <header id="top"> 
+      <div id="brand">Aircraft Tracker</div> 
+      <input id="search" placeholder="Search callsign or ICAO" /> 
+      <div id="stats"> 
+        <div class="chip"><div class="k">Tracked</div><div class="v" 
+id="tracked">0</div></div> 
+        <div class="chip"><div class="k">Visible</div><div class="v" 
+id="visible">0</div></div> 
+        <div class="chip"><div class="k">Feed</div><div class="v" 
+id="status">Boot</div></div> 
+      </div> 
+    </header> 
+    <section id="main"> 
+      <aside id="listPane"><div id="listHdr">LIVE TRAFFIC</div><ul 
+id="aircraftList"></ul></aside> 
+      <div id="mapWrap"> 
+        <div id="map"></div> 
+        <div id="ctrl"><button id="zin">+</button><button id="zout">-
+</button><button id="center">o</butt 
+        <div id="legend">India sector radar</div> 
+      </div> 
+    </section> 
+    <section id="bottom"> 
+      <div> 
+        <div id="tabs"><button data-tab="flight" 
+class="active">Flight</button><button data-tab="aircraft 
+        <div id="flight" class="tab active"><div class="empty">Select an 
+aircraft from map or list.</div> 
+        <div id="aircraft" class="tab"><div class="empty">No aircraft 
+selected.</div></div> 
+        <div id="route" class="tab"><div class="empty">Route details appear 
+on selection.</div></div> 
+      </div> 
+      <div id="graph"><canvas id="altitudeChart" height="170"></canvas></div> 
+    </section> 
+  </div> 
+  <script> 
+    const map=L.map("map",{zoomControl:false}).setView([22.2,79.2],5); 
+    
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,
+attribution:"&copy; Open 
+    const state={layers:new 
+Map(),rows:[],sel:null,route:null,routeEnds:[],hist:new Map()}; 
+    const 
+els={tracked:document.getElementById("tracked"),visible:document.getElementBy
+Id("visible"),stat 
+    const chart=new 
+Chart(document.getElementById("altitudeChart"),{type:"line",data:{labels:[],d
+atasets: 
+    const num=(v,f=0)=>{const n=Number(v);return Number.isFinite(n)?n:f}; 
+    const norm=(r)=>{const 
+c=String(r.callsign??r.flight_no??"UNKNOWN").trim().toUpperCase()||"UNKNOWN";
+c 
+    const pop=(a)=>`<b>${a.callsign}</b>${a.isPredicted?' <span 
+style="color:#ff7d7d">(Predicted)</span>' 
+    const haversine=(a,b)=>{const 
+R=6371000,rad=v=>v*Math.PI/180,p1=rad(a[0]),p2=rad(b[0]),dLat=rad(b[0]- 
+    const PLACES=[ 
+      
+{name:"Delhi",lat:28.6139,lon:77.2090},{name:"Mumbai",lat:19.0760,lon:72.8777
+},{name:"Bengaluru",la 
+
+===== PDF PAGE 71 =====
+ 
+61 
+      
+{name:"Hyderabad",lat:17.3850,lon:78.4867},{name:"Chennai",lat:13.0827,lon:80
+.2707},{name:"Kolkata" 
+      
+{name:"Ahmedabad",lat:23.0225,lon:72.5714},{name:"Pune",lat:18.5204,lon:73.85
+67},{name:"Jaipur",lat 
+      
+{name:"Lucknow",lat:26.8467,lon:80.9462},{name:"Nagpur",lat:21.1458,lon:79.08
+82},{name:"Goa",lat:15 
+      
+{name:"Kochi",lat:9.9312,lon:76.2673},{name:"Thiruvananthapuram",lat:8.5241,l
+on:76.9366},{name:"Guw 
+      
+{name:"Patna",lat:25.5941,lon:85.1376},{name:"Bhopal",lat:23.2599,lon:77.4126
+},{name:"Srinagar",lat 
+      
+{name:"Chandigarh",lat:30.7333,lon:76.7794},{name:"Indore",lat:22.7196,lon:75
+.8577},{name:"Doha",la 
+      
+{name:"Dubai",lat:25.2048,lon:55.2708},{name:"Karachi",lat:24.8607,lon:67.001
+1},{name:"Kathmandu",l 
+    ]; 
+    const nearestPlace=(lat,lon)=>{let best=null,bestD=Infinity;for(const p 
+of PLACES){const d=haversine( 
+    const projectPoint=(lat,lon,headingDeg,speedMps,sec)=>{const 
+dist=speedMps*sec,rad=headingDeg*Math.PI 
+    function 
+openTab(n){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("a
+ctive"));docume 
+    function 
+clearRoute(){if(state.route){map.removeLayer(state.route);state.route=null}st
+ate.routeEnds.f 
+    function drawRoute(a){clearRoute();const 
+l=state.layers.get(a.icaoAddress);if(!l)return;const live=l. 
+    function panels(a){const 
+alt=Math.round(a.altitudeMM/1000),spd=Math.round(a.horVelocityCMS/100),hdg=M 
+    function pushAlt(a){const 
+h=state.hist.get(a.icaoAddress)||[];h.push({t:new Date(),v:Math.round(a.alt 
+    function ensure(a){let 
+l=state.layers.get(a.icaoAddress),hd=a.headingDE2/100;if(!l){const 
+m=L.marker( 
+    function 
+showLayer(l,v){if(v&&!l.vis){l.m.addTo(map);l.tr.addTo(map);l.pr.addTo(map);l
+.ve.addTo(map); 
+    function cleanup(active){for(const [i,l] of 
+state.layers){if(active.has(i))continue;map.removeLayer(l 
+    function select(i){const 
+l=state.layers.get(i);if(!l)return;state.sel=i;const a=l.data;map.setView([a 
+    function renderList(){const q=els.search.value.trim().toUpperCase();const 
+arr=state.rows.filter(a=>!q 
+    function filterAll(){const q=els.search.value.trim().toUpperCase();let 
+vis=0;for(const [i,l] of state 
+    async function refresh(){try{const r=await 
+fetch("/api/aircraft",{cache:"no-store"});if(!r.ok)throw n 
+    
+document.getElementById("zin").addEventListener("click",()=>map.zoomIn());doc
+ument.getElementById("zo 
+    refresh();setInterval(refresh,1000); 
+  </script> 
+</body> 
+</html> 
+  
+
+===== PDF PAGE 72 =====
+ 
+62 
+Appendix C: Project File Inventory 
+The following inventory records the main files and generated data folders used in 
+the project. It is included so that the submitted report clearly connects the 
+documented design with the actual implementation files. 
+Table 12: Project File Inventory 
+Path Purpose 
+app.py Main Flask application and API routes. 
+data_source.py Simulation replay and optional Pingstation stream 
+input. 
+preprocessing/pingstation_raw_decod
+er.py Raw frame splitting and aircraft field decoding. 
+preprocessing/pingstation_preprocess.
+py Data cleaning and unit normalization. 
+storage/flight_data_store.py SQLite, CSV, Excel and trajectory storage logic. 
+templates/index.html Single-page live tracking dashboard. 
+static/airplane.svg Aircraft marker used by the dashboard. 
+logs/flight_training.db SQLite database containing latest and trajectory 
+records. 
+logs/training_csv Daily trajectory CSV output directory. 
+logs/icao_excel ICAO-wise Excel workbook output directory. 
+Appendix D: Sample Output Records 
+The sample values below were taken from the local project database and output 
+folders. They are used only to demonstrate the project output format. 
+Table 13: Sample Latest Aircraft Records 
+ICAO Callsign Timestamp Alt(m) 
+Speed(cm
+/s) 
+Headi
+ng 
+Sampl
+es 
+407A3E AWC666
+L 
+2026-06-
+07T12:19:03.570297+0
+0:00 
+10668 26905 14260 673 
+801748 IGO43V 
+2026-06-
+07T12:19:02.570297+0
+0:00 
+9403 26340 11200 864 
+801670 AXB1274 2026-05-06T13:05:04 7826 22121 11570 0 
+781CDF HYT9158 2026-05-06T13:14:31 10813 27060 10630 0 
+8003B2 AXB1054 2026-05-06T13:17:21 10005 25722 11540 0 
+
+===== PDF PAGE 73 =====
+ 
+63 
+801458 IGO761M 2026-05-06T13:17:33 8435 26597 12020 0 
+80164B IGO942C 2026-05-06T13:30:50 11278 26288 11140 0 
+8016CC AXB1059 2026-05-06T13:22:41 9510 25002 11110 0 
+Table 14: Generated Trajectory CSV Files 
+CSV File Size (bytes) 
+trajectory_20260506.csv 8520 
+trajectory_20260515.csv 103178 
+trajectory_20260517.csv 162952 
+trajectory_20260518.csv 31677 
+trajectory_20260524.csv 12202 
+trajectory_20260607.csv 105823 
+  
+
+===== PDF PAGE 74 =====
+ 
+64 
+Appendix E: Execution Steps 
+The following steps summarize how the project can be executed during evaluation 
+or demonstration. They are written for the local project folder and assume that 
+Python dependencies are installed. 
+8. Open the project folder adsb_tracker_2. 
+9. Activate the Python environment or use the configured Python interpreter. 
+10. Confirm that SIMULATION_MODE is true for replay-based demonstration. 
+11. Run the Flask application using python app.py. 
+12. Open http://localhost:5005 in a browser. 
+13. Observe aircraft markers and select an aircraft to inspect details. 
+14. Use the trajectory export endpoint if a CSV history export is required. 
+15. Review generated SQLite, CSV and Excel files under the logs folder. 
+Appendix F: Sample Raw Pingstation Log 
+A small raw-data sample is included below to show the type of source material 
+processed by the decoder. The complete raw files are kept separately in the project 
+data folder. 
+Raw hex replay sample 
+0e86db07800dbb48080000c0fe00 
+0d600b07801748020800765c00 
+0e86a307800dbb4808000040ff00 
+0e862b07800dbb48080000c0fd00 
+2602df07407a3eff09084157433636364c200088b80c029105338ad74170489c420000020401 
+2602df07407a3eff09084157433636364c200088b80c029105338ad74170489c420000020401 
+0e87ff07800dbb4808000080fd00 
+0e878707800dbb4808000000fc00 
+26f3ef07407a3eff09084157433636364c200088b80b029205338ad74170489c420000020401 
+1311dc078017484e0800765cfd016004400200 
+2669e107407a3eff09084157433636364c200088b80b0292050877d741894c9c420000020401 
+2669e107407a3eff09084157433636364c200088b80b0292050877d741894c9c420000020401 
+2669e107407a3eff09084157433636364c200088b80b0292050877d741894c9c420000020401 
+1311dc078017484e0800765cfd016004400200 
+159eaa07801748ce0900765cfd0160044002090201 
+2669e107407a3eff09084157433636364c200088b80b0292050877d741894c9c420000020401 
+150e6f07801748ce090077a1fd0160044002090201 
+150e7e07801748ce090077a1fd0160048002090201 
+157e0e07801748ce090077bafd0160048002090201 
+157e0e07801748ce090077bafd0160048002090201 
+157e0e07801748ce090077bafd0160048002090201 
+2669e107407a3eff09084157433636364c200088b80b0292050877d741894c9c420000020401 
+157e0e07801748ce090077bafd0160048002090201 
+157e0e07801748ce090077bafd0160048002090201 
+15a5fd07801748ce090077bafe015f048002090201 
+26877607407a3eff09084157433636364c200088b80b029205bd66d74109509c420000020401 
+26877607407a3eff09084157433636364c200088b80b029205bd66d74109509c420000020401 
+0e87bb07800dbb48080000c0fc00 
+15a43207801748ce090077bafe015f04c002090201 
+1577a307801748ce090077d3fe015f04c002090201 
+15764e07801748ce090077d3fe015f040003090201 
+
+===== PDF PAGE 75 =====
+ 
+65 
+1d286807801748fe090077ecfe015f04cf76dc413c2f9d420003090201 
+26901b07801748ff090849474f34335620200077ecfe015f04cf76dc413c2f9d420003090201 
+26901b07801748ff090849474f34335620200077ecfe015f04cf76dc413c2f9d420003090201 
+2689db07407a3eff09084157433636364c200088b80b029205e756d74163539c420000020401 
+2689db07407a3eff09084157433636364c200088b80b029205e756d74163539c4200000204012
+6ef0b07801748ff090849474f343 
+26b57707801748ff090849474f34335620200077ecfe0160040975dc417b309d420003090201 
+26b57707801748ff090849474f34335620200077ecfe0160040975dc417b309d420003090201 
+2689db07407a3eff09084157433636364c200088b80b029205e756d74163539c420000020401 
+26a72407407a3eff09084157433636364c200088b80b029205c052d74148549c420000020401 
+26b4b807801748ff090849474f34335620200077ecfe0160040975dc417b309d424003090201 
+260cae07407a3eff09084157433636364c200088b80b029205604fd741fc549c420000020401 
+269a3807801748ff090849474f34335620200077ecff015f040975dc417b309d424003090201 
+269a3807801748ff090849474f34335620200077ecff015f040975dc417b309d424003090201 
+269a3807801748ff090849474f34335620200077ecff015f040975dc417b309d424003090201 
+260cae07407a3eff09084157433636364c200088b80b029205604fd741fc549c420000020401 
+269bbc07801748ff090849474f3433562020007837ff015f046f6ddc41c4359d424003090201 
+269bbc07801748ff090849474f3433562020007837ff015f046f6ddc41c4359d424003090201 
+260d6107407a3eff09084157433636364c200088b80b029205604fd741fc549c424000020401 
+26b4d807407a3eff09084157433636364c200088b80b029205a53fd7415d589c424000020401 
+26e4bd07801748ff090849474f3433562020007837ff0160046f6ddc41c4359d428003090201 
+26944a07801748ff090849474f3433562020007850ff016004e069dc4134389d428003090201 
+26b4d807407a3eff09084157433636364c200088b80b029205a53fd7415d589c424000020401 
+26440807407a3eff09084157433636364c200088b80b029205a43bd74134599c424000020401 
+26944a07801748ff090849474f3433562020007850ff016004e069dc4134389d428003090201 
+26440807407a3eff09084157433636364c200088b80b029205a43bd74134599c424000020401 
+26440807407a3eff09084157433636364c200088b80b029205a43bd74134599c424000020401 
+26e10e07801748ff090849474f3433562020007850ff0160044868dc415e399d428003090201 
+2645c707407a3eff09084157433636364c200088b80b029205a43bd74134599c420000020401 
+26103f07407a3eff09084157433636364c200088b80b0292051837d7412c5a9c420000020401 
+0e865307800dbb4808000040fc00 
+262bc007801748ff090849474f3433562020007869ff0160045166dc41b23a9d428003090201 
+17e7b707800dbb4908083136342020202020000040fc00 
+26086007407a3eff09084157433636364c200088b80b029205f732d7410b5b9c420000020401 
+26f38907801748ff090849474f3433562020007882ff0160049164dc41ef3b9d428003090201 
+26f38907801748ff090849474f3433562020007882ff0160049164dc41ef3b9d428003090201 
+26c2b807801748ff090849474f3433562020007882000260049164dc41ef3b9d428003090201 
+26ad6807801748ff090849474f343356202000788200026004d762dc411c3d9d428003090201 
+26086007407a3eff09084157433636364c200088b80b029205f732d7410b5b9c420000020401 
+26b49207407a3eff09084157433636364c200088b80b029205872bd741a35c9c420000020401 
+26ad6807801748ff090849474f343356202000788200026004d762dc411c3d9d428003090201 
+26b49207407a3eff09084157433636364c200088b80b029205872bd741a35c9c420000020401 
+269f8d07407a3eff09084157433636364c200088b80b0292052427d741955d9c420000020401 
+269f8d07407a3eff09084157433636364c200088b80b0292052427d741955d9c420000020401 
+26bf1807801748ff090849474f343356202000789b00026004515fdc41963f9d428003090201 
+26bf1807801748ff090849474f343356202000789b00026004515fdc41963f9d428003090201 
+26bf0907801748ff090849474f343356202000789b00026004515fdc41963f9d424003090201 
+26bf0907801748ff090849474f343356202000789b00026004515fdc41963f9d424003090201 
+26e26e07407a3eff09084157433636364c200088b80b0292056823d7415e5e9c420000020401 
+268c1607801748ff090849474f34335620200078b400026004825ddc41cd409d424003090201 
+268c1607801748ff090849474f34335620200078b400026004825ddc41cd409d424003090201 
+26f0ff07407a3eff09084157433636364c200088b80a0291056823d7415e5e9c420000020401 
+26f0ff07407a3eff09084157433636364c200088b80a0291056823d7415e5e9c420000020401 
+26f0ff07407a3eff09084157433636364c200088b80a0291056823d7415e5e9c420000020401 
+263bca07407a3eff09084157433636364c200088b80a029105281bd74125609c420000020401 
+268c1607801748ff090849474f34335620200078b400026004825ddc41cd409d424003090201 
+26535607801748ff090849474f34335620200078e6000260046857dc4113459d424003090201 
+263bca07407a3eff09084157433636364c200088b80a029105281bd74125609c420000020401 
+26535607801748ff090849474f34335620200078e6000260046857dc4113459d424003090201 
+267c1907801748ff090849474f34335620200078e601025f046857dc4113459d420003090201 
+26fe7007801748ff090849474f34335620200078e601025f048055dc4166469d420003090201 
+267a3d07801748ff090849474f34335620200078ff01025f049753dc41b2479d420003090201 
+17e70307800dbb4908083136342020202020000000fe00 
+17a72707800dbb49080831363420202020200000400100 
+17a76307800dbb49080831363420202020200000000000 
+26dab007801748ff090849474f34335620200078ff03025f049753dc41b2479d42c002090201 
+17a71b07800dbb49080831363420202020200000800100 
+26dab007801748ff090849474f34335620200078ff03025f049753dc41b2479d42c002090201 
+17e6af07800dbb49080831363420202020200000c0ff00 
+26d5d307801748ff090849474f343356202000797c03025f048540dc41fa549d42c002090201 
+26d5d307801748ff090849474f343356202000797c03025f048540dc41fa549d42c002090201 
+17a60307800dbb49080831363420202020200000000200 
+
+===== PDF PAGE 76 =====
+ 
+66 
+26d5d307801748ff090849474f343356202000797c03025f048540dc41fa549d42c002090201 
+26d5d307801748ff090849474f343356202000797c03025f048540dc41fa549d42c002090201 
+17a63f07800dbb49080831363420202020200000c00200 
+26e78807801748ff090849474f34335620200079ae03025f04b538dc41625a9d42c002090201 
+17a71b07800dbb49080831363420202020200000800100 
+26375507801748ff090849474f34335620200079ae03025f041537dc418c5b9d42c002090201 
+17a75f07800dbb49080831363420202020200000c00000 
+26fa5607801748ff090849474f34335620200079ae040260041537dc418c5b9d424003090201 
+26fa5607801748ff090849474f34335620200079ae040260041537dc418c5b9d424003090201 
+26139e07801748ff090849474f34335620200079c704026004fc34dc41f45c9d424003090201 
+17a43307800dbb49080831363420202020200000000500 
+26139e07801748ff090849474f34335620200079c704026004fc34dc41f45c9d424003090201 
+26542107801748ff090849474f34335620200079c7040260044533dc41255e9d424003090201 
+17a7eb07800dbb49080831363420202020200000800200 
+26543007801748ff090849474f34335620200079c7040260044533dc41255e9d428003090201 
+26543007801748ff090849474f34335620200079c7040260044533dc41255e9d428003090201 
+265fca07801748ff090849474f34335620200079e0040260045831dc41785f9d428003090201 
+17a7eb07800dbb49080831363420202020200000800200 
+17a7eb07800dbb49080831363420202020200000800200 
+26dfd507801748ff090849474f34335620200079e004026004be2fdc4194609d428003090201 
+26de1a07801748ff090849474f34335620200079e004026004be2fdc4194609d42c003090201 
+26a49907801748ff090849474f34335620200079f904026004ef2ddc41e0619d42c003090201 
+17a44b07800dbb49080831363420202020200000800400 
+26a49907801748ff090849474f34335620200079f904026004ef2ddc41e0619d42c003090201 
+26a49907801748ff090849474f34335620200079f904026004ef2ddc41e0619d42c003090201 
+26a49907801748ff090849474f34335620200079f904026004ef2ddc41e0619d42c003090201 
+26a5fc07801748ff090849474f34335620200079f904026004ef2ddc41e0619d420004090201 
+26e4f007801748ff090849474f3433562020007a1204026004182cdc411b639d420004090201 
+26e4f007801748ff090849474f3433562020007a1204026004182cdc411b639d420004090201 
+17a68b07800dbb49080831363420202020200000800000 
+17a44b07800dbb49080831363420202020200000800400 
+17a67b07800dbb49080831363420202020200000800300 
+26931607801748ff090849474f3433562020007a44040260041e26dc4142679d420004090201 
+17a75f07800dbb49080831363420202020200000c00000 
+2692c807801748ff090849474f3433562020007a44040260041e26dc4142679d428004090201 
+17a68b07800dbb49080831363420202020200000800000 
+26a2ab07801748ff090849474f3433562020007a5d040260040524dc41b8689d428004090201 
+26a2ab07801748ff090849474f3433562020007a5d040260040524dc41b8689d428004090201 
+26a2ab07801748ff090849474f3433562020007a5d040260040524dc41b8689d428004090201 
+17a6f307800dbb49080831363420202020200000000100 
+26a2ab07801748ff090849474f3433562020007a5d040260040524dc41b8689d428004090201 
+262b9507801748ff090849474f3433562020007a5d040260041d22dc410b6a9d428004090201 
+17a72707800dbb49080831363420202020200000400100 
+17a6cf07800dbb49080831363420202020200000c00100 
+26c01907801748ff090849474f3433562020007a76040260047720dc41336b9d428004090201 
+17a75f07800dbb49080831363420202020200000c00000 
+17a68b07800dbb49080831363420202020200000800000 
+17e6af07800dbb49080831363420202020200000c0ff00 
+0dcccc078016700208005f5000 
+17e6af07800dbb49080831363420202020200000c0ff00 
+26b8d807801748ff090849474f3433562020007aa8040260047b1cdc41e96d9d428004090201 
+0dde9c078016700208005f6900 
+13fc1f078016704e08005f699c01e404c00500 
+26a3e307801748ff090849474f3433562020007aa804026004c51adc41206f9d428004090201 
+26a3e307801748ff090849474f3433562020007aa804026004c51adc41206f9d428004090201 
+26a3e307801748ff090849474f3433562020007aa804026004c51adc41206f9d428004090201 
+26a3e307801748ff090849474f3433562020007aa804026004c51adc41206f9d428004090201 
+26a3c107801748ff090849474f3433562020007aa804026004c51adc41206f9d420005090201 
+26de6607801748ff090849474f3433562020007ac1040260042919dc4144709d420005090201 
+26dfa907801748ff090849474f3433562020007ac1040260042919dc4144709d424005090201 
+26dfa907801748ff090849474f3433562020007ac1040260042919dc4144709d424005090201 
+26da3f07801748ff090849474f3433562020007af3040260046715dc41de729d424005090201 
+26da3f07801748ff090849474f3433562020007af3040260046715dc41de729d424005090201 
+2650c707801748ff090849474f3433562020007b0c04026004a113dc4116749d424005090201 
+2650d607801748ff090849474f3433562020007b0c04026004a113dc4116749d428005090201 
+267e8f07801748ff090849474f3433562020007b3e04026004ff0fdc419e769d428005090201 
+13fc1f078016704e08005f699c01e404c00500 
+17e70307800dbb4908083136342020202020000000fe00 
+17a72707800dbb49080831363420202020200000400100 
+267e8f07801748ff090849474f3433562020007b3e04026004ff0fdc419e769d428005090201 
+26ccaf07801748ff090849474f3433562020007b3e03026004ff0fdc419e769d424005090201 
+26741c07801748ff090849474f3433562020007b7003026004600cdc411b799d424005090201 
+
+===== PDF PAGE 77 =====
+ 
+67 
+26741c07801748ff090849474f3433562020007b7003026004600cdc411b799d424005090201 
+17e70307800dbb4908083136342020202020000000fe00 
+17e61b07800dbb4908083136342020202020000080fd00 
+138d2a078016704e08005f69a1019d04000500 
+26741c07801748ff090849474f3433562020007b7003026004600cdc411b799d424005090201 
+13d56d078016704e080060aea1019d04000500 
+17a76307800dbb49080831363420202020200000000000 
+2675d307801748ff090849474f3433562020007b7003026004600cdc411b799d420005090201 
+26148107801748ff090849474f3433562020007bed030260043801dc41d0809d420005090201 
+17a6cf07800dbb49080831363420202020200000c00100 
+17a75f07800dbb49080831363420202020200000c00000 
+266e5407801748ff090849474f3433562020007c060302600467ffdb4115829d420005090201 
+266fb907801748ff090849474f3433562020007c060302600467ffdb4115829d42c004090201 
+17e77b07800dbb4908083136342020202020000080ff00 
+266fb907801748ff090849474f3433562020007c060302600467ffdb4115829d42c004090201 
+266fb907801748ff090849474f3433562020007c060302600467ffdb4115829d42c004090201 
+1350d1078016704e080060e0a1019d04000500 
+13a3be078016704e080060e0a2018d04c00400 
+17a68b07800dbb49080831363420202020200000800000 
+264fd407801748ff090849474f3433562020007c1f0302600498fddb414d839d42c004090201 
+264e1b07801748ff090849474f3433562020007c1f0302600498fddb414d839d428004090201 
+13a3be078016704e080060e0a2018d04c00400 
+136e12078016704e080060e0a2018804000500 
+17e65f07800dbb49080831363420202020200000c0fc00 
+264e0a07801748ff090849474f3433562020007c1f0302600498fddb414d839d424004090201 
+264e0a07801748ff090849474f3433562020007c1f0302600498fddb414d839d424004090201 
+17a7d707800dbb49080831363420202020200000400200 
+136e12078016704e080060e0a2018804000500 
+17e77b07800dbb4908083136342020202020000080ff00 
+2687cd07801748ff090849474f3433562020007c5103026004f9f7db4132879d424004090201 
+26860207801748ff090849474f3433562020007c5103026004f9f7db4132879d420004090201 
+17e73f07800dbb49080831363420202020200000c0fe00 
+26297007801748ff090849474f3433562020007c51030260042af6db4170889d420004090201 
+26281507801748ff090849474f3433562020007c51030260042af6db4170889d42c003090201 
+26281507801748ff090849474f3433562020007c51030260042af6db4170889d42c003090201 
+  
+
+===== PDF PAGE 78 =====
+APPENDIX G: ALGORITHM SELECTION AND COMPARISON
+G.1 Algorithm Used in the Project
+The implemented predictor uses sliding-window ordinary least-squares linear regression. For each
+aircraft, the latest stored samples are ordered by time. Separate straight lines are fitted for latitude,
+longitude and altitude: value(t) = a + bt. The fitted lines are evaluated at the last sample time plus the
+number of seconds for which the aircraft has been absent from the current feed.
+Implemented constraints
+•
+Input window: up to the latest 20 stored trajectory points; at least 4 valid points are required.
+•
+Prediction condition: the aircraft must have been observed in the current session but be absent from the
+current live/replay snapshot.
+•
+Prediction horizon: 1-180 seconds with the current configuration; older records are not displayed as
+predictions.
+•
+Fallback: constant speed, heading and vertical rate are used when regression cannot be fitted.
+•
+Safety against feedback: predicted rows are output-only and are not written back into the training tables.
+G.2 Why This Method Was Selected
+For a local academic tracker, this method provides a useful balance: it is understandable, deterministic,
+fast enough to run during every API refresh, and able to smooth small variations across several
+observations. It needs no offline training dataset or GPU. Its main limitation is that a straight-line trend
+cannot model a sharp turn or a prolonged outage, which is why the prediction age is deliberately
+capped and the interface visually distinguishes predicted data from live data.
+Recent stored
+trajectory points
+Validate age
+and sample count
+Fit latitude, longitude
+and altitude vs. time
+Extrapolate to
+current outage age
+Return predicted row
+for dotted display
+Figure 14: Trajectory Prediction Pipeline
+ 68
+
+
+===== PDF PAGE 79 =====
+G.3 Comparison of Candidate Trajectory-Prediction Algorithms
+The comparison below explains the alternatives in plain language. The highlighted row is the method currently implemented.
+ Algorithm
+ How it works
+ Main advantage
+ Main limitation
+ Suitability for this project
+Last observation carried
+forward
+Keeps the last known position unchanged.
+Almost no computation and works with
+one record.
+A moving aircraft immediately appears
+stationary.
+Poor; useful only as an emergency display
+fallback.
+Constant velocity and
+heading
+Moves the last position using current speed,
+heading and vertical rate.
+Very fast and does not require a training
+dataset.
+Does not smooth noise and cannot adapt
+well to turns.
+Good fallback; it is used when regression
+cannot be fitted.
+Sliding-window linear
+regression (USED)
+Fits straight lines to recent latitude, longitude
+and altitude values over time.
+Simple, explainable, smooths several
+observations and is inexpensive.
+Assumes locally straight motion; accuracy
+drops during turns or long gaps.
+Best present choice for short gaps, local
+execution and limited data.
+Kalman filter
+Recursively estimates position and velocity
+while modelling measurement noise.
+Strong noise handling and efficient
+real-time updates.
+Needs a motion model and careful
+covariance tuning.
+Strong next upgrade when receiver-noise
+statistics are available.
+Polynomial regression
+Fits a curved time trend instead of a straight
+line.
+Can represent gentle curvature over a
+short window.
+Higher-order extrapolation can become
+unstable and overfit noise.
+Conditional; requires strict order and
+horizon controls.
+Random forest / gradient
+boosting
+Learns nonlinear corrections from
+engineered flight-state features.
+Can model interactions that simple
+formulas miss.
+Requires representative labelled data and
+does not naturally model sequence
+continuity.
+Research option after a larger verified
+trajectory dataset is collected.
+LSTM / GRU neural network
+Learns temporal patterns from complete
+sequences of prior flights.
+Can model complex route and
+manoeuvre patterns.
+Needs substantial training data, tuning and
+more computing power; less explainable.
+Future work for large-scale historical
+datasets, not the current local baseline.
+Table 15: Trajectory Prediction Algorithm Comparison
+69
+
+
+===== PDF PAGE 80 =====
+APPENDIX H: ANNOTATED USER INTERFACE SCREENSHOTS
+Live Tracking Dashboard and Key Controls
+Figure 15: Live Tracking Dashboard and Key Controls
+•
+The top badges distinguish live operation from simulation and show how recently receiver data arrived.
+•
+The lower panel combines flight measurements, route endpoints and altitude history for the selected aircraft.
+70
+
+
+===== PDF PAGE 81 =====
+Aircraft Details, Route and Altitude History
+Figure 16: Aircraft Details, Route and Altitude History
+•
+Selecting a marker opens its callsign, ICAO address, altitude, speed and heading.
+•
+Aircraft metadata, route lookup and altitude history are kept together so the operator can interpret the track without
+changing screens.
+71
+
+
+===== PDF PAGE 82 =====
+Simulation Mode Dashboard
+Figure 17: Simulation Mode Dashboard
+•
+Simulation TRUE means records are replayed from the configured captured log rather than received from the live
+TCP stream.
+•
+The same decoder, storage, prediction and interface pipeline is exercised, which makes repeatable testing possible
+without receiver hardware.
+72
+
+
+===== PDF PAGE 83 =====
+Backend API Request Stream
+Figure 18: Backend API Request Stream
+•
+HTTP 200 responses confirm that the aircraft and status endpoints are serving data successfully.
+•
+The browser requests aircraft data every second and health/mode information every four seconds; repeated log lines
+are therefore expected during operation.
+73
+
+
+===== PDF PAGE 84 =====
+Predicted Trajectory and Dotted Path
+Figure 19: Predicted Trajectory and Dotted Path
+•
+PRED labels and the prediction-age field explicitly separate extrapolated aircraft states from currently received
+observations.
+•
+The red dotted line shows the predicted continuation; solid blue history represents received trajectory samples.
+74
+
+
+===== PDF PAGE 85 =====
